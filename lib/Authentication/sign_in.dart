@@ -1,8 +1,13 @@
+import 'package:dermain/Global/global.dart';
+import 'package:dermain/Global/progress_dialog.dart';
+import 'package:dermain/Navbar/navbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../route_animation.dart';
 import '../theme.dart';
 
@@ -23,15 +28,65 @@ class _SignInState extends State<SignIn> {
   bool isShowEmailError = false;
   bool isShowPasswordError = false;
   bool isLoading = false;
-
   bool _isEmailValid(String email) {
     return email.contains('@') && email.contains('.');
   }
 
-  // ignore: unused_element
-  bool _isFormValid() {
-    return _isEmailValid(emailTextEditingController.text) &&
-        passwordTextEditingController.text.isNotEmpty;
+  validateFrom() {
+    if (emailTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "kolom tidak boleh kosong");
+    } else if (!emailTextEditingController.text.contains("@")) {
+      Fluttertoast.showToast(msg: "email tidak valid");
+    } else if (passwordTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "password harus diisi");
+    } else {
+      LoginUser();
+    }
+  }
+
+  // ignore: non_constant_identifier_names
+  LoginUser() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext c) {
+          return ProgressDialog(
+            message: "Prosses, harap tunggu",
+          );
+        });
+    final User? firebaseUser = (await fAuth
+            .signInWithEmailAndPassword(
+      email: emailTextEditingController.text.trim(),
+      password: passwordTextEditingController.text.trim(),
+    )
+            .catchError((msg) {
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Error: $msg");
+    }))
+        .user;
+
+    if (firebaseUser != null) {
+      DatabaseReference driverRef =
+          FirebaseDatabase.instance.ref().child("driver");
+      driverRef.child(firebaseUser.uid).once().then((driverKey) {
+        final snap = driverKey.snapshot;
+        if (snap.value != null) {
+          currentFirebaseUser = firebaseUser;
+          Fluttertoast.showToast(msg: "Login Success.");
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => const Navbar()));
+        } else {
+          Fluttertoast.showToast(msg: "No record exist with this email.");
+          fAuth.signOut();
+          Navigator.push(
+              context, MaterialPageRoute(builder: (c) => const SignIn()));
+        }
+      });
+    } else {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Login Gagal");
+    }
   }
 
   void _togglePasswordVisibility() {
@@ -261,18 +316,19 @@ class _SignInState extends State<SignIn> {
       width: double.infinity,
       child: TextButton(
         onPressed: () {
-          Future.delayed(const Duration(seconds: 2), () {
-            setState(() {
-              isLoading = false;
-            });
-            if (passwordTextEditingController.text != '12345') {
-              setState(() {
-                isShowPasswordError = true;
-              });
-            } else {
-              Navigator.pushReplacementNamed(context, '/navbar');
-            }
-          });
+          validateFrom();
+          // Future.delayed(const Duration(seconds: 2), () {
+          //   setState(() {
+          //     isLoading = false;
+          //   });
+          //   if (passwordTextEditingController.text != '12345') {
+          //     setState(() {
+          //       isShowPasswordError = true;
+          //     });
+          //   } else {
+          //     Navigator.pushReplacementNamed(context, '/navbar');
+          //   }
+          // });
         },
         style: TextButton.styleFrom(
           backgroundColor: c2,

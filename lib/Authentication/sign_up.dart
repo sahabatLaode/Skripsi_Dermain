@@ -1,5 +1,11 @@
+import 'package:dermain/Authentication/sign_in.dart';
+import 'package:dermain/Global/global.dart';
+import 'package:dermain/Global/progress_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -47,6 +53,63 @@ class _SignUpState extends State<SignUp> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  validateForm() {
+    if (_nameController.text.length < 3) {
+      Fluttertoast.showToast(msg: "name must be atleast 3 Characters.");
+    } else if (!_emailController.text.contains("@")) {
+      Fluttertoast.showToast(msg: "Email address is not Valid.");
+    } else if (_passwordController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Phone Number is required.");
+    } else if (_phoneController.text.length < 6) {
+      Fluttertoast.showToast(msg: "Password must be atleast 6 Characters.");
+    } else {
+      saveUserInfoNow();
+    }
+  }
+
+  saveUserInfoNow() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext c) {
+          return ProgressDialog(
+            message: "Processing, Please wait...",
+          );
+        });
+
+    final User? firebaseUser = (await fAuth
+            .createUserWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    )
+            .catchError((msg) {
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Error: " + msg.toString());
+    }))
+        .user;
+
+    if (firebaseUser != null) {
+      Map userMap = {
+        "id": firebaseUser.uid,
+        "name": _nameController.text.trim(),
+        "email": _emailController.text.trim(),
+        "phone": _phoneController.text.trim(),
+        "password": _passwordController.text.trim(),
+      };
+
+      DatabaseReference reference =
+          FirebaseDatabase.instance.ref().child("users");
+      reference.child(firebaseUser.uid).set(userMap);
+
+      currentFirebaseUser = firebaseUser;
+      Fluttertoast.showToast(msg: "Account has been Created.");
+      Navigator.push(context, MaterialPageRoute(builder: (c) => SignIn()));
+    } else {
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Account has not been Created.");
+    }
   }
 
   void _checkPasswordMatch() {
@@ -502,7 +565,8 @@ class _SignUpState extends State<SignUp> {
       child: ElevatedButton(
         onPressed: _isFormValid()
             ? () {
-                Navigator.of(context).push(kodeOTP());
+                validateForm();
+                // Navigator.of(context).push(kodeOTP());
                 // print('Kata sandi dan konfirmasi kata sandi cocok');
                 // setState(() {
                 //   isLoading = true;

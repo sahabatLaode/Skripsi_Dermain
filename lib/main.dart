@@ -8,9 +8,13 @@ import 'Navbar/Components/Layanan/Widget/Permintaan Koin/permintaan_koin_surga.d
 import 'Navbar/Components/Layanan/layanan.dart';
 import 'Navbar/navbar.dart';
 import 'Onboarding/onboarding.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const Navbar(),
+        '/': (context) => const SignIn(),
         '/onboarding': (context) => const Onboarding(),
         '/sign-in': (context) => const SignIn(),
         '/navbar': (context) => const Navbar(),
