@@ -1,3 +1,4 @@
+import 'package:dermain/Methods/auth_method.dart';
 import 'package:dermain/Navbar/Components/Lainnya/lainnya_items.dart';
 import 'package:dermain/Reusable%20Components/tombol_primer.dart';
 import 'package:dermain/route_animation.dart';
@@ -7,6 +8,7 @@ import 'package:dermain/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import '../Layanan/layanan_items.dart';
+import 'package:dermain/globals.dart' as globals;
 
 class Lainnya extends StatefulWidget {
   const Lainnya({super.key});
@@ -115,6 +117,20 @@ class _LainnyaState extends State<Lainnya> {
   }
 
   Widget logout() {
-    return TombolPrimer(title: 'Keluar', ditekan: () {});
+    return TombolPrimer(
+        title: 'Keluar',
+        ditekan: () async {
+          bool status = await AuthMethod.logout();
+
+          if (status) {
+            setState(() {
+            globals.isLogin = false;
+            globals.token = '';
+            });
+          }
+
+          if (!mounted) return;
+          Navigator.of(context).push(signIn());
+        });
   }
 }

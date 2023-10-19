@@ -1,12 +1,10 @@
-import 'package:dermain/Global/global.dart';
-import 'package:dermain/Global/progress_dialog.dart';
-import 'package:dermain/Navbar/navbar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:dermain/Methods/auth_method.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:dermain/globals.dart' as globals;
 import 'package:iconsax/iconsax.dart';
 import '../route_animation.dart';
 import '../theme.dart';
@@ -19,80 +17,37 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final TextEditingController emailTextEditingController =
-      TextEditingController();
-  final TextEditingController passwordTextEditingController =
-      TextEditingController();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _validatorKey = GlobalKey<FlutterPwValidatorState>();
+  bool _isVisiblePassword = true;
 
-  bool _isPasswordVisible = false;
-  bool isShowEmailError = false;
-  bool isShowPasswordError = false;
-  bool isLoading = false;
-  bool _isEmailValid(String email) {
-    return email.contains('@') && email.contains('.');
-  }
-
-  validateFrom() {
-    if (emailTextEditingController.text.isEmpty) {
-      Fluttertoast.showToast(msg: "kolom tidak boleh kosong");
-    } else if (!emailTextEditingController.text.contains("@")) {
-      Fluttertoast.showToast(msg: "email tidak valid");
-    } else if (passwordTextEditingController.text.isEmpty) {
-      Fluttertoast.showToast(msg: "password harus diisi");
-    } else {
-      LoginUser();
+  void _login() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
     }
-  }
+    _formKey.currentState!.save();
+    bool status = await AuthMethod.login(
+        _usernameController.text, _passwordController.text);
 
-  // ignore: non_constant_identifier_names
-  LoginUser() async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext c) {
-          return ProgressDialog(
-            message: "Prosses, harap tunggu",
-          );
-        });
-    final User? firebaseUser = (await fAuth
-            .signInWithEmailAndPassword(
-      email: emailTextEditingController.text.trim(),
-      password: passwordTextEditingController.text.trim(),
-    )
-            .catchError((msg) {
-      Navigator.pop(context);
-      Fluttertoast.showToast(msg: "Error: $msg");
-    }))
-        .user;
-
-    if (firebaseUser != null) {
-      DatabaseReference driverRef =
-          FirebaseDatabase.instance.ref().child("driver");
-      driverRef.child(firebaseUser.uid).once().then((driverKey) {
-        final snap = driverKey.snapshot;
-        if (snap.value != null) {
-          currentFirebaseUser = firebaseUser;
-          Fluttertoast.showToast(msg: "Login Success.");
-          Navigator.push(
-              context, MaterialPageRoute(builder: (c) => const Navbar()));
-        } else {
-          Fluttertoast.showToast(msg: "No record exist with this email.");
-          fAuth.signOut();
-          Navigator.push(
-              context, MaterialPageRoute(builder: (c) => const SignIn()));
-        }
-      });
-    } else {
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-      Fluttertoast.showToast(msg: "Login Gagal");
+    if (!status) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Email or password invalid!')),
+      );
+      return;
     }
-  }
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _isPasswordVisible = !_isPasswordVisible;
-    });
+    globals.isLogin = true;
+    String? token = await AuthMethod.getToken();
+    if (token != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(token)),
+      );
+    }
+    if (!mounted) return;
+    Navigator.of(context).push(navbar());
   }
 
   @override
@@ -111,18 +66,21 @@ class _SignInState extends State<SignIn> {
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          keterangan(),
-          const SizedBox(height: 24),
-          email(),
-          const SizedBox(height: 12),
-          sandi(),
-          lupaSandi(),
-          tombolMasuk(),
-          daftar(),
-        ],
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            keterangan(),
+            const SizedBox(height: 24),
+            email(),
+            const SizedBox(height: 12),
+            sandi(),
+            lupaSandi(),
+            tombolMasuk(),
+            daftar(),
+          ],
+        ),
       ),
     );
   }
@@ -182,7 +140,7 @@ class _SignInState extends State<SignIn> {
               ),
               Expanded(
                 child: TextFormField(
-                  controller: emailTextEditingController,
+                  controller: _usernameController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'lazismu@mail.com',
@@ -197,21 +155,32 @@ class _SignInState extends State<SignIn> {
                       borderSide: BorderSide(color: Colors.transparent),
                     ),
                   ),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter email.';
+                    }
+                    bool isEmailvalid =
+                        EmailValidator.validate(value.toString());
+                    if (!isEmailvalid) {
+                      return 'Please enter a valid email (ex: jhon@gmail.com)';
+                    }
+                    return null;
+                  },
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 6),
-        if (emailTextEditingController.text.isNotEmpty &&
-            !_isEmailValid(emailTextEditingController.text))
-          Text(
-            'Format email tidak valid',
-            style: GoogleFonts.poppins(
-              color: kRedColor,
-              fontSize: 12,
-            ),
-          ),
+        // const SizedBox(height: 6),
+        // if (emailTextEditingController.text.isNotEmpty &&
+        //     !_isEmailValid(emailTextEditingController.text))
+        //   Text(
+        //     'Format email tidak valid',
+        //     style: GoogleFonts.poppins(
+        //       color: kRedColor,
+        //       fontSize: 12,
+        //     ),
+        //   ),
       ],
     );
   }
@@ -246,8 +215,8 @@ class _SignInState extends State<SignIn> {
               ),
               Expanded(
                 child: TextFormField(
-                  controller: passwordTextEditingController,
-                  obscureText: !_isPasswordVisible,
+                  controller: _passwordController,
+                  obscureText: _isVisiblePassword,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration.collapsed(
                     hintText: '********',
@@ -259,28 +228,32 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               IconButton(
-                onPressed: _togglePasswordVisibility,
+                onPressed: () {
+                  setState(() {
+                    _isVisiblePassword = !_isVisiblePassword;
+                  });
+                },
                 icon: Icon(
-                  _isPasswordVisible ? Iconsax.eye_slash : Iconsax.eye,
+                  _isVisiblePassword ? Iconsax.eye_slash : Iconsax.eye,
                   color: c1,
                 ),
               ),
             ],
           ),
         ),
-        if (isShowPasswordError)
-          Container(
-            margin: const EdgeInsets.only(
-              top: 6,
-            ),
-            child: Text(
-              'Kata sandi salah',
-              style: GoogleFonts.poppins(
-                color: kRedColor,
-                fontSize: 12,
-              ),
-            ),
-          ),
+        // if (isShowPasswordError)
+        //   Container(
+        //     margin: const EdgeInsets.only(
+        //       top: 6,
+        //     ),
+        //     child: Text(
+        //       'Kata sandi salah',
+        //       style: GoogleFonts.poppins(
+        //         color: kRedColor,
+        //         fontSize: 12,
+        //       ),
+        //     ),
+        //   ),
         const SizedBox(
           height: 12,
         ),
@@ -316,19 +289,7 @@ class _SignInState extends State<SignIn> {
       width: double.infinity,
       child: TextButton(
         onPressed: () {
-          validateFrom();
-          // Future.delayed(const Duration(seconds: 2), () {
-          //   setState(() {
-          //     isLoading = false;
-          //   });
-          //   if (passwordTextEditingController.text != '12345') {
-          //     setState(() {
-          //       isShowPasswordError = true;
-          //     });
-          //   } else {
-          //     Navigator.pushReplacementNamed(context, '/navbar');
-          //   }
-          // });
+          _login();
         },
         style: TextButton.styleFrom(
           backgroundColor: c2,
@@ -336,45 +297,53 @@ class _SignInState extends State<SignIn> {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: isLoading
-            ? CircularProgressIndicator(
-                color: cWhite,
-                backgroundColor: c5,
-              )
-            : Text(
-                'Masuk',
-                style: GoogleFonts.poppins(
-                  color: c1,
-                  fontSize: 16,
-                  fontWeight: semibold,
-                ),
-              ),
+        child: Text(
+          'Daftar',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 16,
+            fontWeight: semibold,
+          ),
+        ),
       ),
     );
   }
 
   Widget daftar() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        Text(
-          'Belum punya akun?',
-          style: GoogleFonts.poppins(
-            color: c1,
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).push(signUp());
-          },
-          child: Text(
-            'Daftar',
-            style: GoogleFonts.poppins(
-              color: c1,
-              fontWeight: semibold,
-              decoration: TextDecoration.underline,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Belum punya akun?',
+              style: GoogleFonts.poppins(
+                color: c1,
+              ),
             ),
-          ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(signUp());
+              },
+              child: Text(
+                'Daftar',
+                style: GoogleFonts.poppins(
+                  color: c1,
+                  fontWeight: semibold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        FlutterPwValidator(
+          key: _validatorKey,
+          controller: _passwordController,
+          width: 400,
+          height: 200,
+          minLength: 6,
+          onSuccess: () {},
         ),
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
+import 'package:dermain/Navbar/navbar.dart';
 import 'package:flutter/material.dart';
 
 import 'Authentication/kode_otp.dart';
@@ -23,6 +24,24 @@ import 'Onboarding/onboarding.dart';
 Route onboarding() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Onboarding(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+Route navbar() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Navbar(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
@@ -91,42 +110,6 @@ Route kodeOTP() {
     },
   );
 }
-
-// Route asnaf() {
-//   return PageRouteBuilder(
-//     pageBuilder: (context, animation, secondaryAnimation) => const Asnaf(),
-//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//       const begin = Offset(1.0, 0.0);
-//       const end = Offset.zero;
-//       const curve = Curves.easeInOut;
-
-//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-//       return SlideTransition(
-//         position: animation.drive(tween),
-//         child: child,
-//       );
-//     },
-//   );
-// }
-
-// Route kegiatan() {
-//   return PageRouteBuilder(
-//     pageBuilder: (context, animation, secondaryAnimation) => const Kegiatan(),
-//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//       const begin = Offset(1.0, 0.0);
-//       const end = Offset.zero;
-//       const curve = Curves.easeInOut;
-
-//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-//       return SlideTransition(
-//         position: animation.drive(tween),
-//         child: child,
-//       );
-//     },
-//   );
-// }
 
 Route permintaanAmbulan() {
   return PageRouteBuilder(
