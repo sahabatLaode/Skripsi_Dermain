@@ -1,5 +1,5 @@
 import 'package:dermain/Methods/auth_method.dart';
-import 'package:dermain/Navbar/Components/Profil/lainnya_items.dart';
+import 'package:dermain/Navbar/Components/Profil/profil_items.dart';
 import 'package:dermain/Reusable%20Components/tombol_primer.dart';
 import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:dermain/globals.dart' as globals;
 
-class Lainnya extends StatefulWidget {
-  const Lainnya({super.key});
+class Profil extends StatefulWidget {
+  const Profil({super.key});
 
   @override
-  State<Lainnya> createState() => _LainnyaState();
+  State<Profil> createState() => _ProfilState();
 }
 
-class _LainnyaState extends State<Lainnya> {
+class _ProfilState extends State<Profil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +69,7 @@ class _LainnyaState extends State<Lainnya> {
           width: 180,
           child: TextButton(
             onPressed: () {
-              Navigator.of(context).push(lengkapiProfil());
+              Navigator.of(context).push(ubahProfil());
             },
             style: TextButton.styleFrom(
               shape: RoundedRectangleBorder(
@@ -108,7 +108,7 @@ class _LainnyaState extends State<Lainnya> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Ganti Kata Sandi
-        LainnyaItems(
+        ProfilItems(
             ikon1: Iconsax.key,
             title: 'Ganti kata sandi',
             ikon2: Iconsax.arrow_right_3,

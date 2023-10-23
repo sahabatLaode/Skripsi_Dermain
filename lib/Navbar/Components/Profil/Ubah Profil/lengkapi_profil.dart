@@ -1,12 +1,12 @@
-import 'package:dermain/Navbar/Components/Profil/Akun/lengkapi_profil_items.dart';
+import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/lengkapi_profil_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
-class LengkapiProfil extends StatelessWidget {
-  const LengkapiProfil({super.key});
+class UbahProfil extends StatelessWidget {
+  const UbahProfil({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,35 +60,35 @@ class LengkapiProfil extends StatelessWidget {
   }
 
   Widget namaProfil() {
-    return const LengkapiProfilItems(title: 'Nama Lengkap*');
+    return const UbahProfilItems(title: 'Nama Lengkap*');
   }
 
   Widget emailProfil() {
-    return const LengkapiProfilItems(title: 'Email*');
+    return const UbahProfilItems(title: 'Email*');
   }
 
   Widget hpProfil() {
-    return const LengkapiProfilItems(title: 'Nomor HP*');
+    return const UbahProfilItems(title: 'Nomor HP*');
   }
 
   Widget ttl() {
-    return const LengkapiProfilItems(title: 'Tanggal Lahir*');
+    return const UbahProfilItems(title: 'Tanggal Lahir*');
   }
 
   Widget nik() {
-    return const LengkapiProfilItems(title: 'NIK*');
+    return const UbahProfilItems(title: 'NIK*');
   }
 
   Widget alamat() {
-    return const LengkapiProfilItems(title: 'Alamat*');
+    return const UbahProfilItems(title: 'Alamat*');
   }
 
   Widget golDarah() {
-    return const LengkapiProfilItems(title: 'Golongan Darah*');
+    return const UbahProfilItems(title: 'Golongan Darah*');
   }
 
   Widget ranting() {
-    return const LengkapiProfilItems(title: 'Ranting*');
+    return const UbahProfilItems(title: 'Ranting*');
   }
 
   Widget tombol() {

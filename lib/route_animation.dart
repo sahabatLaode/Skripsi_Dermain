@@ -1,8 +1,10 @@
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
+import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/lengkapi_profil.dart';
+import 'package:dermain/Navbar/Components/Profil/profil.dart';
+import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
 import 'package:dermain/Navbar/navbar.dart';
 import 'package:flutter/material.dart';
-
 import 'Authentication/kode_otp.dart';
 import 'Authentication/sign_in.dart';
 import 'Authentication/sign_up.dart';
@@ -10,10 +12,7 @@ import 'Navbar/Components/Beranda/Widgets/Berita/baca_berita.dart';
 import 'Navbar/Components/Beranda/Widgets/Berita/berita.dart';
 import 'Navbar/Components/Beranda/Widgets/Notifikasi/notifikasi.dart';
 import 'Navbar/Components/Profil/Preferensi/bantuan.dart';
-import 'Navbar/Components/Profil/Akun/lengkapi_profil.dart';
 import 'Navbar/Components/Profil/Preferensi/syarat_ketentuan.dart';
-import 'Navbar/Components/Profil/Akun/ubah_sandi.dart';
-import 'Navbar/Components/Profil/lainnya.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_zakat.dart';
@@ -206,9 +205,9 @@ Route donasiSedekah() {
   );
 }
 
-Route lainnya() {
+Route profil() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const Lainnya(),
+    pageBuilder: (context, animation, secondaryAnimation) => const Profil(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;
@@ -224,10 +223,9 @@ Route lainnya() {
   );
 }
 
-Route lengkapiProfil() {
+Route ubahProfil() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>
-        const LengkapiProfil(),
+    pageBuilder: (context, animation, secondaryAnimation) => const UbahProfil(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;

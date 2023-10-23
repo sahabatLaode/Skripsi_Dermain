@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../theme.dart';
 
-class LengkapiProfilItems extends StatelessWidget {
+class UbahProfilItems extends StatelessWidget {
   final String title;
-  const LengkapiProfilItems({super.key, required this.title});
+  const UbahProfilItems({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

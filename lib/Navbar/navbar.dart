@@ -1,4 +1,4 @@
-import 'package:dermain/Navbar/Components/Profil/lainnya.dart';
+import 'package:dermain/Navbar/Components/Profil/profil.dart';
 import 'package:dermain/Navbar/Components/Layanan/layanan.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/aktivitas.dart';
@@ -20,7 +20,7 @@ class _NavbarState extends State<Navbar> {
     const Beranda(),
     const Layanan(),
     const Aktivitas(),
-    const Lainnya(),
+    const Profil(),
   ];
 
   @override

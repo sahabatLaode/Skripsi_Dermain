@@ -2,13 +2,13 @@ import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LainnyaItems extends StatelessWidget {
+class ProfilItems extends StatelessWidget {
   final IconData ikon1;
   final String title;
   final IconData ikon2;
   final VoidCallback diTekan;
 
-  const LainnyaItems(
+  const ProfilItems(
       {super.key,
       required this.ikon1,
       required this.title,
