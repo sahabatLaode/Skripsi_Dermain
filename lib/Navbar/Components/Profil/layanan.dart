@@ -1,4 +1,4 @@
-import 'package:dermain/Navbar/Components/Profil/layanan_items.dart';
+import 'package:dermain/Navbar/Components/Layanan/layanan_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/route_animation.dart';

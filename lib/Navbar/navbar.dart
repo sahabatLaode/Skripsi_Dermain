@@ -1,5 +1,5 @@
 import 'package:dermain/Navbar/Components/Lainnya/lainnya.dart';
-import 'package:dermain/Navbar/Components/Profil/layanan.dart';
+import 'package:dermain/Navbar/Components/Layanan/layanan.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/aktivitas.dart';
 import 'package:dermain/Navbar/Components/Beranda/beranda.dart';
