@@ -2,17 +2,22 @@ import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
 import 'package:dermain/Navbar/navbar.dart';
 import 'package:flutter/material.dart';
+
 import 'Authentication/kode_otp.dart';
 import 'Authentication/sign_in.dart';
 import 'Authentication/sign_up.dart';
 import 'Navbar/Components/Beranda/Widgets/Berita/baca_berita.dart';
 import 'Navbar/Components/Beranda/Widgets/Berita/berita.dart';
 import 'Navbar/Components/Beranda/Widgets/Notifikasi/notifikasi.dart';
-import 'Navbar/Components/Lainnya/Preferensi/bantuan.dart';
-import 'Navbar/Components/Lainnya/Akun/lengkapi_profil.dart';
-import 'Navbar/Components/Lainnya/Preferensi/syarat_ketentuan.dart';
-import 'Navbar/Components/Lainnya/Akun/ubah_sandi.dart';
-import 'Navbar/Components/Lainnya/lainnya.dart';
+import 'Navbar/Components/Profil/Preferensi/bantuan.dart';
+import 'Navbar/Components/Profil/Akun/lengkapi_profil.dart';
+import 'Navbar/Components/Profil/Preferensi/syarat_ketentuan.dart';
+import 'Navbar/Components/Profil/Akun/ubah_sandi.dart';
+import 'Navbar/Components/Profil/lainnya.dart';
+import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
+import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
+import 'Navbar/Components/Layanan/Widget/Donasi/donasi_zakat.dart';
+import 'Navbar/Components/Layanan/Widget/Permintaan Ambulans/permintaan_ambulan.dart';
 import 'Navbar/Components/Layanan/Widget/Permintaan Koin/permintaan_koin_surga.dart';
 import 'Onboarding/onboarding.dart';
 
