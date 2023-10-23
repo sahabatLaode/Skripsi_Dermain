@@ -14,11 +14,11 @@ import 'Navbar/Components/Lainnya/Akun/lengkapi_profil.dart';
 import 'Navbar/Components/Lainnya/Preferensi/syarat_ketentuan.dart';
 import 'Navbar/Components/Lainnya/Akun/ubah_sandi.dart';
 import 'Navbar/Components/Lainnya/lainnya.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/donasi_zakat.dart';
-import 'Navbar/Components/Layanan/Widget/Permintaan Ambulans/permintaan_ambulan.dart';
-import 'Navbar/Components/Layanan/Widget/Permintaan Koin/permintaan_koin_surga.dart';
+import 'Navbar/Components/Profil/Widget/Donasi/donasi_infaq.dart';
+import 'Navbar/Components/Profil/Widget/Donasi/donasi_sedekah.dart';
+import 'Navbar/Components/Profil/Widget/Donasi/donasi_zakat.dart';
+import 'Navbar/Components/Profil/Widget/Permintaan Ambulans/permintaan_ambulan.dart';
+import 'Navbar/Components/Profil/Widget/Permintaan Koin/permintaan_koin_surga.dart';
 import 'Onboarding/onboarding.dart';
 
 Route onboarding() {

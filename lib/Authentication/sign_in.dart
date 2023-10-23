@@ -42,6 +42,7 @@ class _SignInState extends State<SignIn> {
     globals.isLogin = true;
     String? token = await AuthMethod.getToken();
     if (token != null) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(token)),
       );

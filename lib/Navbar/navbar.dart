@@ -1,5 +1,5 @@
 import 'package:dermain/Navbar/Components/Lainnya/lainnya.dart';
-import 'package:dermain/Navbar/Components/Layanan/layanan.dart';
+import 'package:dermain/Navbar/Components/Profil/layanan.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/aktivitas.dart';
 import 'package:dermain/Navbar/Components/Beranda/beranda.dart';
@@ -85,14 +85,14 @@ class _NavbarState extends State<Navbar> {
             ),
             NavigationDestination(
               icon: Icon(
-                Iconsax.more_square,
+                Iconsax.profile_circle,
                 color: c1,
               ),
               selectedIcon: Icon(
-                Iconsax.more5,
+                Iconsax.profile_circle5,
                 color: c1,
               ),
-              label: 'Lainnya',
+              label: 'Profil',
             ),
           ],
         ),

@@ -13,7 +13,6 @@ class LengkapiProfilItems extends StatelessWidget {
         labelText: title,
         labelStyle: GoogleFonts.poppins(
           color: c3,
-          fontSize: 16,
         ),
       ),
     );

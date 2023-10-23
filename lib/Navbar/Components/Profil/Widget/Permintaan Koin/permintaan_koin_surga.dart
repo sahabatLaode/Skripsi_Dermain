@@ -1,4 +1,4 @@
-import 'package:dermain/Navbar/Components/Layanan/Widget/Permintaan%20Koin/catatan_controller.dart';
+import 'package:dermain/Navbar/Components/Profil/Widget/Permintaan%20Koin/catatan_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';

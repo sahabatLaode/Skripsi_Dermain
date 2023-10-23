@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import '../Layanan/layanan_items.dart';
 import 'package:dermain/globals.dart' as globals;
 
 class Lainnya extends StatefulWidget {
@@ -24,54 +23,81 @@ class _LainnyaState extends State<Lainnya> {
       backgroundColor: cWhite,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        elevation: 0.0,
+        elevation: 0,
         backgroundColor: cWhite,
-        title: Text(
-          'Lainnya',
-          style: GoogleFonts.poppins(
-            color: c1,
-            fontSize: 28,
-            fontWeight: semibold,
-          ),
-        ),
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: cWhite,
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
-      body: ListView(
+      body: Padding(
         padding: const EdgeInsets.all(16),
-        children: [
-          akun(),
-          const SizedBox(height: 32),
-          preferensi(),
-          const SizedBox(height: 32),
-          logout(),
-        ],
+        child: Column(
+          children: [
+            akun(),
+            const SizedBox(height: 32),
+            preferensi(),
+            const Spacer(),
+            logout(),
+          ],
+        ),
       ),
     );
   }
 
   Widget akun() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'Akun',
+          'John Doe',
           style: GoogleFonts.poppins(
             color: c1,
-            fontSize: 16,
+            fontSize: 32,
+            fontWeight: bold,
+          ),
+        ),
+        Text(
+          'lazismu@gmail.com',
+          style: GoogleFonts.poppins(
+            color: c1,
           ),
         ),
         const SizedBox(height: 12),
-        LayananItems(
-          ikon1: Iconsax.user_edit,
-          title: 'John Doe',
-          subtitle: 'lazismu@gmail.com',
-          ikon2: Iconsax.arrow_right_3,
-          diTekan: () {
-            Navigator.of(context).push(lengkapiProfil());
-          },
+        SizedBox(
+          height: 40,
+          width: 180,
+          child: TextButton(
+            onPressed: () {
+              Navigator.of(context).push(lengkapiProfil());
+            },
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(99),
+              ),
+              side: BorderSide(
+                color: c1,
+                width: 2,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(
+                  Iconsax.edit_25,
+                  color: c1,
+                  size: 20,
+                ),
+                Text(
+                  'Ubah profil',
+                  style: GoogleFonts.poppins(
+                    color: c1,
+                    fontWeight: bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );
@@ -81,37 +107,36 @@ class _LainnyaState extends State<Lainnya> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Preferensi',
-          style: GoogleFonts.poppins(
-            color: c1,
-            fontSize: 16,
-          ),
-        ),
-
-        // SYARAT DAN KETENTUAN
+        // Ganti Kata Sandi
         LainnyaItems(
-          ikon1: Iconsax.document_text,
-          title: 'Syarat dan Ketentuan',
-          ikon2: Iconsax.arrow_right_3,
-          diTekan: () {},
-        ),
+            ikon1: Iconsax.key,
+            title: 'Ganti kata sandi',
+            ikon2: Iconsax.arrow_right_3,
+            diTekan: () {}),
 
-        // BANTUAN
-        LainnyaItems(
-          ikon1: Iconsax.message_question,
-          title: 'Bantuan',
-          ikon2: Iconsax.arrow_right_3,
-          diTekan: () {},
-        ),
+        // // SYARAT DAN KETENTUAN
+        // LainnyaItems(
+        //   ikon1: Iconsax.document_text,
+        //   title: 'Syarat dan Ketentuan',
+        //   ikon2: Iconsax.arrow_right_3,
+        //   diTekan: () {},
+        // ),
 
-        // ULASAN
-        LainnyaItems(
-          ikon1: Iconsax.ranking_14,
-          title: 'Ulasan',
-          ikon2: Iconsax.arrow_right_3,
-          diTekan: () {},
-        ),
+        // // BANTUAN
+        // LainnyaItems(
+        //   ikon1: Iconsax.message_question,
+        //   title: 'Bantuan',
+        //   ikon2: Iconsax.arrow_right_3,
+        //   diTekan: () {},
+        // ),
+
+        // // ULASAN
+        // LainnyaItems(
+        //   ikon1: Iconsax.ranking_14,
+        //   title: 'Ulasan',
+        //   ikon2: Iconsax.arrow_right_3,
+        //   diTekan: () {},
+        // ),
       ],
     );
   }
@@ -124,8 +149,8 @@ class _LainnyaState extends State<Lainnya> {
 
           if (status) {
             setState(() {
-            globals.isLogin = false;
-            globals.token = '';
+              globals.isLogin = false;
+              globals.token = '';
             });
           }
 
