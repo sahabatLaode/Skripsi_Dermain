@@ -1,6 +1,6 @@
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
-import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/lengkapi_profil.dart';
+import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/ubah_profil.dart';
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
 import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
 import 'package:dermain/Navbar/navbar.dart';

@@ -1,4 +1,4 @@
-import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/lengkapi_profil_items.dart';
+import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/ubah_profil_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';
