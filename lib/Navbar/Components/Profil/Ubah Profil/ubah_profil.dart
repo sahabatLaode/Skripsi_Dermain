@@ -26,7 +26,6 @@ class _UbahProfilState extends State<UbahProfil> {
   final _validatorKey = GlobalKey<FlutterPwValidatorState>();
   bool _passwordOne = true;
   bool _passwordTwo = true;
-  bool isShowNameError = false;
 
   var _user = UserModel(
     id: '',
@@ -95,8 +94,6 @@ class _UbahProfilState extends State<UbahProfil> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            keterangan(),
-            const SizedBox(height: 24),
             nama(),
             const SizedBox(height: 12),
             email(),
@@ -112,19 +109,6 @@ class _UbahProfilState extends State<UbahProfil> {
             tombolMasuk(),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget keterangan() {
-    return Text(
-      textAlign: TextAlign.center,
-      'Buat Akun Baru',
-      style: GoogleFonts.poppins(
-        color: c1,
-        fontSize: 28,
-        fontWeight: semibold,
-        // fontWeight: medium,
       ),
     );
   }
@@ -173,28 +157,34 @@ class _UbahProfilState extends State<UbahProfil> {
                       borderSide: BorderSide(color: Colors.transparent),
                     ),
                   ),
-                  // validator: (value) {
-                  //   if (value == null || value.trim().isEmpty) {
-                  //     return 'Please enter your name!';
-                  //   }
-                  //   return null;
-                  // },
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter your name!';
+                    }
+                    return null;
+                  },
                 ),
               ),
             ],
           ),
         ),
-        if (isShowNameError)
-          Container(
-            margin: const EdgeInsets.only(
-              top: 6,
-            ),
+        // if (_nameController.text.isNotEmpty && _nameController.text.trim().isEmpty) {
+        //               return 'Please enter email.';
+        //             }
+        //             bool isEmailvalid =
+        //                 EmailValidator.validate(value.toString());
+        //             if (!isEmailvalid) {
+        //               return 'Please enter a valid email (ex: jhon@gmail.com)';
+        //             }
+        //             return null;
+
+        if (_nameController.text.isNotEmpty &&
+            _nameController.text.trim().isEmpty)
+          const Padding(
+            padding: EdgeInsets.only(left: 52),
             child: Text(
               'Nama harus diisi',
-              style: GoogleFonts.poppins(
-                color: kRedColor,
-                fontSize: 12,
-              ),
+              style: TextStyle(color: Colors.red, fontSize: 12),
             ),
           ),
       ],
@@ -257,6 +247,7 @@ class _UbahProfilState extends State<UbahProfil> {
             ],
           ),
         ),
+
         // const SizedBox(height: 6),
         // if (_emailController.text.isNotEmpty &&
         //     !_isEmailValid(_emailController.text))
@@ -510,7 +501,7 @@ class _UbahProfilState extends State<UbahProfil> {
           ),
         ),
         child: Text(
-          'Daftar',
+          'Simpan',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 16,
