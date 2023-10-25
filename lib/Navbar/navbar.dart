@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/aktivitas.dart';
 import 'package:dermain/Navbar/Components/Beranda/beranda.dart';
 import 'package:dermain/theme.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -62,13 +63,19 @@ class _NavbarState extends State<Navbar> {
               label: 'Beranda',
             ),
             NavigationDestination(
-              icon: Icon(
-                Iconsax.menu,
-                color: c1,
+              icon: SvgPicture.asset(
+                'assets/icons/layanan_outline.svg',
+                colorFilter: ColorFilter.mode(
+                  c1,
+                  BlendMode.srcIn,
+                ),
               ),
-              selectedIcon: Icon(
-                Iconsax.menu5,
-                color: c1,
+              selectedIcon: SvgPicture.asset(
+                'assets/icons/layanan_bold.svg',
+                colorFilter: ColorFilter.mode(
+                  c1,
+                  BlendMode.srcIn,
+                ),
               ),
               label: 'Layanan',
             ),
@@ -84,13 +91,19 @@ class _NavbarState extends State<Navbar> {
               label: 'Aktivitas',
             ),
             NavigationDestination(
-              icon: Icon(
-                Iconsax.profile_circle,
-                color: c1,
+              icon: SvgPicture.asset(
+                'assets/icons/profil_outline.svg',
+                colorFilter: ColorFilter.mode(
+                  c1,
+                  BlendMode.srcIn,
+                ),
               ),
-              selectedIcon: Icon(
-                Iconsax.profile_circle5,
-                color: c1,
+              selectedIcon: SvgPicture.asset(
+                'assets/icons/profil_bold.svg',
+                colorFilter: ColorFilter.mode(
+                  c1,
+                  BlendMode.srcIn,
+                ),
               ),
               label: 'Profil',
             ),
