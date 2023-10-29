@@ -1,5 +1,6 @@
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
+import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/Zakat/konfirmasi_zakat.dart';
 import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/ubah_profil.dart';
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
 import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
@@ -15,7 +16,7 @@ import 'Navbar/Components/Profil/Preferensi/bantuan.dart';
 import 'Navbar/Components/Profil/Preferensi/syarat_ketentuan.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/donasi_zakat.dart';
+import 'Navbar/Components/Layanan/Widget/Donasi/Zakat/donasi_zakat.dart';
 import 'Navbar/Components/Layanan/Widget/Permintaan Ambulans/permintaan_ambulan.dart';
 import 'Navbar/Components/Layanan/Widget/Permintaan Koin/permintaan_koin_surga.dart';
 import 'Onboarding/onboarding.dart';
@@ -371,6 +372,25 @@ Route lazismu() {
 Route visi() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Visi(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+Route konfirmasiZakat() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const KonfirmasiZakat(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;

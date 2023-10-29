@@ -1,32 +1,67 @@
+import 'package:dermain/Methods/zakat_method.dart';
+import 'package:dermain/Providers/zakat_provider.dart';
+// import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DonasiZakat extends StatefulWidget {
+class DonasiZakat extends ConsumerStatefulWidget {
   const DonasiZakat({super.key});
 
   @override
-  State<DonasiZakat> createState() => _DonasiZakatState();
+  ConsumerState<DonasiZakat> createState() => _DonasiZakatState();
 }
 
-class _DonasiZakatState extends State<DonasiZakat> {
-  final emailController = TextEditingController(text: '');
-  final passwordController = TextEditingController(text: '');
-  final rekeningNumber = '00011122233344';
-
-  bool isShowPasswordError = false;
-  bool isLoading = false;
-
-  String dropdownValue = 'BSI';
+class _DonasiZakatState extends ConsumerState<DonasiZakat> {
+  final nominalController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController copyController = TextEditingController();
+  final rekeningNumber = '00011122233344';
+
+  bool isShowNamedError = false;
+  bool isLoading = false;
+  bool isChecked = false;
+
+  String dropdownValue = 'BSI';
 
   @override
   void dispose() {
     copyController.dispose();
+    nameController.dispose();
     super.dispose();
+  }
+
+  void _addZakat() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    _formKey.currentState!.save();
+    bool status = await ZakatMethod.addZakat(
+      nominalController.text,
+      nameController.text,
+      emailController.text,
+      phoneController.text,
+    );
+
+    if (status) {
+      _formKey.currentState!.reset();
+
+      ref
+          .read(zakatsProvider.notifier)
+          .addZakats(await ZakatMethod.loadAllZakat());
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Todo successfully added')));
+    }
   }
 
   @override
@@ -60,25 +95,29 @@ class _DonasiZakatState extends State<DonasiZakat> {
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          nominal(),
-          const SizedBox(height: 12),
-          metode(),
-          const SizedBox(height: 12),
-          nama(),
-          const SizedBox(height: 12),
-          email(),
-          const SizedBox(height: 12),
-          telepon(),
-          const SizedBox(height: 12),
-          peringatan(),
-          const SizedBox(height: 12),
-          nomorRekening(),
-          const SizedBox(height: 32),
-          tombol(),
-        ],
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            nominal(),
+            const SizedBox(height: 12),
+            // metode(),
+            // const SizedBox(height: 12),
+            nama(),
+            const SizedBox(height: 12),
+            email(),
+            const SizedBox(height: 12),
+            telepon(),
+            const SizedBox(height: 12),
+            // peringatan(),
+            // const SizedBox(height: 12),
+            // nomorRekening(),
+            const SizedBox(height: 32),
+
+            tombol(),
+          ],
+        ),
       ),
     );
   }
@@ -103,28 +142,38 @@ class _DonasiZakatState extends State<DonasiZakat> {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 'Rp',
                 style: GoogleFonts.poppins(
                   color: c1,
-                  fontSize: 16,
+                  fontSize: 24,
                   fontWeight: bold,
                 ),
               ),
               Expanded(
                 child: TextFormField(
+                  controller: nominalController,
                   keyboardType: TextInputType.number,
                   autocorrect: false,
-                  // obscureText: true,
-                  controller: passwordController,
-                  // keyboardType: TextInputType.visiblePassword,
+                  inputFormatters: [
+                    CurrencyInputFormatter(
+                      // trailingSymbol: CurrencySymbols.,
+                      useSymbolPadding: true,
+                      mantissaLength: 3,
+                    ),
+                  ],
                   decoration: InputDecoration.collapsed(
-                    hintText: '0',
+                    hintText: '0.000',
                     hintStyle: GoogleFonts.poppins(
                       color: c3,
-                      fontSize: 16,
+                      fontSize: 24,
                     ),
+                  ),
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: bold,
                   ),
                 ),
               ),
@@ -162,41 +211,42 @@ class _DonasiZakatState extends State<DonasiZakat> {
               ),
               const SizedBox(width: 14),
               Expanded(
-                  child: DropdownButton<String>(
-                dropdownColor: c5,
-                value: dropdownValue,
-                isExpanded: true,
-                isDense: true,
-                icon: Icon(Iconsax.arrow_down_1, color: c1),
-                elevation: 16,
-                style: GoogleFonts.poppins(
-                  color: c1,
-                  fontSize: 16,
+                child: DropdownButton<String>(
+                  dropdownColor: c5,
+                  value: dropdownValue,
+                  isExpanded: true,
+                  isDense: true,
+                  icon: Icon(Iconsax.arrow_down_1, color: c1),
+                  elevation: 16,
+                  style: GoogleFonts.poppins(
+                    color: c1,
+                    fontSize: 16,
+                  ),
+                  onChanged: (String? newValue) {
+                    // This is called when the user selects an item.
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: <String>['BSI', 'BRI', 'BNI', 'BCA']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/logos/logo_${value.toLowerCase()}.png',
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(value),
+                        ],
+                      ),
+                    );
+                  }).toList(),
                 ),
-                onChanged: (String? newValue) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    dropdownValue = newValue!;
-                  });
-                },
-                items: <String>['BSI', 'BRI', 'BNI', 'BCA']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/logos/logo_${value.toLowerCase()}.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(value),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              )),
+              ),
             ],
           ),
         ),
@@ -232,19 +282,43 @@ class _DonasiZakatState extends State<DonasiZakat> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: nameController,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Hamba Allah',
+                    hintText: 'Nama Lengkap',
                     hintStyle: GoogleFonts.poppins(
                       color: c3,
                       fontSize: 16,
                     ),
+                  ),
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
                   ),
                 ),
               ),
             ],
           ),
         ),
-        if (isShowPasswordError)
+        CheckboxListTile(
+          title: Text(
+            "Sembunyikan sebagai Hamba Allah",
+            style: GoogleFonts.poppins(
+              color: c1,
+              fontSize: 12,
+            ),
+          ),
+          value: isChecked,
+          onChanged: ((value) {
+            setState(() {
+              isChecked = value!;
+              if (isChecked) {
+                nameController.text = "Hamba Allah";
+              } else {
+                nameController.text = "";
+              }
+            });
+          }),
+        ),
+        if (isShowNamedError)
           Container(
             margin: const EdgeInsets.only(
               top: 6,
@@ -289,6 +363,7 @@ class _DonasiZakatState extends State<DonasiZakat> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: emailController,
                   keyboardType: TextInputType.streetAddress,
                   decoration: InputDecoration.collapsed(
                     hintText: 'lazismu@mail.com',
@@ -311,7 +386,7 @@ class _DonasiZakatState extends State<DonasiZakat> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Nomor Telepon',
+          'Nomor Telepon Aktif',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 12,
@@ -333,6 +408,7 @@ class _DonasiZakatState extends State<DonasiZakat> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: phoneController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
                       hintText: '081234567890',
@@ -516,22 +592,23 @@ class _DonasiZakatState extends State<DonasiZakat> {
             height: 56,
             child: TextButton(
               onPressed: () {
-                setState(() {
-                  isLoading = true;
-                });
+                _addZakat();
+                // setState(() {
+                //   isLoading = true;
+                // });
 
-                Future.delayed(const Duration(seconds: 2), () {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  if (passwordController.text != '12345') {
-                    setState(() {
-                      isShowPasswordError = true;
-                    });
-                  } else {
-                    Navigator.pushNamed(context, '/homeboarding');
-                  }
-                });
+                // Future.delayed(const Duration(seconds: 2), () {
+                //   setState(() {
+                //     isLoading = false;
+                //   });
+                //   if (nameController.text.isEmpty) {
+                //     setState(() {
+                //       isShowNamedError = true;
+                //     });
+                //   } else {
+                //     Navigator.of(context).push(konfirmasiZakat());
+                //   }
+                // });
               },
               style: TextButton.styleFrom(
                 backgroundColor: c2,
