@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Authentication/sign_in.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
@@ -12,7 +13,7 @@ import 'Onboarding/onboarding.dart';
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
   // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 }
 

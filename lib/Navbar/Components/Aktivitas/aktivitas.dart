@@ -1,3 +1,4 @@
+import 'package:dermain/Navbar/Components/Aktivitas/aktivitas_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';
@@ -16,135 +17,32 @@ class Aktivitas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: cWhite,
+      appBar: AppBar(
+        toolbarHeight: 80,
+        automaticallyImplyLeading: false,
+        elevation: 0.0,
         backgroundColor: cWhite,
-        appBar: AppBar(
-          toolbarHeight: 80,
-          automaticallyImplyLeading: false,
-          elevation: 0.0,
-          backgroundColor: cWhite,
-          title: Text(
-            'Aktivitas',
-            style: GoogleFonts.poppins(
-              color: c1,
-              fontSize: 28,
-              fontWeight: semibold,
-            ),
-          ),
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: cWhite,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          bottom: TabBar(
-            // isScrollable: true,
-            overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-            unselectedLabelColor: Colors.black38,
-            unselectedLabelStyle: GoogleFonts.poppins(),
-            labelStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: bold,
-            ),
-            indicator: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: c2,
-            ),
-            padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14),
-            tabs: [
-              Tab(
-                child: Text(
-                  'Dalam Proses',
-                  style: GoogleFonts.poppins(
-                    color: c1,
-                  ),
-                ),
-              ),
-              Tab(
-                child: Text(
-                  'Selesai',
-                  style: GoogleFonts.poppins(
-                    color: c1,
-                  ),
-                ),
-              ),
-            ],
+        title: Text(
+          'Aktivitas',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 28,
+            fontWeight: semibold,
           ),
         ),
-        body: TabBarView(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 220,
-                  child: Image.asset(
-                    'assets/images/image_aktivitas1.png',
-                  ),
-                ),
-                const SizedBox(
-                  height: 48,
-                ),
-                Text(
-                  'Belum ada aktivitas yang dilakukan.',
-                  style: GoogleFonts.poppins(
-                    color: c1,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/donasi-infaq',
-                    );
-                  },
-                  child: Text(
-                    'Mulai dengan Donasi',
-                    style: GoogleFonts.poppins(
-                        color: c1,
-                        fontWeight: semibold,
-                        decoration: TextDecoration.underline),
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 220,
-                  child: Image.asset(
-                    'assets/images/image_aktivitas1.png',
-                  ),
-                ),
-                const SizedBox(
-                  height: 48,
-                ),
-                Text(
-                  'Belum ada aktivitas yang dilakukan.',
-                  style: GoogleFonts.poppins(
-                    color: c1,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/donasi-infaq',
-                    );
-                  },
-                  child: Text(
-                    'Mulai dengan Donasi',
-                    style: GoogleFonts.poppins(
-                      color: c1,
-                      fontWeight: semibold,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: cWhite,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [Center(child: AktivitasList(Center()))],
+          ),
         ),
       ),
     );

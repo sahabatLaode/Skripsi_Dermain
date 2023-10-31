@@ -13,6 +13,9 @@ class ZakatsNotifier extends StateNotifier<List<Zakat>> {
         nama: zakat.nama,
         email: zakat.email,
         phone: zakat.phone,
+        jenis_donasi: zakat.jenis_donasi,
+        created_at: zakat.created_at,
+        FotoZakat: zakat.FotoZakat,
       ),
     ];
   }
@@ -21,11 +24,11 @@ class ZakatsNotifier extends StateNotifier<List<Zakat>> {
     state = zakats;
   }
 
-  Zakat findZakat(String id) {
-    Zakat tempZakat = state.firstWhere((zakat) => zakat.id == id);
+  // Zakat findZakat(String id) {
+  //   Zakat tempZakat = state.firstWhere((zakat) => zakat.id == id);
 
-    return tempZakat;
-  }
+  //   return tempZakat;
+  // }
 }
 
 final zakatsProvider = StateNotifierProvider<ZakatsNotifier, List<Zakat>>(
