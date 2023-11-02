@@ -15,7 +15,6 @@ class ZakatsNotifier extends StateNotifier<List<Zakat>> {
         phone: zakat.phone,
         jenis_donasi: zakat.jenis_donasi,
         created_at: zakat.created_at,
-        FotoZakat: zakat.FotoZakat,
       ),
     ];
   }

@@ -6,7 +6,6 @@ class Zakat {
   final String email;
   final String phone;
   final String created_at;
-  final String FotoZakat;
 
   Zakat({
     required this.id,
@@ -16,6 +15,5 @@ class Zakat {
     required this.email,
     required this.phone,
     required this.created_at,
-    required this.FotoZakat,
   });
 }

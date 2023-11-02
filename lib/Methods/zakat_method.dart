@@ -24,7 +24,6 @@ class ZakatMethod {
           phone: zakat['phone'],
           jenis_donasi: zakat['jenis_donasi'],
           created_at: zakat['created_at'],
-          FotoZakat: zakat['fotoZakat'],
         );
         allZakats.add(tempZakat);
       }
@@ -33,7 +32,7 @@ class ZakatMethod {
   }
 
   static Future<bool> addZakat(String jenisDonasi, String nominal, String nama,
-      String email, String phone, String fotoZakat) async {
+      String email, String phone) async {
     final url = Uri.http(addressUrl, subAddress);
     final response = await http.post(
       url,
@@ -44,7 +43,6 @@ class ZakatMethod {
         'nama': nama,
         'email': email,
         'phone': phone,
-        'fotoZakat': fotoZakat,
       }),
     );
     Map<String, dynamic> body = json.decode(response.body);

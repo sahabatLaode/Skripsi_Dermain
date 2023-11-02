@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:dermain/Methods/zakat_method.dart';
 import 'package:dermain/Providers/zakat_provider.dart';
-// import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +7,6 @@ import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 
 class DonasiZakat extends ConsumerStatefulWidget {
   const DonasiZakat({super.key});
@@ -25,7 +21,6 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final jenisController = TextEditingController();
-  final fotoController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController copyController = TextEditingController();
@@ -55,7 +50,6 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
       namaController.text,
       emailController.text,
       phoneController.text,
-      fotoController.text,
     );
 
     if (status) {
@@ -71,62 +65,51 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
     }
   }
 
-  XFile? image;
-  final ImagePicker picker = ImagePicker();
-
-  Future getImage(ImageSource source) async {
-    var img = await picker.pickImage(source: source);
-
-    setState(() {
-      image = img;
-    });
-  }
-
-  void myAlert() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          title: Text(
-            'Silakan pilih media',
-            style: GoogleFonts.poppins(),
-          ),
-          content: SizedBox(
-            height: MediaQuery.of(context).size.height / 6,
-            child: Column(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    getImage(ImageSource.gallery);
-                  },
-                  child: const Row(
-                    children: [
-                      Icon(Icons.image),
-                      Text('Dari Galeri'),
-                    ],
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    getImage(ImageSource.camera);
-                  },
-                  child: const Row(
-                    children: [
-                      Icon(Icons.camera),
-                      Text('Dari Kamera'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // void myAlert() {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  //         title: Text(
+  //           'Silakan pilih media',
+  //           style: GoogleFonts.poppins(),
+  //         ),
+  //         content: SizedBox(
+  //           height: MediaQuery.of(contex5t).size.height / 6,
+  //           child: Column(
+  //             children: [
+  //               ElevatedButton(
+  //                 onPressed: () {
+  //                   Navigator.pop(context);
+  //                   pickImage(ImageSource.gallery);
+  //                 },
+  //                 child: const Row(
+  //                   children: [
+  //                     Icon(Icons.image),
+  //                     Text('Dari Galeri'),
+  //                   ],
+  //                 ),
+  //               ),
+  //               ElevatedButton(
+  //                 onPressed: () {
+  //                   Navigator.pop(context);
+  //                   pickImage(ImageSource.camera);
+  //                 },
+  //                 child: const Row(
+  //                   children: [
+  //                     Icon(Icons.camera),
+  //                     Text('Dari Kamera'),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -181,69 +164,69 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
             // nomorRekening(),
 
             // Bukti pembayaran
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 40,
-                    width: 250,
-                    child: TextButton(
-                      onPressed: () {
-                        myAlert();
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: c2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(
-                            Iconsax.document_upload5,
-                            color: c1,
-                          ),
-                          Text(
-                            'Unggah bukti pembayaran',
-                            style: GoogleFonts.poppins(
-                              color: c1,
-                              fontWeight: semibold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 350,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: cWhite,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 1,
-                            spreadRadius: 2,
-                          ),
-                        ]),
-                    child: image != null
-                        ? Image.file(
-                            File(image!.path),
-                            height: MediaQuery.of(context).size.height / 2.5,
-                          )
-                        : Text(
-                            'Tidak ada gambar yang dipilih.',
-                            style: GoogleFonts.poppins(color: c1),
-                          ),
-                  ),
-                ],
-              ),
-            ),
+            // Center(
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       SizedBox(
+            //         height: 40,
+            //         width: 250,
+            //         child: TextButton(
+            //           onPressed: () {
+            //             myAlert();
+            //           },
+            //           style: TextButton.styleFrom(
+            //             backgroundColor: c2,
+            //             shape: RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(12),
+            //             ),
+            //           ),
+            //           child: Row(
+            //             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //             children: [
+            //               Icon(
+            //                 Iconsax.document_upload5,
+            //                 color: c1,
+            //               ),
+            //               Text(
+            //                 'Unggah bukti pembayaran',
+            //                 style: GoogleFonts.poppins(
+            //                   color: c1,
+            //                   fontWeight: semibold,
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       const SizedBox(height: 16),
+            //       Container(
+            //         alignment: Alignment.center,
+            //         height: 350,
+            //         width: double.infinity,
+            //         decoration: BoxDecoration(
+            //             color: cWhite,
+            //             borderRadius: BorderRadius.circular(16),
+            //             boxShadow: const [
+            //               BoxShadow(
+            //                 color: Colors.black12,
+            //                 blurRadius: 1,
+            //                 spreadRadius: 2,
+            //               ),
+            //             ]),
+            //         child: image != null
+            //             ? Image.file(
+            //                 File(image.path),
+            //                 height: MediaQuery.of(context).size.height / 2.5,
+            //               )
+            //             : Text(
+            //                 'Tidak ada gambar yang dipilih.',
+            //                 style: GoogleFonts.poppins(color: c1),
+            //               ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             const SizedBox(height: 32),
             tombol(),
           ],
@@ -723,6 +706,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
             child: TextButton(
               onPressed: () {
                 _addZakat();
+
                 // setState(() {
                 //   isLoading = true;
                 // });
