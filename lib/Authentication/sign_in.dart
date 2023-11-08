@@ -6,6 +6,7 @@ import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dermain/globals.dart' as globals;
 import 'package:iconsax/iconsax.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../route_animation.dart';
 import '../theme.dart';
 
@@ -17,7 +18,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _validatorKey = GlobalKey<FlutterPwValidatorState>();
@@ -28,8 +29,8 @@ class _SignInState extends State<SignIn> {
       return;
     }
     _formKey.currentState!.save();
-    bool status = await AuthMethod.login(
-        _usernameController.text, _passwordController.text);
+    bool status =
+        await AuthMethod.login(_emailController.text, _passwordController.text);
 
     if (!status) {
       if (!mounted) return;
@@ -41,11 +42,11 @@ class _SignInState extends State<SignIn> {
     }
     globals.isLogin = true;
     String? token = await AuthMethod.getToken();
+
     if (token != null) {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(token)),
-      );
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('token', token);
+      // localStorage.setString('user', json.encode(body['user'])); // Kode ini tidak diperlukan jika Anda tidak mengembalikan objek 'user' dalam respons token.
     }
     if (!mounted) return;
     Navigator.of(context).push(navbar());
@@ -141,7 +142,7 @@ class _SignInState extends State<SignIn> {
               ),
               Expanded(
                 child: TextFormField(
-                  controller: _usernameController,
+                  controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'lazismu@mail.com',
@@ -299,7 +300,7 @@ class _SignInState extends State<SignIn> {
           ),
         ),
         child: Text(
-          'Daftar',
+          'Masuk',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 16,

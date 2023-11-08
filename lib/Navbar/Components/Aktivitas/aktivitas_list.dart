@@ -31,6 +31,7 @@ class _AktivitasListState extends ConsumerState<AktivitasList> {
   @override
   void initState() {
     _loadAllZakats();
+
     super.initState();
   }
 
@@ -38,55 +39,69 @@ class _AktivitasListState extends ConsumerState<AktivitasList> {
   Widget build(BuildContext context) {
     final zakats = ref.watch(zakatsProvider);
 
-    return zakats.isNotEmpty
-        ? status
-            ? ListView.builder(
-                // scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: zakats.length,
-                itemBuilder: (context, index) =>
-                    AktivitasItem(zakat: zakats[index]),
-              )
-            : Center(
-                child: LoadingAnimationWidget.staggeredDotsWave(
-                  color: c1,
-                  size: 80,
-                ),
-              )
-        : Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  height: 220,
-                  child: Image.asset('assets/images/image_aktivitas1.png'),
-                ),
-                Text(
-                  'Belum ada aktivitas',
-                  style: GoogleFonts.poppins(
-                    color: c1,
-                    fontWeight: semibold,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (zakats.isNotEmpty)
+            status
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: zakats.length,
+                    itemBuilder: (context, index) {
+                      final zakat =
+                          zakats.length > index ? zakats[index] : null;
+
+                      return AktivitasItem(
+                        zakat: zakat,
+                      );
+                    },
+                  )
+                : Center(
+                    child: LoadingAnimationWidget.staggeredDotsWave(
+                      color: c1,
+                      size: 80,
+                    ),
+                  )
+          else
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 16, top: 150),
+                    height: 220,
+                    child: Image.asset('assets/images/image_aktivitas1.png'),
                   ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/donasiZakat',
-                    );
-                  },
-                  child: Text(
-                    'Mulai dengan zakat',
+                  Text(
+                    'Belum ada aktivitas',
                     style: GoogleFonts.poppins(
                       color: c1,
                       fontWeight: semibold,
-                      decoration: TextDecoration.underline,
                     ),
                   ),
-                ),
-              ],
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/donasiZakat',
+                      );
+                    },
+                    child: Text(
+                      'Mulai dengan zakat',
+                      style: GoogleFonts.poppins(
+                        color: c1,
+                        fontWeight: semibold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          );
+        ],
+      ),
+    );
   }
 }

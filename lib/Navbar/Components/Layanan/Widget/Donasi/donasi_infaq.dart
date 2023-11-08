@@ -1,38 +1,129 @@
+import 'package:dermain/Methods/infaq_method.dart';
+import 'package:dermain/Providers/infaq_provider.dart';
+import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-List<String> data = <String>[
-  'Transfer ke BSI',
-  'Jemput ke alamat',
-  'Antar ke kantor LAZISMU'
-];
-
-class DonasiInfaq extends StatefulWidget {
+class DonasiInfaq extends ConsumerStatefulWidget {
   const DonasiInfaq({super.key});
 
   @override
-  State<DonasiInfaq> createState() => _DonasiInfaqState();
+  ConsumerState<DonasiInfaq> createState() => _DonasiInfaqState();
 }
 
-class _DonasiInfaqState extends State<DonasiInfaq> {
-  final emailController = TextEditingController(text: '');
-  final passwordController = TextEditingController(text: '');
-  final rekeningNumber = '00011122233344';
+class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
+  final nominalController = TextEditingController();
+  final namaController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final jenisController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
-  bool isShowPasswordError = false;
+  bool isShowNominalError = false;
+  bool isShowNamaError = false;
+  bool isShowEmailError = false;
+  bool isShowPhoneError = false;
   bool isLoading = false;
+  bool isChecked = false;
 
-  String dropdownValue = data.first;
+  void _addInfaq() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    _formKey.currentState!.save();
+    bool status = await InfaqMethod.addInfaq(
+      jenisController.text,
+      nominalController.text,
+      namaController.text,
+      emailController.text,
+      phoneController.text,
+    );
 
-  TextEditingController copyController = TextEditingController();
+    if (status) {
+      _formKey.currentState!.reset();
 
-  @override
-  void dispose() {
-    copyController.dispose();
-    super.dispose();
+      ref
+          .read(infaqsProvider.notifier)
+          .addInfaqs(await InfaqMethod.loadAllInfaq());
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Infaq successfully added')));
+    }
+  }
+
+  void myAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          title: Text(
+            'Yakin untuk membatalkan?',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(),
+          ),
+          actionsAlignment: MainAxisAlignment.center,
+          actions: <Widget>[
+            SizedBox(
+              height: 60,
+              width: 140,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: c2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: Text(
+                  'Batalkan',
+                  style: GoogleFonts.poppins(
+                    color: c1,
+                    fontSize: 16,
+                    fontWeight: semibold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 60,
+              width: 140,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/navbar');
+                },
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 2,
+                      style: BorderStyle.solid,
+                      color: c2,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: Text(
+                  'Ya',
+                  style: GoogleFonts.poppins(
+                    color: c1,
+                    fontSize: 16,
+                    fontWeight: semibold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -54,7 +145,7 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
         ),
         centerTitle: true,
         title: Text(
-          'Donasi Infaq',
+          jenisController.text = 'Infaq',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 18,
@@ -66,25 +157,25 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          nominal(),
-          const SizedBox(height: 12),
-          metode(),
-          const SizedBox(height: 12),
-          nama(),
-          const SizedBox(height: 12),
-          email(),
-          const SizedBox(height: 12),
-          telepon(),
-          const SizedBox(height: 12),
-          peringatan(),
-          const SizedBox(height: 12),
-          nomorRekening(),
-          const SizedBox(height: 32),
-          tombol(),
-        ],
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            const SizedBox(height: 12),
+            nominal(),
+            const SizedBox(height: 12),
+            nama(),
+            const SizedBox(height: 12),
+            email(),
+            const SizedBox(height: 12),
+            telepon(),
+            const SizedBox(height: 12),
+            peringatan(),
+            const SizedBox(height: 32),
+            tombol(),
+          ],
+        ),
       ),
     );
   }
@@ -109,93 +200,57 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 'Rp',
                 style: GoogleFonts.poppins(
                   color: c1,
-                  fontSize: 16,
+                  fontSize: 24,
                   fontWeight: bold,
                 ),
               ),
               Expanded(
                 child: TextFormField(
+                  controller: nominalController,
                   keyboardType: TextInputType.number,
                   autocorrect: false,
-                  // obscureText: true,
-                  controller: passwordController,
-                  // keyboardType: TextInputType.visiblePassword,
+                  inputFormatters: [
+                    CurrencyInputFormatter(
+                      // trailingSymbol: CurrencySymbols.,
+                      useSymbolPadding: true,
+                      mantissaLength: 3,
+                    ),
+                  ],
                   decoration: InputDecoration.collapsed(
-                    hintText: '0',
+                    hintText: '0.000',
                     hintStyle: GoogleFonts.poppins(
                       color: c3,
-                      fontSize: 16,
+                      fontSize: 24,
                     ),
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget metode() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Metode Pembayaran',
-          style: GoogleFonts.poppins(
-            color: c1,
-            fontSize: 12,
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          height: 60,
-          decoration: BoxDecoration(
-            color: c5,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Iconsax.wallet,
-                color: c1,
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: DropdownButton<String>(
-                  dropdownColor: c5,
-                  value: dropdownValue,
-                  isExpanded: true,
-                  isDense: true,
-                  icon: Icon(Iconsax.arrow_down_1, color: c1),
-                  elevation: 16,
                   style: GoogleFonts.poppins(
-                    color: c1,
-                    fontSize: 16,
+                    fontSize: 24,
+                    fontWeight: bold,
                   ),
-                  onChanged: (String? value) {
-                    // This is called when the user selects an item.
-                    setState(() {
-                      dropdownValue = value!;
-                    });
+                  onChanged: (value) {
+                    setState(() {});
                   },
-                  items: data.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
                 ),
               ),
             ],
           ),
         ),
+        if (nominalController.text.isEmpty || nominalController.text == '0.000')
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Masukkan nominal',
+              style: GoogleFonts.poppins(
+                color: kRedColor,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -228,31 +283,52 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: namaController,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Hamba Allah',
+                    hintText: 'Nama Lengkap',
                     hintStyle: GoogleFonts.poppins(
                       color: c3,
                       fontSize: 16,
                     ),
                   ),
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                  ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
                 ),
               ),
             ],
           ),
         ),
-        if (isShowPasswordError)
-          Container(
-            margin: const EdgeInsets.only(
-              top: 6,
-            ),
-            child: Text(
-              'Nama tidak boleh kosong',
-              style: GoogleFonts.poppins(
-                color: kRedColor,
-                fontSize: 12,
-              ),
+        if (namaController.text.isEmpty || namaController.text == '')
+          Text(
+            'Masukkan nama lengkap',
+            style: GoogleFonts.poppins(
+              color: kRedColor,
             ),
           ),
+        CheckboxListTile(
+          title: Text(
+            "Sembunyikan sebagai Hamba Allah",
+            style: GoogleFonts.poppins(
+              color: c1,
+              fontSize: 12,
+            ),
+          ),
+          value: isChecked,
+          onChanged: ((value) {
+            setState(() {
+              isChecked = value!;
+              if (isChecked) {
+                namaController.text = "Hamba Allah";
+              } else {
+                namaController.text = "";
+              }
+            });
+          }),
+        ),
       ],
     );
   }
@@ -285,19 +361,35 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: emailController,
                   keyboardType: TextInputType.streetAddress,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'lazismu@mail.com',
+                    hintText: 'lazismu@gmail.com',
                     hintStyle: GoogleFonts.poppins(
                       color: c3,
                       fontSize: 16,
                     ),
                   ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
                 ),
               ),
             ],
           ),
         ),
+        if (emailController.text.isEmpty ||
+            !emailController.text.contains('@') ||
+            !emailController.text.contains('.com'))
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Masukkan email yang valid',
+              style: GoogleFonts.poppins(
+                color: kRedColor,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -307,7 +399,7 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Nomor Telepon',
+          'Nomor Telepon Aktif',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 12,
@@ -329,142 +421,100 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: phoneController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
-                      hintText: '081234567890',
-                      hintStyle: GoogleFonts.poppins(
-                        color: c3,
-                        fontSize: 16,
-                      )),
+                    hintText: '081234567890',
+                    hintStyle: GoogleFonts.poppins(
+                      color: c3,
+                      fontSize: 16,
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
                 ),
               ),
             ],
           ),
         ),
+        if (phoneController.text.isEmpty ||
+            (!phoneController.text.startsWith('08') &&
+                !phoneController.text.startsWith('+628')))
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Masukkan nomor telepon yang valid',
+              style: GoogleFonts.poppins(
+                color: kRedColor,
+              ),
+            ),
+          ),
       ],
     );
   }
 
   Widget peringatan() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      width: double.infinity,
-      height: 228,
-      decoration: BoxDecoration(
-        color: c5,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
             Iconsax.info_circle5,
-            color: c1,
+            color: kRedColor,
           ),
-          Container(
-            margin: const EdgeInsets.only(
-              top: 12,
-              left: 10,
-              right: 10,
-              bottom: 14,
-            ),
+          const SizedBox(width: 6),
+          Expanded(
             child: Column(
               children: [
-                Text(
-                  '1. Pastikan data yang anda isi sudah benar. Seperti nominal, nama lengkap, email serta no. handphone. Untuk keperluan konfirmasi donasi.',
-                  maxLines: 4,
-                  // overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
-                    color: kRedColor,
-                    fontSize: 12,
-                  ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '1.',
+                      style: GoogleFonts.poppins(),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Pastikan data yang anda isi sudah benar. Seperti nominal, nama lengkap, email serta nomor telepon. Untuk keperluan konfirmasi donasi.',
+                        maxLines: 4,
+                        textAlign: TextAlign.justify,
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.poppins(
+                          color: c1,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 2),
-                Text(
-                  '2. Untuk pembayaran zakat, pastikan bahwa donatur/muzaki telah menghitungnya dengan benar sesuai dengan ketentuan syariah yang berlaku. Jika ragu, silahkan konsultasikan ke nomor layanan muzaki kami.',
-                  maxLines: 5,
-                  // overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
-                    color: kRedColor,
-                    fontSize: 12,
-                  ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '2.',
+                      style: GoogleFonts.poppins(),
+                    ),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        'Untuk pembayaran zakat, pastikan bahwa donatur/muzaki telah menghitungnya dengan benar sesuai dengan ketentuan syariah yang berlaku. Jika ragu, silahkan konsultasikan ke nomor layanan muzaki kami.',
+                        maxLines: 5,
+                        textAlign: TextAlign.justify,
+                        overflow: TextOverflow.clip,
+                        style: GoogleFonts.poppins(
+                          color: c1,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget nomorRekening() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: c5,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                rekeningNumber,
-                style: GoogleFonts.poppins(
-                  color: c1,
-                  fontWeight: bold,
-                ),
-              ),
-              Text(
-                'Bank Bantul',
-                style: GoogleFonts.poppins(
-                  color: c1,
-                  fontWeight: bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'LazisMu Banguntapan Selatan',
-            style: GoogleFonts.poppins(
-              color: c3,
-              fontSize: 12,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '20 Desember 2022',
-                style: GoogleFonts.poppins(
-                  color: c3,
-                  fontSize: 12,
-                ),
-              ),
-              InkWell(
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: c2,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Icon(
-                    Iconsax.copy,
-                    color: c1,
-                  ),
-                ),
-                onTap: () {
-                  Clipboard.setData(
-                    ClipboardData(text: rekeningNumber),
-                  );
-                },
-              ),
-            ],
           ),
         ],
       ),
@@ -479,14 +529,15 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(right: 8),
-            height: 56,
+            height: 60,
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/navbar');
+                myAlert();
               },
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
+                    width: 2,
                     style: BorderStyle.solid,
                     color: c2,
                   ),
@@ -509,7 +560,7 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 8),
-            height: 56,
+            height: 60,
             child: TextButton(
               onPressed: () {
                 setState(() {
@@ -520,12 +571,13 @@ class _DonasiInfaqState extends State<DonasiInfaq> {
                   setState(() {
                     isLoading = false;
                   });
-                  if (passwordController.text != '12345') {
-                    setState(() {
-                      isShowPasswordError = true;
-                    });
+                  if (nominalController.text.isEmpty ||
+                      namaController.text.isEmpty ||
+                      emailController.text.isEmpty ||
+                      phoneController.text.isEmpty) {
                   } else {
-                    Navigator.pushNamed(context, '/homeboarding');
+                    _addInfaq();
+                    Navigator.of(context).push(konfirmasiZakat());
                   }
                 });
               },

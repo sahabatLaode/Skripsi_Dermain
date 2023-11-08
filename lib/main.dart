@@ -1,9 +1,10 @@
+import 'package:dermain/Splash%20Page/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Authentication/sign_in.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/Zakat/donasi_zakat.dart';
+import 'Navbar/Components/Layanan/Widget/Donasi/donasi_zakat.dart';
 import 'Navbar/Components/Layanan/Widget/Permintaan Ambulans/permintaan_ambulan.dart';
 import 'Navbar/Components/Layanan/Widget/Permintaan Koin/permintaan_koin_surga.dart';
 import 'Navbar/Components/Layanan/layanan.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const Navbar(),
+        '/': (context) => const SplashPage(),
         '/onboarding': (context) => const Onboarding(),
         '/sign-in': (context) => const SignIn(),
         '/navbar': (context) => const Navbar(),

@@ -1,38 +1,35 @@
+import 'package:dermain/Models/infaq_model.dart';
 import 'package:dermain/globals.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:dermain/Models/zakat_model.dart';
 
-class ZakatMethod {
-  // static const addressUrl = '10.0.2.2:8000';
-  // static const subAddress = 'api/zakat';
-
-  static Future<List<Zakat>> loadAllZakat() async {
+class InfaqMethod {
+  static Future<List<Infaq>> loadAllInfaq() async {
     final url = Uri.http(addressUrl, subAddress);
-    List<Zakat> allZakats = [];
+    List<Infaq> allInfaqs = [];
 
     final response = await http.get(url);
     Map<String, dynamic> body = json.decode(response.body);
     bool status = body['status'];
 
     if (status) {
-      for (final zakat in body['data']) {
-        Zakat tempZakat = Zakat(
-          id: zakat['id'].toString(),
-          nominal: zakat['nominal'],
-          nama: zakat['nama'],
-          email: zakat['email'],
-          phone: zakat['phone'],
-          jenis_donasi: zakat['jenis_donasi'],
-          created_at: zakat['created_at'],
+      for (final infaq in body['data']) {
+        Infaq tempInfaq = Infaq(
+          id: infaq['id'].toString(),
+          nominal: infaq['nominal'],
+          nama: infaq['nama'],
+          email: infaq['email'],
+          phone: infaq['phone'],
+          jenis_donasi: infaq['jenis_donasi'],
+          created_at: infaq['created_at'],
         );
-        allZakats.add(tempZakat);
+        allInfaqs.add(tempInfaq);
       }
     }
-    return allZakats;
+    return allInfaqs;
   }
 
-  static Future<bool> addZakat(String jenisDonasi, String nominal, String nama,
+  static Future<bool> addInfaq(String jenisDonasi, String nominal, String nama,
       String email, String phone) async {
     final url = Uri.http(addressUrl, subAddress);
     final response = await http.post(
@@ -50,7 +47,7 @@ class ZakatMethod {
     return body['status'];
   }
 
-  static Future<bool> removeZakat(String id) async {
+  static Future<bool> removeInfaq(String id) async {
     final url = Uri.http(addressUrl, '$subAddress/$id');
 
     final response = await http.delete(url);

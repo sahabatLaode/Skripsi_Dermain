@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dermain/Models/user_model.dart';
 import 'package:dermain/globals.dart' as globals;
+import 'package:dermain/globals.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,6 +29,55 @@ class AuthMethod {
     return body['status'];
   }
 
+  static Future<List<UserModel>> loadAllUser() async {
+    final url = Uri.http(addressUrl, subUser);
+    List<UserModel> allUsers = [];
+
+    final response = await http.get(url);
+    Map<String, dynamic> body = json.decode(response.body);
+    bool status = body['status'];
+
+    if (status) {
+      for (final user in body['data']) {
+        UserModel tempUser = UserModel(
+          id: user['id'].toString(),
+          name: user['name'],
+          email: user['email'],
+          phone: user['phone'],
+          password: user['password'],
+          password_confirmation: user['password_confirmation'],
+        );
+        allUsers.add(tempUser);
+      }
+    }
+    return allUsers;
+  }
+
+  // static Future<UserModel?> getUserData() async {
+  //   final url = Uri.http(globals.addressUrl, 'api/user');
+  //   String? token = await AuthMethod.getToken();
+  //   if (token != null) {
+  //     final response = await http.get(
+  //       url,
+  //       headers: {'Authorization': 'Bearer $token'},
+  //     );
+  //     if (response.statusCode == 200) {
+  //       Map<String, dynamic> body = json.decode(response.body);
+  //       final name = body['name'];
+  //       if (name != null) {
+  //         return UserModel(
+  //             name: '',
+  //             id: '',
+  //             email: '',
+  //             phone: '',
+  //             password: '',
+  //             password_confirmation: '');
+  //       }
+  //     }
+  //   }
+  //   return null;
+  // }
+
   static Future<String?> getToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('token');
@@ -38,12 +88,12 @@ class AuthMethod {
     return prefs.setString('token', value);
   }
 
-  static Future<bool> login(String username, String password) async {
+  static Future<bool> login(String email, String password) async {
     final url = Uri.http(globals.addressUrl, 'api/login');
     final response = await http.post(
       url,
       body: {
-        'username': username,
+        'email': email,
         'password': password,
       },
     );

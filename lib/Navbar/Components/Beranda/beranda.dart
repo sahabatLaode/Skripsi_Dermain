@@ -16,6 +16,44 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
+  // late String name;
+  // @override
+  // void initState() {
+  //   _loadUserData();
+  //   super.initState();
+  // }
+
+  // _loadUserData() async {
+  //   SharedPreferences localStorage = await SharedPreferences.getInstance();
+  //   var user = jsonDecode(localStorage.getString('user'));
+
+  //   if (user != null) {
+  //     setState(() {
+  //       name = user['fname'];
+  //     });
+  //   }
+  // }
+  // String userName = "";
+
+  // @override
+  // void initState() {
+  //   loadUserData(); // Panggil fungsi untuk mengambil data pengguna yang sudah login
+  //   super.initState();
+  // }
+
+  // void loadUserData() async {
+  //   try {
+  //     final user = await AuthMethod.getUserData();
+  //     if (user != null) {
+  //       setState(() {
+  //         userName = user.name;
+  //       });
+  //     }
+  //   } catch (e) {
+  //     print('Error: $e');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +74,7 @@ class _BerandaState extends State<Beranda> {
               ),
             ),
             Text(
-              'John Doe',
+              'userName',
               style: GoogleFonts.poppins(
                 color: c1,
                 fontSize: 16,

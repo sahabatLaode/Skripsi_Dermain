@@ -1,5 +1,5 @@
-import 'package:dermain/Methods/sedekah_method.dart';
-import 'package:dermain/Providers/sedekah_provider.dart';
+import 'package:dermain/Methods/zakat_method.dart';
+import 'package:dermain/Providers/zakat_provider.dart';
 import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/theme.dart';
@@ -9,14 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DonasiSedekah extends ConsumerStatefulWidget {
-  const DonasiSedekah({super.key});
+class DonasiZakat extends ConsumerStatefulWidget {
+  const DonasiZakat({super.key});
 
   @override
-  ConsumerState<DonasiSedekah> createState() => _DonasiSedekahState();
+  ConsumerState<DonasiZakat> createState() => _DonasiZakatState();
 }
 
-class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
+class _DonasiZakatState extends ConsumerState<DonasiZakat> {
   final nominalController = TextEditingController();
   final namaController = TextEditingController();
   final emailController = TextEditingController();
@@ -31,12 +31,12 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
   bool isLoading = false;
   bool isChecked = false;
 
-  void _addSedekah() async {
+  void _addZakat() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
     _formKey.currentState!.save();
-    bool status = await SedekahMethod.addSedekah(
+    bool status = await ZakatMethod.addZakat(
       jenisController.text,
       nominalController.text,
       namaController.text,
@@ -48,12 +48,12 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
       _formKey.currentState!.reset();
 
       ref
-          .read(sedekahsProvider.notifier)
-          .addSedekahs(await SedekahMethod.loadAllSedekah());
+          .read(zakatsProvider.notifier)
+          .addZakats(await ZakatMethod.loadAllZakat());
       if (!mounted) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Sedekah successfully added')));
+          const SnackBar(content: Text('Zakat successfully added')));
     }
   }
 
@@ -145,7 +145,7 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
         ),
         centerTitle: true,
         title: Text(
-          jenisController.text = 'Sedekah',
+          jenisController.text = 'Zakat',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 18,
@@ -576,7 +576,7 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
                       emailController.text.isEmpty ||
                       phoneController.text.isEmpty) {
                   } else {
-                    _addSedekah();
+                    _addZakat();
                     Navigator.of(context).push(konfirmasiZakat());
                   }
                 });
