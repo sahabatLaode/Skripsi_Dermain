@@ -1,27 +1,31 @@
-import 'package:dermain/Navbar/Components/Layanan/Widget/Permintaan%20Koin/catatan_controller.dart';
+import 'package:dermain/Methods/koinSurga_method.dart';
+import 'package:dermain/Providers/koinSurga_provider.dart';
+import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
-List<String> jenis = <String>[
+List<String> jenis = [
   'Antar Kencleng Koin Surga',
   'Jemput Kencleng Koin Surga'
 ];
 
-class PermintaanKoin extends StatefulWidget {
+class PermintaanKoin extends ConsumerStatefulWidget {
   const PermintaanKoin({super.key});
 
   @override
-  State<PermintaanKoin> createState() => _PermintaanKoinState();
+  ConsumerState<PermintaanKoin> createState() => _PermintaanKoinState();
 }
 
-class _PermintaanKoinState extends State<PermintaanKoin> {
-  final emailController = TextEditingController(text: '');
-  final passwordController = TextEditingController(text: '');
-  final CatatanController _catatanController = CatatanController();
+class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
+  final catatanController = TextEditingController();
+  final tanggalController = TextEditingController();
+  final jenisController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   String dropdownJenis = jenis.first;
 
@@ -30,10 +34,34 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
 
   DateTime selectDate = DateTime.now();
 
-  @override
-  void dispose() {
-    _catatanController.dispose();
-    super.dispose();
+  // @override
+  // void dispose() {
+  //   catatanController.dispose();
+  //   super.dispose();
+  // }
+
+  void _addKoinSurga() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    _formKey.currentState!.save();
+    bool status = await KoinSurgaMethod.addKoinSurga(
+      jenisController.text,
+      catatanController.text,
+      tanggalController.text,
+    );
+
+    if (status) {
+      _formKey.currentState!.reset();
+
+      ref
+          .read(koinSurgasProvider.notifier)
+          .addKoinSurgas(await KoinSurgaMethod.loadAllKoinSurga());
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Koin surga successfully added')));
+    }
   }
 
   @override
@@ -74,17 +102,20 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          catatan(),
-          const SizedBox(height: 12),
-          waktu(),
-          const SizedBox(height: 12),
-          jenisPermintaan(),
-          const SizedBox(height: 32),
-          tombol(),
-        ],
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            catatan(),
+            const SizedBox(height: 12),
+            tanggal(),
+            const SizedBox(height: 12),
+            jenisPermintaan(),
+            const SizedBox(height: 32),
+            tombol(),
+          ],
+        ),
       ),
     );
   }
@@ -108,16 +139,14 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
             color: c5,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Expanded(
-            child: TextField(
-              controller: _catatanController.textEditingController,
-              maxLines: null,
-              decoration: InputDecoration.collapsed(
-                hintText: 'Boleh dikosongi',
-                hintStyle: GoogleFonts.poppins(
-                  color: c3,
-                  fontSize: 16,
-                ),
+          child: TextField(
+            controller: catatanController,
+            maxLines: null,
+            decoration: InputDecoration.collapsed(
+              hintText: 'Boleh dikosongi',
+              hintStyle: GoogleFonts.poppins(
+                color: c3,
+                fontSize: 16,
               ),
             ),
           ),
@@ -126,7 +155,7 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
     );
   }
 
-  Widget waktu() {
+  Widget tanggal() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -186,6 +215,8 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
                         if (value != null) {
                           setState(() {
                             selectDate = value;
+                            tanggalController.text =
+                                DateFormat('dd MMMM yyyy').format(selectDate);
                           });
                         }
                       },
@@ -199,19 +230,6 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
             ],
           ),
         ),
-        if (isShowPasswordError)
-          Container(
-            margin: const EdgeInsets.only(
-              top: 6,
-            ),
-            child: Text(
-              'Nama tidak boleh kosong',
-              style: GoogleFonts.poppins(
-                color: kRedColor,
-                fontSize: 12,
-              ),
-            ),
-          ),
       ],
     );
   }
@@ -258,6 +276,7 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
                     // This is called when the user selects an item.
                     setState(() {
                       dropdownJenis = value!;
+                      jenisController.text = value;
                     });
                   },
                   items: jenis.map<DropdownMenuItem<String>>((String value) {
@@ -324,12 +343,11 @@ class _PermintaanKoinState extends State<PermintaanKoin> {
                   setState(() {
                     isLoading = false;
                   });
-                  if (passwordController.text != '12345') {
-                    setState(() {
-                      isShowPasswordError = true;
-                    });
+                  if (tanggalController.text.isEmpty ||
+                      jenisController.text.isEmpty) {
                   } else {
-                    Navigator.pushNamed(context, '/homeboarding');
+                    _addKoinSurga();
+                    Navigator.of(context).push(konfirmasiZakat());
                   }
                 });
               },

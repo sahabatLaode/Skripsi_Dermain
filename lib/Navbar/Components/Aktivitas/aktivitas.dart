@@ -1,4 +1,5 @@
-import 'package:dermain/Navbar/Components/Aktivitas/aktivitas_list.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Aktivitas%20Donasi/aktivitas_list.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Aktivitas%20Permintaan/aktivitas_list_permintaan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';
@@ -78,7 +79,7 @@ class Aktivitas extends StatelessWidget {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  AktivitasList(
+                  AktivitasListPermintaan(
                     Center(),
                   ),
                 ],

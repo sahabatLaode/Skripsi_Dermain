@@ -1,5 +1,5 @@
 import 'package:dermain/Methods/zakat_method.dart';
-import 'package:dermain/Navbar/Components/Aktivitas/aktivitas_item.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Aktivitas%20Donasi/aktivitas_item.dart';
 import 'package:dermain/Providers/zakat_provider.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
