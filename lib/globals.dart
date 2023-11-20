@@ -7,5 +7,6 @@ const subAmbulan = 'api/ambulan';
 const subInfaq = 'api/infaq';
 const subSedekah = 'api/sedekah';
 const subUser = 'api/user';
+const sublogin = 'api/login';
 bool isLogin = false;
 String token = '';

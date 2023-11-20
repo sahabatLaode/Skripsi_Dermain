@@ -53,6 +53,7 @@ dependencies:
   flutter_riverpod: ^2.4.5
   loading_animation_widget: ^1.2.0+4
   path: ^1.8.3
+  dio: ^5.3.3
 
 dev_dependencies:
   flutter_test:

@@ -54,46 +54,22 @@ class _AktivitasItemPermintaanState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      koinSurga.jenis_permintaan,
-                      style: GoogleFonts.poppins(
-                        color: c1,
-                        fontSize: 18,
-                        fontWeight: bold,
-                      ),
-                    ),
-                    Text(
-                      koinSurga.catatan,
-                      style: GoogleFonts.poppins(
-                        color: c1,
-                        fontSize: 18,
-                        fontWeight: bold,
-                      ),
-                    ),
-                  ],
+                Text(
+                  koinSurga.jenis_permintaan,
+                  style: GoogleFonts.poppins(
+                    color: c1,
+                    fontSize: 18,
+                    fontWeight: bold,
+                  ),
                 ),
                 const SizedBox(height: 4),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Text(
-                //       koinSurga.nama,
-                //       style: GoogleFonts.poppins(
-                //         color: c1,
-                //       ),
-                //     ),
-                //     Text(
-                //       koinSurga.email,
-                //       style: GoogleFonts.poppins(
-                //         color: c1,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(height: 4),
+                Text(
+                  koinSurga.catatan,
+                  style: GoogleFonts.poppins(
+                    color: c1,
+                  ),
+                ),
+                const SizedBox(height: 4),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

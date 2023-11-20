@@ -1,3 +1,4 @@
+import 'package:dermain/Methods/auth_method.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/berita_beranda_items.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/informasi_items.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/menu_cepat_items.dart';
@@ -16,43 +17,27 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
-  // late String name;
-  // @override
-  // void initState() {
-  //   _loadUserData();
-  //   super.initState();
-  // }
+  String userName = "";
 
-  // _loadUserData() async {
-  //   SharedPreferences localStorage = await SharedPreferences.getInstance();
-  //   var user = jsonDecode(localStorage.getString('user'));
+  @override
+  void initState() {
+    loadUserData(); // Panggil fungsi untuk mengambil data pengguna yang sudah login
+    super.initState();
+  }
 
-  //   if (user != null) {
-  //     setState(() {
-  //       name = user['fname'];
-  //     });
-  //   }
-  // }
-  // String userName = "";
-
-  // @override
-  // void initState() {
-  //   loadUserData(); // Panggil fungsi untuk mengambil data pengguna yang sudah login
-  //   super.initState();
-  // }
-
-  // void loadUserData() async {
-  //   try {
-  //     final user = await AuthMethod.getUserData();
-  //     if (user != null) {
-  //       setState(() {
-  //         userName = user.name;
-  //       });
-  //     }
-  //   } catch (e) {
-  //     print('Error: $e');
-  //   }
-  // }
+  void loadUserData() async {
+    try {
+      final user = await AuthMethod.getUserData();
+      print('User: $user');
+      if (user != null) {
+        setState(() {
+          userName = user.name;
+        });
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +59,7 @@ class _BerandaState extends State<Beranda> {
               ),
             ),
             Text(
-              'userName',
+              userName,
               style: GoogleFonts.poppins(
                 color: c1,
                 fontSize: 16,
