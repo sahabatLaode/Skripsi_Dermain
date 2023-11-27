@@ -207,7 +207,8 @@ class _BerandaState extends State<Beranda> {
             // ZAKAT
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/donasiZakat');
+                Navigator.pushNamed(context, '/nota');
+                // Navigator.pushNamed(context, '/donasiZakat');
               },
               child: const MenuCepatItems(
                 ikon: Iconsax.moneys,
@@ -218,7 +219,8 @@ class _BerandaState extends State<Beranda> {
             // INFAQ
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/donasiInfaq');
+                Navigator.pushNamed(context, '/konfirmasi');
+                // Navigator.pushNamed(context, '/donasiInfaq');
               },
               child: const MenuCepatItems(
                 ikon: Iconsax.gift,

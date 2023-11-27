@@ -1,4 +1,5 @@
-import 'package:dermain/Splash%20Page/splash_page.dart';
+import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/konfirmasi_donasi.dart';
+import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/nota.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Authentication/sign_in.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const SplashPage(),
+        '/': (context) => const SignIn(),
         '/onboarding': (context) => const Onboarding(),
         '/sign-in': (context) => const SignIn(),
         '/navbar': (context) => const Navbar(),
@@ -37,6 +38,8 @@ class MyApp extends StatelessWidget {
         '/permintaanAmbulans': (context) => const PermintaanAmbulan(),
         '/permintaanKoin': (context) => const PermintaanKoin(),
         '/layanan': (context) => const Layanan(),
+        '/nota': (context) => const Nota(),
+        '/konfirmasi': (context) => const KonfirmasiDonasi(),
       },
     );
   }

@@ -437,7 +437,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                       jenisController.text.isEmpty) {
                   } else {
                     _addKoinSurga();
-                    Navigator.of(context).push(konfirmasiZakat());
+                    Navigator.of(context).push(konfirmasiDonasi());
                   }
                 });
               },

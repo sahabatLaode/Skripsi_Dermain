@@ -1,6 +1,7 @@
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
-import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/konfirmasi_zakat.dart';
+import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/konfirmasi_donasi.dart';
+import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/nota.dart';
 import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/ubah_profil.dart';
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
 import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
@@ -387,10 +388,28 @@ Route visi() {
   );
 }
 
-Route konfirmasiZakat() {
+Route nota() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Nota(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+Route konfirmasiDonasi() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
-        const KonformasiZakat(),
+        const KonfirmasiDonasi(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;

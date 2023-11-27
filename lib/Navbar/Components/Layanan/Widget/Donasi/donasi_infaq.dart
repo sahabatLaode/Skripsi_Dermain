@@ -577,7 +577,7 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
                       phoneController.text.isEmpty) {
                   } else {
                     _addInfaq();
-                    Navigator.of(context).push(konfirmasiZakat());
+                    Navigator.of(context).push(konfirmasiDonasi());
                   }
                 });
               },

@@ -66,7 +66,7 @@ class AuthMethod {
         Map<String, dynamic> body = json.decode(response.body);
         final status = body['status'];
         if (status) {
-          final user = body['data'];
+          final user = body['data'][0];
           return UserModel(
             id: user['id'].toString(),
             name: user['name'],

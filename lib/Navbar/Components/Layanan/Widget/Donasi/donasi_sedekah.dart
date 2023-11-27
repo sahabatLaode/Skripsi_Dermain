@@ -577,7 +577,7 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
                       phoneController.text.isEmpty) {
                   } else {
                     _addSedekah();
-                    Navigator.of(context).push(konfirmasiZakat());
+                    Navigator.of(context).push(konfirmasiDonasi());
                   }
                 });
               },
