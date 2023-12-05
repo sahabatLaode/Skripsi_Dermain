@@ -17,6 +17,29 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
+  String userName = "";
+  String emailUser = "";
+  @override
+  void initState() {
+    loadUserData(); // Panggil fungsi untuk mengambil data pengguna yang sudah login
+    super.initState();
+  }
+
+  void loadUserData() async {
+    try {
+      final user = await AuthMethod.getUserData();
+      print('User: $user');
+      if (user != null) {
+        setState(() {
+          userName = user.name;
+          emailUser = user.email;
+        });
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +73,7 @@ class _ProfilState extends State<Profil> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'John Doe',
+          userName,
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 32,
@@ -58,7 +81,7 @@ class _ProfilState extends State<Profil> {
           ),
         ),
         Text(
-          'lazismu@gmail.com',
+          emailUser,
           style: GoogleFonts.poppins(
             color: c1,
           ),

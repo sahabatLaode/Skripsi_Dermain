@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+UserModel userFromJson(String str) => UserModel.fromJson(json.decode(str));
+
+String userToJson(UserModel data) => json.encode(data.toJson());
+
 class UserModel {
   final String id;
   final String name;
@@ -25,4 +31,11 @@ class UserModel {
       password_confirmation: json['password_confirmation'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "email": email,
+        "password": password,
+      };
 }

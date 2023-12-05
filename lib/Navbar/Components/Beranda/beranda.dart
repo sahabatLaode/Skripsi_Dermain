@@ -219,8 +219,8 @@ class _BerandaState extends State<Beranda> {
             // INFAQ
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/konfirmasi');
-                // Navigator.pushNamed(context, '/donasiInfaq');
+                // Navigator.pushNamed(context, '/konfirmasi');
+                Navigator.pushNamed(context, '/donasiInfaq');
               },
               child: const MenuCepatItems(
                 ikon: Iconsax.gift,

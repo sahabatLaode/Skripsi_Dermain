@@ -18,8 +18,8 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text: 'tes@gmail.com');
+  final _passwordController = TextEditingController(text: 'qqqqqq');
   final _formKey = GlobalKey<FormState>();
   final _validatorKey = GlobalKey<FlutterPwValidatorState>();
   bool _isVisiblePassword = true;

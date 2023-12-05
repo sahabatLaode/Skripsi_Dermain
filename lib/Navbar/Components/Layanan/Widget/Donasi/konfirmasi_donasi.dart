@@ -1,3 +1,4 @@
+import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +44,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
       children: [
         Lottie.asset('assets/lottie/check.json'),
         Text(
-          'Donasi diterima',
+          'Donasi ditambahkan!',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             color: c1,
@@ -51,13 +52,12 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
             fontSize: 18,
           ),
         ),
+        const SizedBox(height: 32),
         Text(
           'Donasi sedang di proses, mohon konfirmasi transfer pada halaman aktivitas',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             color: c1,
-            fontWeight: bold,
-            fontSize: 18,
           ),
         ),
       ],
@@ -75,7 +75,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
             height: 60,
             child: TextButton(
               onPressed: () {
-                Navigator.pop(context, '/navbar');
+                Navigator.of(context).push(navbar());
               },
               style: TextButton.styleFrom(
                 backgroundColor: c2,
