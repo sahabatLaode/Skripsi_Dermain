@@ -114,80 +114,82 @@ class _UbahProfilState extends State<UbahProfil> {
   }
 
   Widget nama() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Nama',
-          style: GoogleFonts.poppins(
-            color: c1,
-            fontSize: 12,
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          height: 60,
-          decoration: BoxDecoration(
-            color: c5,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Iconsax.user,
-                color: c1,
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: TextFormField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    hintText: 'Nama lengkap',
-                    hintStyle: GoogleFonts.poppins(
-                      color: c3,
-                      fontSize: 16,
-                    ),
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your name!';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-        // if (_nameController.text.isNotEmpty && _nameController.text.trim().isEmpty) {
-        //               return 'Please enter email.';
-        //             }
-        //             bool isEmailvalid =
-        //                 EmailValidator.validate(value.toString());
-        //             if (!isEmailvalid) {
-        //               return 'Please enter a valid email (ex: jhon@gmail.com)';
-        //             }
-        //             return null;
-
-        if (_nameController.text.isNotEmpty &&
-            _nameController.text.trim().isEmpty)
-          const Padding(
-            padding: EdgeInsets.only(left: 52),
-            child: Text(
-              'Nama harus diisi',
-              style: TextStyle(color: Colors.red, fontSize: 12),
+    return IgnorePointer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Nama',
+            style: GoogleFonts.poppins(
+              color: c1,
+              fontSize: 12,
             ),
           ),
-      ],
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: BoxDecoration(
+              color: c5,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Iconsax.user,
+                  color: c1,
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      hintText: 'Nama lengkap',
+                      hintStyle: GoogleFonts.poppins(
+                        color: c3,
+                        fontSize: 16,
+                      ),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter your name!';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // if (_nameController.text.isNotEmpty && _nameController.text.trim().isEmpty) {
+          //               return 'Please enter email.';
+          //             }
+          //             bool isEmailvalid =
+          //                 EmailValidator.validate(value.toString());
+          //             if (!isEmailvalid) {
+          //               return 'Please enter a valid email (ex: jhon@gmail.com)';
+          //             }
+          //             return null;
+    
+          if (_nameController.text.isNotEmpty &&
+              _nameController.text.trim().isEmpty)
+            const Padding(
+              padding: EdgeInsets.only(left: 52),
+              child: Text(
+                'Nama harus diisi',
+                style: TextStyle(color: Colors.red, fontSize: 12),
+              ),
+            ),
+        ],
+      ),
     );
   }
 
