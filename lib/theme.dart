@@ -8,7 +8,7 @@ Color c5 = const Color(0xffF4F5F5);
 
 Color cWhite = Colors.white;
 Color cGrey = Colors.grey.shade100;
-Color kRedColor = Colors.red;
+Color cRed = Colors.red;
 
 FontWeight extrathin = FontWeight.w100;
 FontWeight thin = FontWeight.w200;

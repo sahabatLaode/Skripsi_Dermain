@@ -1,3 +1,4 @@
+import 'package:dermain/Authentication/Sign%20Up/sign_up.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
 import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/konfirmasi_donasi.dart';
@@ -8,8 +9,7 @@ import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
 import 'package:dermain/Navbar/navbar.dart';
 import 'package:flutter/material.dart';
 import 'Authentication/kode_otp.dart';
-import 'Authentication/sign_in.dart';
-import 'Authentication/sign_up.dart';
+import 'Authentication/Sign In/sign_in.dart';
 import 'Navbar/Components/Beranda/Widgets/Berita/baca_berita.dart';
 import 'Navbar/Components/Beranda/Widgets/Berita/berita.dart';
 import 'Navbar/Components/Beranda/Widgets/Notifikasi/notifikasi.dart';
@@ -424,3 +424,23 @@ Route konfirmasiDonasi() {
     },
   );
 }
+
+// Route signUpPassword() {
+//   return PageRouteBuilder(
+//     pageBuilder: (context, animation, secondaryAnimation) =>
+//         const SignUpPassword(),
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       const begin = Offset(1.0, 0.0);
+//       const end = Offset.zero;
+//       const curve = Curves.easeInOut;
+//
+//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+//
+//       return SlideTransition(
+//         position: animation.drive(tween),
+//         child: child,
+//       );
+//     },
+//   );
+// }
+

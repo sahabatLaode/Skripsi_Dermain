@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthMethod {
   static Future<bool> register(UserModel user) async {
-    final url = Uri.http(globals.addressUrl, 'api/registrasi');
+    final url = Uri.http(globals.addressUrl, subRegister);
 
     final response = await http.post(
       url,
@@ -17,46 +17,128 @@ class AuthMethod {
           'id': user.id,
           'name': user.name,
           'email': user.email,
-          'phone': user.phone,
+          // 'phone': user.phone,
+          // 'birth': user.birth,
+          // 'nik': user.nik,
+          // 'address': user.address,
+          // 'ranting': user.ranting,
           'password': user.password,
-          'password_confirmation': user.password_confirmation,
+          'password_confirmation': user.passwordConfirmation,
         },
       ),
     );
 
     Map<String, dynamic> body = json.decode(response.body);
-
     return body['status'];
   }
 
-  static Future<List<UserModel>> loadAllUser() async {
-    final url = Uri.http(addressUrl, subUser);
-    List<UserModel> allUsers = [];
+  Future<UserModel> fetchUserData(String id, String name, String email) async {
+    final response = await http.get(
+      Uri.parse(addressUrl, 'user/data/$id' as int),
+    );
 
-    final response = await http.get(url);
-    Map<String, dynamic> body = json.decode(response.body);
-    bool status = body['status'];
-
-    if (status) {
-      for (final user in body['data']) {
-        UserModel tempUser = UserModel(
-          id: user['id'].toString(),
-          name: user['name'],
-          email: user['email'],
-          phone: user['phone'],
-          password: user['password'],
-          password_confirmation: user['password_confirmation'],
-        );
-        allUsers.add(tempUser);
-      }
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return UserModel.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load user data');
     }
-    return allUsers;
   }
+
+  Future<UserModel> updateUserPassword(String name, String email) async {
+    final response = await http.put(
+      Uri.parse(addressUrl, 'user/data/{id}' as int),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'name': name,
+        'email': email,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return UserModel.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to update password.');
+    }
+  }
+
+  // ==== Dari Bing
+  // Future<bool> updateUserData(String id, String name, String email) async {
+  //   final url = Uri.http(addressUrl, '/api/users/$id');
+  //   final response = await http.put(
+  //     url,
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: json.encode({
+  //       'name': name,
+  //       'email': email,
+  //     }),
+  //   );
+  //
+  //   if (response.statusCode == 200) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  //
+  // ====== Dari Bing
+  // Future<bool> updateUserPassword(
+  //     String id, String password, String passwordConfirmation) async {
+  //   final url = Uri.http(addressUrl, '/api/user/$id');
+  //   final response = await http.put(
+  //     url,
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: json.encode({
+  //       'password': password,
+  //       'password_confirmation': passwordConfirmation,
+  //     }),
+  //   );
+  //
+  //   if (response.statusCode == 200) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  // ====== Nullable ======
+  // static Future<bool> updatePassword(UserModel user) async {
+  //   final url = Uri.http(addressUrl, '$subUser/${user.id}');
+  //   final response = await http.put(
+  //     url,
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: json.encode({
+  //       'id': user.id,
+  //       'name': user.name,
+  //       'email': user.email,
+  //       // 'phone': user.phone,
+  //       // 'birth': user.birth,
+  //       // 'nik': user.nik,
+  //       // 'address': user.address,
+  //       // 'ranting': user.ranting,
+  //       'password': user.password,
+  //       'password_confirmation': user.passwordConfirmation,
+  //     }),
+  //   );
+  //
+  //   Map<String, dynamic> body = json.decode(response.body);
+  //
+  //   return body['status'];
+  // }
 
   static Future<UserModel?> getUserData() async {
     String? token = await AuthMethod.getToken();
     print('Token: $token');
-    final url = Uri.http(globals.addressUrl, 'api/user');
+    final url = Uri.http(globals.addressUrl, subUser);
     if (token != null) {
       final response = await http.get(
         url,
@@ -71,9 +153,9 @@ class AuthMethod {
             id: user['id'].toString(),
             name: user['name'],
             email: user['email'],
-            phone: user['phone'],
+            // phone: user['phone'],
             password: '',
-            password_confirmation: '',
+            passwordConfirmation: '',
           );
         }
       }
@@ -91,7 +173,27 @@ class AuthMethod {
     return prefs.setString('token', value);
   }
 
-  static Future<bool> login(String email, String password) async {
+  // static Future<bool> login(String? email, String? password) async {
+  //   final url = Uri.http(globals.addressUrl, sublogin);
+  //   final response = await http.post(
+  //     url,
+  //     body: {
+  //       'email': email,
+  //       'password': password,
+  //     },
+  //   );
+  //
+  //   Map<String, dynamic> body = json.decode(response.body);
+  //   await setToken(body['token']);
+  //   return body['status'];
+  // }
+
+  // Nullable
+  static Future<bool> login(String? email, String? password) async {
+    if (email == null || password == null) {
+      throw ArgumentError('Email and password must not be null');
+    }
+
     final url = Uri.http(globals.addressUrl, sublogin);
     final response = await http.post(
       url,
@@ -102,12 +204,18 @@ class AuthMethod {
     );
 
     Map<String, dynamic> body = json.decode(response.body);
-    await setToken(body['token']);
+
+    if (body['token'] != null) {
+      await setToken(body['token']);
+    } else {
+      throw Exception('Token not found in response');
+    }
+
     return body['status'];
   }
 
   static Future<bool> logout() async {
-    final url = Uri.http(globals.addressUrl, 'api/logout');
+    final url = Uri.http(globals.addressUrl, sublogout);
     // bool status = false;
     String? token = await AuthMethod.getToken();
     if (token != null) {

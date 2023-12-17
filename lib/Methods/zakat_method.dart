@@ -5,10 +5,10 @@ import 'package:dermain/Models/zakat_model.dart';
 
 class ZakatMethod {
   // static const addressUrl = '10.0.2.2:8000';
-  // static const subAddress = 'api/zakat';
+  // static const subZakat = 'api/zakat';
 
   static Future<List<Zakat>> loadAllZakat() async {
-    final url = Uri.http(addressUrl, subAddress);
+    final url = Uri.http(addressUrl, subZakat);
     List<Zakat> allZakats = [];
 
     final response = await http.get(url);
@@ -34,7 +34,7 @@ class ZakatMethod {
 
   static Future<bool> addZakat(String jenisDonasi, String nominal, String nama,
       String email, String phone) async {
-    final url = Uri.http(addressUrl, subAddress);
+    final url = Uri.http(addressUrl, subZakat);
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
@@ -51,7 +51,7 @@ class ZakatMethod {
   }
 
   static Future<bool> removeZakat(String id) async {
-    final url = Uri.http(addressUrl, '$subAddress/$id');
+    final url = Uri.http(addressUrl, '$subZakat/$id');
 
     final response = await http.delete(url);
 

@@ -1,13 +1,8 @@
-import 'package:dermain/Methods/auth_method.dart';
-import 'package:dermain/Models/user_model.dart';
-import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/theme.dart';
-import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:dermain/globals.dart' as globals;
 
 class UbahProfil extends StatefulWidget {
   const UbahProfil({super.key});
@@ -23,40 +18,60 @@ class _UbahProfilState extends State<UbahProfil> {
   final _passwordController = TextEditingController();
   final _passwordConfirmationController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final _validatorKey = GlobalKey<FlutterPwValidatorState>();
   bool _passwordOne = true;
   bool _passwordTwo = true;
 
-  var _user = UserModel(
-    id: '',
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    password_confirmation: '',
-  );
+  // void _updateUserData() async {
+  //   String? token = await AuthMethod.getToken();
+  //   String? userId = await AuthMethod.getUserId();
+  //   if (token != null && userId != null) {
+  //     bool status = await updateUserData(
+  //       userId,
+  //       _nameController.text,
+  //       _emailController.text,
+  //       token,
+  //     );
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text(status ? 'Update successful' : 'Update failed')),
+  //     );
+  //   } else {
+  //     print('Error: No token or user ID found');
+  //   }
+  // }
 
-  void _saveRegister() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
 
-    _formKey.currentState!.save();
-    _user = UserModel(
-      id: DateTime.now().toString(),
-      name: _nameController.text,
-      email: _emailController.text,
-      phone: _phoneController.text,
-      password: _passwordController.text,
-      password_confirmation: _passwordConfirmationController.text,
-    );
-    bool status = await AuthMethod.register(_user);
+  // final String userId = ;
 
-    print(status);
-    globals.isLogin = true;
-    if (!mounted) return;
-    Navigator.of(context).push(signIn());
-  }
+  // var _user = UserModel(
+  //   id: '',
+  //   name: '',
+  //   email: '',
+  //   // phone: '',
+  //   password: '',
+  //   passwordConfirmation: '',
+  // );
+  //
+  // void _saveRegister() async {
+  //   if (!_formKey.currentState!.validate()) {
+  //     return;
+  //   }
+  //
+  //   _formKey.currentState!.save();
+  //   _user = UserModel(
+  //     id: DateTime.now().toString(),
+  //     name: _nameController.text,
+  //     email: _emailController.text,
+  //     // phone: _phoneController.text,
+  //     password: _passwordController.text,
+  //     passwordConfirmation: _passwordConfirmationController.text,
+  //   );
+  //   bool status = await AuthMethod.register(_user);
+  //
+  //   // print(status);
+  //   globals.isLogin = true;
+  //   if (!mounted) return;
+  //   Navigator.of(context).push(signIn());
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +80,7 @@ class _UbahProfilState extends State<UbahProfil> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: c2,
+        backgroundColor: cWhite,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -85,7 +100,7 @@ class _UbahProfilState extends State<UbahProfil> {
           ),
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: c2,
+          statusBarColor: cWhite,
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
@@ -98,15 +113,13 @@ class _UbahProfilState extends State<UbahProfil> {
             const SizedBox(height: 12),
             email(),
             const SizedBox(height: 12),
-            hp(),
-            const SizedBox(height: 12),
-            kataSandi(),
-            const SizedBox(height: 12),
-            konfirmasiSandi(),
+            // hp(),
+            // const SizedBox(height: 12),
+            // kataSandi(),
+            // const SizedBox(height: 12),
+            // konfirmasiSandi(),
             const SizedBox(height: 32),
-            tombolDaftar(),
-            const SizedBox(height: 12),
-            tombolMasuk(),
+            tombolSimpan(),
           ],
         ),
       ),
@@ -178,7 +191,7 @@ class _UbahProfilState extends State<UbahProfil> {
           //               return 'Please enter a valid email (ex: jhon@gmail.com)';
           //             }
           //             return null;
-    
+
           if (_nameController.text.isNotEmpty &&
               _nameController.text.trim().isEmpty)
             const Padding(
@@ -256,7 +269,7 @@ class _UbahProfilState extends State<UbahProfil> {
         //   Text(
         //     'Format email tidak valid',
         //     style: GoogleFonts.poppins(
-        //       color: kRedColor,
+        //       color: cRed,
         //       fontSize: 12,
         //     ),
         //   ),
@@ -268,7 +281,7 @@ class _UbahProfilState extends State<UbahProfil> {
         //     child: Text(
         //       'Email harus diisi',
         //       style: GoogleFonts.poppins(
-        //         color: kRedColor,
+        //         color: cRed,
         //         fontSize: 12,
         //       ),
         //     ),
@@ -335,7 +348,7 @@ class _UbahProfilState extends State<UbahProfil> {
         //     child: Text(
         //       'Nama harus diisi',
         //       style: GoogleFonts.poppins(
-        //         color: kRedColor,
+        //         color: cRed,
         //         fontSize: 12,
         //       ),
         //     ),
@@ -484,7 +497,7 @@ class _UbahProfilState extends State<UbahProfil> {
     );
   }
 
-  Widget tombolDaftar() {
+  Widget tombolSimpan() {
     return Container(
       margin: const EdgeInsets.only(
         top: 32,
@@ -493,9 +506,7 @@ class _UbahProfilState extends State<UbahProfil> {
       height: 56,
       width: double.infinity,
       child: TextButton(
-        onPressed: () {
-          _saveRegister();
-        },
+        onPressed: () {},
         style: TextButton.styleFrom(
           backgroundColor: c2,
           shape: RoundedRectangleBorder(
@@ -511,45 +522,6 @@ class _UbahProfilState extends State<UbahProfil> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget tombolMasuk() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Sudah punya akun?',
-              style: GoogleFonts.poppins(
-                color: c1,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(signIn());
-              },
-              child: Text(
-                'Masuk',
-                style: GoogleFonts.poppins(
-                  color: c1,
-                  fontWeight: semibold,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-          ],
-        ),
-        FlutterPwValidator(
-          key: _validatorKey,
-          controller: _passwordController,
-          width: 400,
-          height: 200,
-          minLength: 6,
-          onSuccess: () {},
-        ),
-      ],
     );
   }
 }

@@ -2,11 +2,10 @@ import 'package:dermain/Methods/auth_method.dart';
 import 'package:dermain/globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import '../route_animation.dart';
-import '../theme.dart';
+import '../../route_animation.dart';
+import '../../theme.dart';
 import 'package:dermain/Models/user_model.dart';
 
 class SignUp extends StatefulWidget {
@@ -20,21 +19,27 @@ class _SignUpState extends State<SignUp> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
+  final _birthController = TextEditingController();
+  final _nikController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _rantingController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordConfirmationController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final _validatorKey = GlobalKey<FlutterPwValidatorState>();
   bool _passwordOne = true;
   bool _passwordTwo = true;
-  bool isShowNameError = false;
 
   var _user = UserModel(
     id: '',
     name: '',
     email: '',
-    phone: '',
+    // phone: '',
+    // birth: '',
+    // nik: '',
+    // address: '',
+    // ranting: '',
     password: '',
-    password_confirmation: '',
+    passwordConfirmation: '',
   );
 
   void _saveRegister() async {
@@ -47,9 +52,9 @@ class _SignUpState extends State<SignUp> {
       id: DateTime.now().toString(),
       name: _nameController.text,
       email: _emailController.text,
-      phone: _phoneController.text,
+      // phone: _phoneController.text,
       password: _passwordController.text,
-      password_confirmation: _passwordConfirmationController.text,
+      passwordConfirmation: _passwordConfirmationController.text,
     );
     bool status = await AuthMethod.register(_user);
 
@@ -64,10 +69,8 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       backgroundColor: cWhite,
       appBar: AppBar(
+        toolbarHeight: 0,
         automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(
-          color: c2,
-        ),
         elevation: 0,
         backgroundColor: cWhite,
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -82,11 +85,19 @@ class _SignUpState extends State<SignUp> {
           children: [
             keterangan(),
             const SizedBox(height: 24),
-            nama(),
-            const SizedBox(height: 12),
             email(),
             const SizedBox(height: 12),
-            hp(),
+            nama(),
+            // const SizedBox(height: 12),
+            // hp(),
+            // const SizedBox(height: 12),
+            // tglLahir(),
+            // const SizedBox(height: 12),
+            // nik(),
+            // const SizedBox(height: 12),
+            // alamat(),
+            // const SizedBox(height: 12),
+            // ranting(),
             const SizedBox(height: 12),
             kataSandi(),
             const SizedBox(height: 12),
@@ -102,15 +113,35 @@ class _SignUpState extends State<SignUp> {
   }
 
   Widget keterangan() {
-    return Text(
-      textAlign: TextAlign.center,
-      'Buat Akun Baru',
-      style: GoogleFonts.poppins(
-        color: c1,
-        fontSize: 28,
-        fontWeight: semibold,
-        // fontWeight: medium,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          textAlign: TextAlign.center,
+          'Buat Akun Baru',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 28,
+            fontWeight: semibold,
+          ),
+        ),
+        Text(
+          // textAlign: TextAlign.left,
+          'Lengkapi data diri anda.',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          // textAlign: TextAlign.left,
+          '* berarti wajib diisi.',
+          style: GoogleFonts.poppins(
+            color: cRed,
+          ),
+        ),
+      ],
     );
   }
 
@@ -119,9 +150,9 @@ class _SignUpState extends State<SignUp> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Nama',
+          'Nama *',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cRed,
             fontSize: 12,
           ),
         ),
@@ -144,8 +175,12 @@ class _SignUpState extends State<SignUp> {
               ),
               Expanded(
                 child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
                   controller: _nameController,
                   decoration: InputDecoration(
+                    counterStyle: GoogleFonts.poppins(
+                      color: c2,
+                    ),
                     hintText: 'Nama lengkap',
                     hintStyle: GoogleFonts.poppins(
                       color: c3,
@@ -158,30 +193,30 @@ class _SignUpState extends State<SignUp> {
                       borderSide: BorderSide(color: Colors.transparent),
                     ),
                   ),
-                  // validator: (value) {
-                  //   if (value == null || value.trim().isEmpty) {
-                  //     return 'Please enter your name!';
-                  //   }
-                  //   return null;
-                  // },
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter your name!';
+                    }
+                    return null;
+                  },
                 ),
               ),
             ],
           ),
         ),
-        if (isShowNameError)
-          Container(
-            margin: const EdgeInsets.only(
-              top: 6,
-            ),
-            child: Text(
-              'Nama harus diisi',
-              style: GoogleFonts.poppins(
-                color: kRedColor,
-                fontSize: 12,
-              ),
-            ),
-          ),
+        // if (isShowNameError)
+        //   Container(
+        //     margin: const EdgeInsets.only(
+        //       top: 6,
+        //     ),
+        //     child: Text(
+        //       'Nama harus diisi',
+        //       style: GoogleFonts.poppins(
+        //         color: cRed,
+        //         fontSize: 12,
+        //       ),
+        //     ),
+        //   ),
       ],
     );
   }
@@ -191,9 +226,9 @@ class _SignUpState extends State<SignUp> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Email',
+          'Email *',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cRed,
             fontSize: 12,
           ),
         ),
@@ -216,6 +251,7 @@ class _SignUpState extends State<SignUp> {
               ),
               Expanded(
                 child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -242,29 +278,6 @@ class _SignUpState extends State<SignUp> {
             ],
           ),
         ),
-        // const SizedBox(height: 6),
-        // if (_emailController.text.isNotEmpty &&
-        //     !_isEmailValid(_emailController.text))
-        //   Text(
-        //     'Format email tidak valid',
-        //     style: GoogleFonts.poppins(
-        //       color: kRedColor,
-        //       fontSize: 12,
-        //     ),
-        //   ),
-        // if (isShowEmailError)
-        //   Container(
-        //     margin: const EdgeInsets.only(
-        //       top: 6,
-        //     ),
-        //     child: Text(
-        //       'Email harus diisi',
-        //       style: GoogleFonts.poppins(
-        //         color: kRedColor,
-        //         fontSize: 12,
-        //       ),
-        //     ),
-        //   ),
       ],
     );
   }
@@ -299,6 +312,7 @@ class _SignUpState extends State<SignUp> {
               ),
               Expanded(
                 child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
@@ -308,30 +322,207 @@ class _SignUpState extends State<SignUp> {
                       fontSize: 16,
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your phone number!';
-                    }
-                    return null;
-                  },
                 ),
               ),
             ],
           ),
         ),
-        // if (isShowNameError)
-        //   Container(
-        //     margin: const EdgeInsets.only(
-        //       top: 6,
-        //     ),
-        //     child: Text(
-        //       'Nama harus diisi',
-        //       style: GoogleFonts.poppins(
-        //         color: kRedColor,
-        //         fontSize: 12,
-        //       ),
-        //     ),
-        //   ),
+      ],
+    );
+  }
+
+  Widget tglLahir() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Tanggal Lahir',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 12,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          height: 60,
+          decoration: BoxDecoration(
+            color: c5,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Iconsax.calendar_1,
+                color: c1,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
+                  controller: _birthController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration.collapsed(
+                    hintText: '00-00-0000',
+                    hintStyle: GoogleFonts.poppins(
+                      color: c3,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget nik() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Nomor Induk KTP',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 12,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          height: 60,
+          decoration: BoxDecoration(
+            color: c5,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Iconsax.strongbox,
+                color: c1,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
+                  controller: _nikController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration.collapsed(
+                    hintText: '00000000000000000',
+                    hintStyle: GoogleFonts.poppins(
+                      color: c3,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget alamat() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Alamat',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 12,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          height: 60,
+          decoration: BoxDecoration(
+            color: c5,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Iconsax.location,
+                color: c1,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
+                  controller: _addressController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Jl.........',
+                    hintStyle: GoogleFonts.poppins(
+                      color: c3,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget ranting() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Ranting',
+          style: GoogleFonts.poppins(
+            color: c1,
+            fontSize: 12,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          height: 60,
+          decoration: BoxDecoration(
+            color: c5,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Iconsax.data,
+                color: c1,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
+                  controller: _rantingController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Ranting Banguntapan Selatan',
+                    hintStyle: GoogleFonts.poppins(
+                      color: c3,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -495,7 +686,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         child: Text(
-          'Daftar',
+          'Lanjut',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 16,
@@ -532,14 +723,6 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
           ],
-        ),
-        FlutterPwValidator(
-          key: _validatorKey,
-          controller: _passwordController,
-          width: 400,
-          height: 200,
-          minLength: 6,
-          onSuccess: () {},
         ),
       ],
     );

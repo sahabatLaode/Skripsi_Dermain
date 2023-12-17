@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class InfaqMethod {
   static Future<List<Infaq>> loadAllInfaq() async {
-    final url = Uri.http(addressUrl, subAddress);
+    final url = Uri.http(addressUrl, subZakat);
     List<Infaq> allInfaqs = [];
 
     final response = await http.get(url);
@@ -31,7 +31,7 @@ class InfaqMethod {
 
   static Future<bool> addInfaq(String jenisDonasi, String nominal, String nama,
       String email, String phone) async {
-    final url = Uri.http(addressUrl, subAddress);
+    final url = Uri.http(addressUrl, subZakat);
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
@@ -48,7 +48,7 @@ class InfaqMethod {
   }
 
   static Future<bool> removeInfaq(String id) async {
-    final url = Uri.http(addressUrl, '$subAddress/$id');
+    final url = Uri.http(addressUrl, '$subZakat/$id');
 
     final response = await http.delete(url);
 

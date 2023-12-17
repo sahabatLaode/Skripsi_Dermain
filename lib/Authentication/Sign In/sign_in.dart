@@ -2,13 +2,12 @@ import 'package:dermain/Methods/auth_method.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dermain/globals.dart' as globals;
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../route_animation.dart';
-import '../theme.dart';
+import '../../route_animation.dart';
+import '../../theme.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -21,7 +20,6 @@ class _SignInState extends State<SignIn> {
   final _emailController = TextEditingController(text: 'tes@gmail.com');
   final _passwordController = TextEditingController(text: 'qqqqqq');
   final _formKey = GlobalKey<FormState>();
-  final _validatorKey = GlobalKey<FlutterPwValidatorState>();
   bool _isVisiblePassword = true;
 
   void _login() async {
@@ -78,7 +76,7 @@ class _SignInState extends State<SignIn> {
             email(),
             const SizedBox(height: 12),
             sandi(),
-            lupaSandi(),
+            // lupaSandi(),
             tombolMasuk(),
             daftar(),
           ],
@@ -142,6 +140,7 @@ class _SignInState extends State<SignIn> {
               ),
               Expanded(
                 child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -179,7 +178,7 @@ class _SignInState extends State<SignIn> {
         //   Text(
         //     'Format email tidak valid',
         //     style: GoogleFonts.poppins(
-        //       color: kRedColor,
+        //       color: cRed,
         //       fontSize: 12,
         //     ),
         //   ),
@@ -217,6 +216,7 @@ class _SignInState extends State<SignIn> {
               ),
               Expanded(
                 child: TextFormField(
+                  style: GoogleFonts.poppins(color: c1),
                   controller: _passwordController,
                   obscureText: _isVisiblePassword,
                   keyboardType: TextInputType.emailAddress,
@@ -251,7 +251,7 @@ class _SignInState extends State<SignIn> {
         //     child: Text(
         //       'Kata sandi salah',
         //       style: GoogleFonts.poppins(
-        //         color: kRedColor,
+        //         color: cRed,
         //         fontSize: 12,
         //       ),
         //     ),
@@ -263,23 +263,23 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  Widget lupaSandi() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Text(
-            'Lupa kata sandi?',
-            style: GoogleFonts.poppins(
-              color: c1,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget lupaSandi() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.end,
+  //     children: [
+  //       InkWell(
+  //         onTap: () {},
+  //         child: Text(
+  //           'Lupa kata sandi?',
+  //           style: GoogleFonts.poppins(
+  //             color: c1,
+  //           ),
+  //           textAlign: TextAlign.center,
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget tombolMasuk() {
     return Container(
@@ -337,15 +337,6 @@ class _SignInState extends State<SignIn> {
               ),
             ),
           ],
-        ),
-        const SizedBox(height: 12),
-        FlutterPwValidator(
-          key: _validatorKey,
-          controller: _passwordController,
-          width: 400,
-          height: 200,
-          minLength: 6,
-          onSuccess: () {},
         ),
       ],
     );

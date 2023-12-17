@@ -2,10 +2,11 @@ import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/konfirmasi_donas
 import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/nota.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'Authentication/sign_in.dart';
+import 'Authentication/Sign In/sign_in.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
 import 'Navbar/Components/Layanan/Widget/Donasi/donasi_zakat.dart';
+import 'Navbar/Components/Layanan/Widget/Permintaan Ambulans/lokasi2.dart';
 import 'Navbar/Components/Layanan/Widget/Permintaan Ambulans/permintaan_ambulan.dart';
 import 'Navbar/Components/Layanan/Widget/Permintaan Koin/permintaan_koin_surga.dart';
 import 'Navbar/Components/Layanan/layanan.dart';
@@ -13,7 +14,7 @@ import 'Navbar/navbar.dart';
 import 'Onboarding/onboarding.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   runApp(const ProviderScope(child: MyApp()));
   // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/layanan': (context) => const Layanan(),
         '/nota': (context) => const Nota(),
         '/konfirmasi': (context) => const KonfirmasiDonasi(),
+        '/lokasi2': (context) => const Maps(),
       },
     );
   }

@@ -12,15 +12,25 @@ class UsersNotifier extends StateNotifier<List<UserModel>> {
         id: user.id,
         name: user.name,
         email: user.email,
-        phone: user.phone,
+        // phone: user.phone,
+        // nik: user.nik,
+        // address: user.address,
+        // birth: user.birth,
+        // ranting: user.ranting,
         password: user.password,
-        password_confirmation: user.password_confirmation,
+        passwordConfirmation: user.passwordConfirmation,
       ),
     ];
   }
 
   void addUsers(List<UserModel> users) {
     state = users;
+  }
+
+  UserModel findUser(String? id) {
+    UserModel tempUser = state.firstWhere((user) => user.id == id);
+
+    return tempUser;
   }
 }
 

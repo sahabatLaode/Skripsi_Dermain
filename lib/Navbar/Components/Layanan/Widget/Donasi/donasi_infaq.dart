@@ -247,7 +247,7 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
             child: Text(
               'Masukkan nominal',
               style: GoogleFonts.poppins(
-                color: kRedColor,
+                color: cRed,
               ),
             ),
           ),
@@ -306,7 +306,7 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
           Text(
             'Masukkan nama lengkap',
             style: GoogleFonts.poppins(
-              color: kRedColor,
+              color: cRed,
             ),
           ),
         CheckboxListTile(
@@ -386,7 +386,7 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
             child: Text(
               'Masukkan email yang valid',
               style: GoogleFonts.poppins(
-                color: kRedColor,
+                color: cRed,
               ),
             ),
           ),
@@ -446,7 +446,7 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
             child: Text(
               'Masukkan nomor telepon yang valid',
               style: GoogleFonts.poppins(
-                color: kRedColor,
+                color: cRed,
               ),
             ),
           ),
@@ -462,7 +462,7 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
         children: [
           Icon(
             Iconsax.info_circle5,
-            color: kRedColor,
+            color: cRed,
           ),
           const SizedBox(width: 6),
           Expanded(

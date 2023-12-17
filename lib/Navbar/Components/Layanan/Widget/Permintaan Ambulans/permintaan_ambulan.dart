@@ -24,6 +24,8 @@ class PermintaanAmbulan extends StatefulWidget {
   State<PermintaanAmbulan> createState() => _PermintaanAmbulanState();
 }
 
+
+
 class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
   final emailController = TextEditingController(text: '');
   final passwordController = TextEditingController(text: '');
@@ -36,6 +38,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
   String dropdownPukul = jam.first;
 
   DateTime selectDate = DateTime.now();
+
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +144,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
             child: Text(
               'Nama pemesan tidak boleh kosong',
               style: GoogleFonts.poppins(
-                color: kRedColor,
+                color: cRed,
                 fontSize: 12,
               ),
             ),
@@ -198,7 +201,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
             child: Text(
               'Nama tidak boleh kosong',
               style: GoogleFonts.poppins(
-                color: kRedColor,
+                color: cRed,
                 fontSize: 12,
               ),
             ),

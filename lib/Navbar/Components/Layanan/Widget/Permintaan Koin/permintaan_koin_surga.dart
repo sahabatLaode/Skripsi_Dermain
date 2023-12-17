@@ -306,7 +306,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
             child: Text(
               'Pastikan jenis tanggal sudah benar',
               style: GoogleFonts.poppins(
-                color: kRedColor,
+                color: cRed,
               ),
             ),
           ),
@@ -376,7 +376,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
             child: Text(
               'Pastikan jenis permintaan sudah benar',
               style: GoogleFonts.poppins(
-                color: kRedColor,
+                color: cRed,
               ),
             ),
           ),
