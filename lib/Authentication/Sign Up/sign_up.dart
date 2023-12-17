@@ -69,7 +69,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       backgroundColor: cWhite,
       appBar: AppBar(
-        toolbarHeight: 0,
+        // toolbarHeight: 0,
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: cWhite,
@@ -114,7 +114,6 @@ class _SignUpState extends State<SignUp> {
 
   Widget keterangan() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           textAlign: TextAlign.center,
@@ -134,13 +133,6 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         const SizedBox(height: 4),
-        Text(
-          // textAlign: TextAlign.left,
-          '* berarti wajib diisi.',
-          style: GoogleFonts.poppins(
-            color: cRed,
-          ),
-        ),
       ],
     );
   }
@@ -150,9 +142,9 @@ class _SignUpState extends State<SignUp> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Nama *',
+          'Nama',
           style: GoogleFonts.poppins(
-            color: cRed,
+            color: c1,
             fontSize: 12,
           ),
         ),
@@ -226,9 +218,9 @@ class _SignUpState extends State<SignUp> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Email *',
+          'Email',
           style: GoogleFonts.poppins(
-            color: cRed,
+            color: c1,
             fontSize: 12,
           ),
         ),
@@ -686,7 +678,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         child: Text(
-          'Lanjut',
+          'Daftar',
           style: GoogleFonts.poppins(
             color: c1,
             fontSize: 16,

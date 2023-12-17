@@ -16,11 +16,11 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  int index = 0;
+  int index = 1;
   final screens = [
+    const Aktivitas(),
     const Beranda(),
     const Layanan(),
-    const Aktivitas(),
     const Profil(),
   ];
 
@@ -53,6 +53,17 @@ class _NavbarState extends State<Navbar> {
           destinations: [
             NavigationDestination(
               icon: Icon(
+                Iconsax.task_square,
+                color: c1,
+              ),
+              selectedIcon: Icon(
+                Iconsax.task_square5,
+                color: c1,
+              ),
+              label: 'Aktivitas',
+            ),
+            NavigationDestination(
+              icon: Icon(
                 Iconsax.home,
                 color: c1,
               ),
@@ -79,17 +90,7 @@ class _NavbarState extends State<Navbar> {
               ),
               label: 'Layanan',
             ),
-            NavigationDestination(
-              icon: Icon(
-                Iconsax.task_square,
-                color: c1,
-              ),
-              selectedIcon: Icon(
-                Iconsax.task_square5,
-                color: c1,
-              ),
-              label: 'Aktivitas',
-            ),
+
             NavigationDestination(
               icon: SvgPicture.asset(
                 'assets/icons/profil_outline.svg',
