@@ -47,10 +47,10 @@ class Aktivitas extends StatelessWidget {
             padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14),
             tabs: const [
               Tab(
-                child: Text('Donasi'),
+                child: Text('Aktivitas Donasi'),
               ),
               Tab(
-                child: Text('Permintaan'),
+                child: Text('Aktivitas Permintaan'),
               ),
             ],
           ),
