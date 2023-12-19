@@ -6,12 +6,14 @@ class InformasiItems extends StatelessWidget {
   final String imageurl;
   final String title;
   final VoidCallback diTekan;
+  final Color warna;
 
   const InformasiItems({
     super.key,
     required this.imageurl,
     required this.title,
     required this.diTekan,
+    required this.warna,
   });
 
   @override
@@ -20,20 +22,20 @@ class InformasiItems extends StatelessWidget {
       margin: const EdgeInsets.only(
         right: 16,
         bottom: 4,
+        left: 4,
+        top: 4,
       ),
       padding: const EdgeInsets.all(6),
       width: 280,
       height: 140,
       decoration: BoxDecoration(
         color: c6,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
             color: Colors.black12,
-            blurRadius: 4,
-            spreadRadius: 0,
-            offset: Offset(0, 3),
-            blurStyle: BlurStyle.solid,
+            blurRadius: 1,
+            spreadRadius: 2,
           ),
         ],
       ),
@@ -61,7 +63,7 @@ class InformasiItems extends StatelessWidget {
               width: 180,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: c2,
+                color: warna,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(14),
                   topRight: Radius.circular(130),
@@ -73,7 +75,7 @@ class InformasiItems extends StatelessWidget {
                   Text(
                     title,
                     style: GoogleFonts.poppins(
-                      color: cBlack,
+                      color: cWhite,
                       fontSize: 16,
                       fontWeight: semibold,
                     ),

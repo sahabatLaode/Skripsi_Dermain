@@ -33,34 +33,24 @@ class Aktivitas extends StatelessWidget {
           ),
           bottom: TabBar(
             // isScrollable: true,
-            overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-            unselectedLabelColor: Colors.black38,
+            // overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+            unselectedLabelColor: cBlack,
             unselectedLabelStyle: GoogleFonts.poppins(),
-            labelStyle: TextStyle(
+            labelStyle: GoogleFonts.poppins(
               fontSize: 16,
-              fontWeight: bold,
+              fontWeight: semibold,
             ),
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: c2,
             ),
             padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14),
-            tabs: [
+            tabs: const [
               Tab(
-                child: Text(
-                  'Donasi',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                  ),
-                ),
+                child: Text('Donasi'),
               ),
               Tab(
-                child: Text(
-                  'Permintaan',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                  ),
-                ),
+                child: Text('Permintaan'),
               ),
             ],
           ),

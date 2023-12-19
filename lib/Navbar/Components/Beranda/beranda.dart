@@ -1,7 +1,9 @@
 import 'package:dermain/Methods/auth_method.dart';
-import 'package:dermain/Navbar/Components/Beranda/Widgets/berita_beranda_items.dart';
+import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
+import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/informasi_items.dart';
-import 'package:dermain/Navbar/Components/Beranda/Widgets/menu_cepat_items.dart';
+import 'package:dermain/Navbar/Components/Beranda/beranda_items_1.dart';
+import 'package:dermain/Navbar/Components/Beranda/beranda_items_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dermain/route_animation.dart';
@@ -65,28 +67,6 @@ class _BerandaState extends State<Beranda> {
             ),
           ],
         ),
-
-        // actions: [
-        //   SizedBox(
-        //     width: 40,
-        //     child: TextButton(
-        //       onPressed: () {
-        //         Navigator.of(context).push(notifikasi());
-        //       },
-        //       style: TextButton.styleFrom(
-        //         backgroundColor: cWhite,
-        //         shape: const CircleBorder(),
-        //       ),
-        //       child: Icon(
-        //         Iconsax.notification_bing5,
-        //         color: cBlack,
-        //       ),
-        //     ),
-        //   ),
-        //   const SizedBox(
-        //     width: 16,
-        //   ),
-        // ],
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: cWhite,
           statusBarIconBrightness: Brightness.dark,
@@ -99,14 +79,14 @@ class _BerandaState extends State<Beranda> {
           ListView(
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 164),
+                margin: const EdgeInsets.only(top: 190),
                 decoration: BoxDecoration(
                   color: cWhite,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 10,
@@ -121,7 +101,7 @@ class _BerandaState extends State<Beranda> {
                       width: 60,
                       height: 6,
                       decoration: BoxDecoration(
-                        color: Colors.black12,
+                        color: Colors.black26,
                         borderRadius: BorderRadius.circular(99),
                       ),
                     ),
@@ -140,65 +120,83 @@ class _BerandaState extends State<Beranda> {
   }
 
   Widget totalDonasi() {
-    return Container(
-      // padding: const EdgeInsets.all(20),
-      width: double.infinity,
-      height: 160,
-      decoration: BoxDecoration(
-        color: cWhite,
-      ),
-      child: Column(
-        children: [
-          Text(
-            'Total Donasi Terkumpul',
-            style: GoogleFonts.poppins(
-              color: cBlack,
+    return Column(
+      children: [
+        Text(
+          'Total Donasi Terkumpul',
+          style: GoogleFonts.poppins(
+            color: cBlack,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Rp',
+              style: GoogleFonts.poppins(
+                color: cBlack,
+                fontSize: 36,
+                fontWeight: semibold,
+              ),
             ),
-          ),
-          const SizedBox(height: 2),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Rp',
-                style: GoogleFonts.poppins(
-                  color: cBlack,
-                  fontSize: 36,
-                  fontWeight: semibold,
-                ),
+            Text(
+              '0.00',
+              style: GoogleFonts.poppins(
+                color: cBlack,
+                fontSize: 36,
+                fontWeight: semibold,
               ),
-              Text(
-                '0.00',
-                style: GoogleFonts.poppins(
-                  color: cBlack,
-                  fontSize: 36,
-                  fontWeight: semibold,
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          height: 80,
+          decoration: BoxDecoration(
+              color: cWhite,
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 1,
+                  spreadRadius: 2,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Row(
+              ],
+              borderRadius: BorderRadius.circular(20)),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                width: 120,
-                child: Column(
+                width: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Program Donasi',
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 12,
-                      ),
+                    Icon(
+                      Iconsax.gift5,
+                      color: c1,
+                      size: 36,
                     ),
-                    Text(
-                      '3',
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 22,
-                        fontWeight: semibold,
-                      ),
+                    const SizedBox(width: 8),
+                    Column(
+                      children: [
+                        Text(
+                          'Donasi',
+                          style: GoogleFonts.poppins(
+                            color: c5,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Text(
+                          '3',
+                          style: GoogleFonts.poppins(
+                            color: cBlack,
+                            fontSize: 22,
+                            fontWeight: semibold,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -206,96 +204,83 @@ class _BerandaState extends State<Beranda> {
               Container(
                 width: 2,
                 height: 30,
-                color: cBlack,
+                color: c5,
               ),
               SizedBox(
                 width: 120,
-                child: Column(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Program Layanan',
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 12,
-                      ),
+                    Icon(
+                      Iconsax.map_15,
+                      color: c2,
+                      size: 36,
                     ),
-                    Text(
-                      '2',
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 22,
-                        fontWeight: semibold,
-                      ),
+                    const SizedBox(width: 8),
+                    Column(
+                      children: [
+                        Text(
+                          'Layanan',
+                          style: GoogleFonts.poppins(
+                            color: c5,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Text(
+                          '2',
+                          style: GoogleFonts.poppins(
+                            color: cBlack,
+                            fontSize: 22,
+                            fontWeight: semibold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: 2,
+                height: 30,
+                color: c5,
+              ),
+              SizedBox(
+                width: 120,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Iconsax.information5,
+                      color: c3,
+                      size: 36,
+                    ),
+                    const SizedBox(width: 8),
+                    Column(
+                      children: [
+                        Text(
+                          'Informasi',
+                          style: GoogleFonts.poppins(
+                            color: c5,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Text(
+                          '3',
+                          style: GoogleFonts.poppins(
+                            color: cBlack,
+                            fontSize: 22,
+                            fontWeight: semibold,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ],
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget menuCepat() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // ZAKAT
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/nota');
-                  // Navigator.pushNamed(context, '/donasiZakat');
-                },
-                child: const MenuCepatItems(
-                  ikon: Iconsax.moneys,
-                  title: 'Zakat',
-                ),
-              ),
-
-              // INFAQ
-              TextButton(
-                onPressed: () {
-                  // Navigator.pushNamed(context, '/konfirmasi');
-                  Navigator.pushNamed(context, '/donasiInfaq');
-                },
-                child: const MenuCepatItems(
-                  ikon: Iconsax.gift,
-                  title: 'Infaq',
-                ),
-              ),
-
-              // AMBULAN
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/permintaanAmbulans');
-                },
-                child: const MenuCepatItems(
-                  ikon: Iconsax.truck_fast,
-                  title: 'Ambulans',
-                ),
-              ),
-
-              // KOIN SURGA
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/permintaanKoin');
-                },
-                child: const MenuCepatItems(
-                  ikon: Iconsax.coin,
-                  title: 'Koin Surga',
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -318,24 +303,117 @@ class _BerandaState extends State<Beranda> {
                 // Apa itu LAZISMU
                 InformasiItems(
                   imageurl: 'assets/logos/logo_lazismu.png',
+                  warna: c4,
                   title: 'Apa itu\nLAZISMU?',
                   diTekan: () {
-                    Navigator.of(context).push(lazismu());
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
+                      builder: (context) {
+                        return DraggableScrollableSheet(
+                          initialChildSize: 0.5, // setengah dari layar
+                          maxChildSize: 1, // memenuhi layar
+                          builder: (BuildContext context,
+                              ScrollController scrollController) {
+                            return Container(
+                              margin: const EdgeInsets.only(top: 20),
+                              padding: const EdgeInsets.all(16),
+                              height: MediaQuery.of(context).size.height / 2,
+                              decoration: BoxDecoration(
+                                color: cWhite,
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(20),
+                                  topLeft: Radius.circular(20),
+                                ),
+                              ),
+                              child: ListView.builder(
+                                controller: scrollController,
+                                itemCount: 1,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Column(
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.only(bottom: 12),
+                                        width: 60,
+                                        height: 6,
+                                        decoration: BoxDecoration(
+                                          color: Colors.black26,
+                                          borderRadius: BorderRadius.circular(99),
+                                        ),
+                                      ),
+                                      const Lazismu(),
+                                    ],
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
                   },
                 ),
 
                 // Visi dan Misi
                 InformasiItems(
                   imageurl: 'assets/images/image_visi.png',
+                  warna: c3,
                   title: 'Visi\ndan Misi',
                   diTekan: () {
-                    Navigator.of(context).push(visi());
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
+                      builder: (context) {
+                        return DraggableScrollableSheet(
+                          initialChildSize: 0.5, // setengah dari layar
+                          maxChildSize: 1, // memenuhi layar
+                          builder: (BuildContext context,
+                              ScrollController scrollController) {
+                            return Container(
+                              margin: const EdgeInsets.only(top: 20),
+                              padding: const EdgeInsets.all(16),
+                              height: MediaQuery.of(context).size.height / 2,
+                              decoration: BoxDecoration(
+                                color: cWhite,
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(20),
+                                  topLeft: Radius.circular(20),
+                                ),
+                              ),
+                              child: ListView.builder(
+                                controller: scrollController,
+                                itemCount: 1,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Column(
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.only(bottom: 12),
+                                        width: 60,
+                                        height: 6,
+                                        decoration: BoxDecoration(
+                                          color: Colors.black26,
+                                          borderRadius: BorderRadius.circular(99),
+                                        ),
+                                      ),
+                                      const Visi(),
+                                    ],
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
                   },
                 ),
 
                 // Struktur dan Manajemen
                 InformasiItems(
                   imageurl: 'assets/images/image_struktur.png',
+                  warna: c2,
                   title: 'Struktur\ndan Manajemen',
                   diTekan: () {},
                 ),
@@ -359,52 +437,21 @@ class _BerandaState extends State<Beranda> {
               Expanded(
                 child: Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      height: 150,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: c1,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'ZAKAT',
-                                style: GoogleFonts.poppins(
-                                  color: cWhite,
-                                  fontSize: 20,
-                                  fontWeight: semibold,
-                                ),
-                              ),
-                              Text(
-                                'Donasi Zakat',
-                                style: GoogleFonts.poppins(
-                                  color: cWhite,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Icon(
-                            Iconsax.moneys5,
-                            size: 48,
-                            color: cWhite,
-                          ),
-                        ],
-                      ),
+                    BerandaItems1(
+                      ikon: Iconsax.moneys,
+                      title: 'Zakat',
+                      subTitle: 'Donasi Zakat',
+                      warna: c1,
+                      diTekan: () {
+                        Navigator.of(context).push(donasiZakat());
+                      },
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 16),
-                      height: 240,
-                      decoration: BoxDecoration(
-                        color: c2,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                    BerandaItems2(
+                      ikon: Iconsax.gift,
+                      title: 'Sedekah',
+                      subTitle: 'Donasi Sedekah',
+                      warna: c2,
+                      diTekan: () {},
                     ),
                   ],
                 ),
@@ -413,123 +460,94 @@ class _BerandaState extends State<Beranda> {
               Expanded(
                 child: Column(
                   children: [
-                    Container(
-                      height: 240,
-                      decoration: BoxDecoration(
-                        color: c3,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                    BerandaItems2(
+                      ikon: Iconsax.truck,
+                      title: 'Ambulans',
+                      subTitle: 'Permintaan Ambulans',
+                      warna: c3,
+                      diTekan: () {},
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 16),
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: c4,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                    BerandaItems1(
+                      ikon: Iconsax.coin,
+                      title: 'Infaq',
+                      subTitle: 'Donasi Infaq',
+                      warna: c4,
+                      diTekan: () {},
                     ),
                   ],
                 ),
               ),
             ],
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 16),
-            height: 120,
-            // width: 170,
-            decoration: BoxDecoration(
-              color: c1,
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget berita() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(
-              top: 24,
-              bottom: 12,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Berita Lazismu',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontSize: 18,
-                    fontWeight: semibold,
+          InkWell(
+            onTap: () {},
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 16),
+              padding: const EdgeInsets.all(12),
+              height: 100,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: c1,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    Iconsax.coin,
+                    size: 48,
+                    color: cWhite,
                   ),
-                ),
-                InkWell(
-                  child: Container(
-                    width: 80,
-                    height: 24,
-                    decoration: BoxDecoration(
-                      color: c2,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Lihat semua',
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Koin Surga',
                         style: GoogleFonts.poppins(
-                          color: cBlack,
-                          fontSize: 10,
+                          color: cWhite,
+                          fontSize: 18,
+                          fontWeight: semibold,
                         ),
                       ),
-                    ),
+                      Text(
+                        'Permintaan Koin Surga',
+                        style: GoogleFonts.poppins(
+                          color: cWhite,
+                        ),
+                      ),
+                    ],
                   ),
-                  onTap: () {
-                    Navigator.of(context).push(beritaLazismu());
-                  },
-                ),
-              ],
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                // BERITA 1
-                BeritaBerandaItems(
-                  imageUrl: 'assets/images/image_berita1.jpg',
-                  tipe: 'Sosial',
-                  title: 'Lazismu Banguntapan Selatan Bagi-Bagi Takjil Gratis',
-                  admin: 'Lazismu',
-                  date: DateTime(2023, 4, 1),
-                  diTekan: () {
-                    Navigator.of(context).push(bacaBerita());
-                  },
-                ),
-
-                // BERITA 2
-                BeritaBerandaItems(
-                  imageUrl: 'assets/images/image_berita1.jpg',
-                  tipe: 'Sosial',
-                  title: 'Lazismu Banguntapan Selatan Bagi-Bagi Takjil Gratis',
-                  admin: 'Lazismu',
-                  date: DateTime(2023, 4, 7),
-                  diTekan: () {},
-                ),
-
-                // BERITA 3
-                BeritaBerandaItems(
-                  imageUrl: 'assets/images/image_berita1.jpg',
-                  tipe: 'Sosial',
-                  title: 'Lazismu Banguntapan Selatan Bagi-Bagi Takjil Gratis',
-                  admin: 'Lazismu',
-                  date: DateTime(2023, 4, 19),
-                  diTekan: () {},
-                ),
-              ],
+                  Container(
+                    width: 1,
+                    height: double.infinity,
+                    color: cWhite,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'Lanjutkan',
+                        style: GoogleFonts.poppins(color: cWhite),
+                      ),
+                      Container(
+                        width: 68,
+                        height: 38,
+                        decoration: BoxDecoration(
+                          color: cWhite,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Icon(
+                          Iconsax.arrow_right_1,
+                          color: c1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
