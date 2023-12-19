@@ -334,12 +334,14 @@ class _BerandaState extends State<Beranda> {
                                   return Column(
                                     children: [
                                       Container(
-                                        margin: const EdgeInsets.only(bottom: 12),
+                                        margin:
+                                            const EdgeInsets.only(bottom: 12),
                                         width: 60,
                                         height: 6,
                                         decoration: BoxDecoration(
                                           color: Colors.black26,
-                                          borderRadius: BorderRadius.circular(99),
+                                          borderRadius:
+                                              BorderRadius.circular(99),
                                         ),
                                       ),
                                       const Lazismu(),
@@ -389,12 +391,14 @@ class _BerandaState extends State<Beranda> {
                                   return Column(
                                     children: [
                                       Container(
-                                        margin: const EdgeInsets.only(bottom: 12),
+                                        margin:
+                                            const EdgeInsets.only(bottom: 12),
                                         width: 60,
                                         height: 6,
                                         decoration: BoxDecoration(
                                           color: Colors.black26,
-                                          borderRadius: BorderRadius.circular(99),
+                                          borderRadius:
+                                              BorderRadius.circular(99),
                                         ),
                                       ),
                                       const Visi(),
