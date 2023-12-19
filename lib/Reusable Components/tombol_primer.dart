@@ -24,7 +24,7 @@ class TombolPrimer extends StatelessWidget {
         child: Text(
           title,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: semibold,
           ),

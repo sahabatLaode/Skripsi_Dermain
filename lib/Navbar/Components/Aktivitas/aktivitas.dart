@@ -22,7 +22,7 @@ class Aktivitas extends StatelessWidget {
           title: Text(
             'Aktivitas',
             style: GoogleFonts.poppins(
-              color: c1,
+              color: cBlack,
               fontSize: 28,
               fontWeight: semibold,
             ),
@@ -50,7 +50,7 @@ class Aktivitas extends StatelessWidget {
                 child: Text(
                   'Donasi',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                   ),
                 ),
               ),
@@ -58,7 +58,7 @@ class Aktivitas extends StatelessWidget {
                 child: Text(
                   'Permintaan',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                   ),
                 ),
               ),

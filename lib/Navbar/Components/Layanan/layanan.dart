@@ -25,7 +25,7 @@ class _LayananState extends State<Layanan> {
         title: Text(
           'Layanan',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 28,
             fontWeight: semibold,
           ),

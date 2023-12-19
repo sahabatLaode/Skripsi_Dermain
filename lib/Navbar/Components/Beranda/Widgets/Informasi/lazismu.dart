@@ -21,7 +21,7 @@ class Lazismu extends StatelessWidget {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -49,7 +49,7 @@ class Lazismu extends StatelessWidget {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(
@@ -128,7 +128,7 @@ class Lazismu extends StatelessWidget {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(
@@ -152,7 +152,7 @@ class Lazismu extends StatelessWidget {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(
@@ -176,7 +176,7 @@ class Lazismu extends StatelessWidget {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(

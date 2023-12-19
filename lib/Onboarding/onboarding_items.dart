@@ -29,7 +29,7 @@ class OnboardingItems extends StatelessWidget {
           title,
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 28,
             fontWeight: bold,
           ),
@@ -41,7 +41,7 @@ class OnboardingItems extends StatelessWidget {
           subtitle,
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
           ),
         ),
       ],

@@ -30,7 +30,7 @@ class NotifikasiItems extends StatelessWidget {
           ),
           child: Icon(
             ikon,
-            color: c1,
+            color: cBlack,
             size: 24,
           ),
         ),
@@ -45,7 +45,7 @@ class NotifikasiItems extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -53,7 +53,7 @@ class NotifikasiItems extends StatelessWidget {
               Text(
                 DateFormat('d MMMM y').format(date),
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 12,
                 ),
               ),

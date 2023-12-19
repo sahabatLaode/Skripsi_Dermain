@@ -30,14 +30,14 @@ class _SplashPageState extends State<SplashPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: c1,
+        backgroundColor: cBlack,
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: c1,
+          statusBarColor: cBlack,
           statusBarIconBrightness: Brightness.light,
         ),
         toolbarHeight: 0,
       ),
-      backgroundColor: c1,
+      backgroundColor: cBlack,
       body: Center(
         child: Image.asset(
           'assets/logos/logo_dermain3.png',

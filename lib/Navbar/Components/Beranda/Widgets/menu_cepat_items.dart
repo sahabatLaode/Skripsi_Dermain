@@ -15,7 +15,7 @@ class MenuCepatItems extends StatelessWidget {
           width: 64,
           height: 64,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
             boxShadow: const [
               BoxShadow(
@@ -29,7 +29,7 @@ class MenuCepatItems extends StatelessWidget {
           ),
           child: Icon(
             ikon,
-            color: c1,
+            color: cBlack,
             size: 32,
           ),
         ),
@@ -37,7 +37,7 @@ class MenuCepatItems extends StatelessWidget {
         Text(
           title,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         )

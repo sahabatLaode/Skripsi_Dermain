@@ -22,7 +22,7 @@ class BacaBerita extends StatelessWidget {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
 
@@ -39,7 +39,7 @@ class BacaBerita extends StatelessWidget {
               ),
               child: Icon(
                 Iconsax.share,
-                color: c1,
+                color: cBlack,
               ),
             ),
           ),

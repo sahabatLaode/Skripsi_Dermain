@@ -75,7 +75,7 @@ class _ProfilState extends State<Profil> {
         Text(
           userName,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 32,
             fontWeight: bold,
           ),
@@ -83,7 +83,7 @@ class _ProfilState extends State<Profil> {
         Text(
           emailUser,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
           ),
         ),
         const SizedBox(height: 12),
@@ -99,7 +99,7 @@ class _ProfilState extends State<Profil> {
                 borderRadius: BorderRadius.circular(99),
               ),
               side: BorderSide(
-                color: c1,
+                color: cBlack,
                 width: 2,
               ),
             ),
@@ -108,13 +108,13 @@ class _ProfilState extends State<Profil> {
               children: [
                 Icon(
                   Iconsax.edit_25,
-                  color: c1,
+                  color: cBlack,
                   size: 20,
                 ),
                 Text(
                   'Ubah profil',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontWeight: bold,
                   ),
                 ),

@@ -60,7 +60,7 @@ class _AktivitasListState extends ConsumerState<AktivitasList> {
                   )
                 : Center(
                     child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: c1,
+                      color: cBlack,
                       size: 80,
                     ),
                   )
@@ -77,7 +77,7 @@ class _AktivitasListState extends ConsumerState<AktivitasList> {
                   Text(
                     'Belum ada aktivitas',
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontWeight: semibold,
                     ),
                   ),
@@ -91,7 +91,7 @@ class _AktivitasListState extends ConsumerState<AktivitasList> {
                     child: Text(
                       'Mulai dengan zakat',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontWeight: semibold,
                         decoration: TextDecoration.underline,
                       ),

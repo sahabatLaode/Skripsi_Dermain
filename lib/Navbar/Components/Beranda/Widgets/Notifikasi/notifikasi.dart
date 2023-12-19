@@ -27,14 +27,14 @@ class _NotifikasiState extends State<Notifikasi> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         centerTitle: true,
         title: Text(
           'Notifikasi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: semibold,
           ),

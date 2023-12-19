@@ -28,7 +28,7 @@ class ProfilItems extends StatelessWidget {
       width: double.infinity,
       height: 74,
       decoration: BoxDecoration(
-        color: c5,
+        color: c6,
         borderRadius: BorderRadius.circular(16),
       ),
       child: InkWell(
@@ -47,7 +47,7 @@ class ProfilItems extends StatelessWidget {
                   ),
                   child: Icon(
                     ikon1,
-                    color: c1,
+                    color: cBlack,
                   ),
                 ),
                 const SizedBox(
@@ -56,7 +56,7 @@ class ProfilItems extends StatelessWidget {
                 Text(
                   title,
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                     fontWeight: semibold,
                   ),
@@ -68,7 +68,7 @@ class ProfilItems extends StatelessWidget {
             ),
             Icon(
               ikon2,
-              color: c1,
+              color: cBlack,
             ),
           ],
         ),

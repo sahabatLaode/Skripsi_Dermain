@@ -119,7 +119,7 @@ class _SignUpState extends State<SignUp> {
           textAlign: TextAlign.center,
           'Buat Akun Baru',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 28,
             fontWeight: semibold,
           ),
@@ -128,7 +128,7 @@ class _SignUpState extends State<SignUp> {
           // textAlign: TextAlign.left,
           'Lengkapi data diri anda.',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 16,
           ),
         ),
@@ -144,7 +144,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Nama',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -153,21 +153,21 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.user,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _nameController,
                   decoration: InputDecoration(
                     counterStyle: GoogleFonts.poppins(
@@ -175,7 +175,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     hintText: 'Nama lengkap',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -220,7 +220,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Email',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -229,27 +229,27 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.sms,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'lazismu@mail.com',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -281,7 +281,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Nomor Telepon',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -290,27 +290,27 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.call,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
                     hintText: '081234567890',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -330,7 +330,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Tanggal Lahir',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -339,27 +339,27 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.calendar_1,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _birthController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
                     hintText: '00-00-0000',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -379,7 +379,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Nomor Induk KTP',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -388,27 +388,27 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.strongbox,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _nikController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
                     hintText: '00000000000000000',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -428,7 +428,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Alamat',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -437,27 +437,27 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.location,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _addressController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
                     hintText: 'Jl.........',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -477,7 +477,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Ranting',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -486,27 +486,27 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.data,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _rantingController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration.collapsed(
                     hintText: 'Ranting Banguntapan Selatan',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -526,7 +526,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Kata Sandi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -535,14 +535,14 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.key,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
@@ -555,7 +555,7 @@ class _SignUpState extends State<SignUp> {
                   decoration: InputDecoration(
                     hintText: '******',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -576,7 +576,7 @@ class _SignUpState extends State<SignUp> {
                 },
                 icon: Icon(
                   _passwordOne ? Iconsax.eye_slash : Iconsax.eye,
-                  color: c1,
+                  color: cBlack,
                 ),
               ),
             ],
@@ -593,7 +593,7 @@ class _SignUpState extends State<SignUp> {
         Text(
           'Konfirmasi Kata Sandi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -602,14 +602,14 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.key,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
@@ -622,7 +622,7 @@ class _SignUpState extends State<SignUp> {
                   decoration: InputDecoration(
                     hintText: '******',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -649,7 +649,7 @@ class _SignUpState extends State<SignUp> {
                 },
                 icon: Icon(
                   _passwordOne ? Iconsax.eye : Iconsax.eye_slash,
-                  color: c1,
+                  color: cBlack,
                 ),
               ),
             ],
@@ -680,7 +680,7 @@ class _SignUpState extends State<SignUp> {
         child: Text(
           'Daftar',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 16,
             fontWeight: semibold,
           ),
@@ -698,7 +698,7 @@ class _SignUpState extends State<SignUp> {
             Text(
               'Sudah punya akun?',
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
               ),
             ),
             TextButton(
@@ -708,7 +708,7 @@ class _SignUpState extends State<SignUp> {
               child: Text(
                 'Masuk',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontWeight: semibold,
                   decoration: TextDecoration.underline,
                 ),

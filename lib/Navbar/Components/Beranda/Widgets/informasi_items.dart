@@ -7,11 +7,12 @@ class InformasiItems extends StatelessWidget {
   final String title;
   final VoidCallback diTekan;
 
-  const InformasiItems(
-      {super.key,
-      required this.imageurl,
-      required this.title,
-      required this.diTekan});
+  const InformasiItems({
+    super.key,
+    required this.imageurl,
+    required this.title,
+    required this.diTekan,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class InformasiItems extends StatelessWidget {
       width: 280,
       height: 140,
       decoration: BoxDecoration(
-        color: c5,
+        color: c6,
         borderRadius: BorderRadius.circular(16),
         boxShadow: const [
           BoxShadow(
@@ -72,7 +73,7 @@ class InformasiItems extends StatelessWidget {
                   Text(
                     title,
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 16,
                       fontWeight: semibold,
                     ),

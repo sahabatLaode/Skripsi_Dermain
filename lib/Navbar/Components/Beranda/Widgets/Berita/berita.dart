@@ -29,14 +29,14 @@ class _BeritaState extends State<Berita> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         centerTitle: true,
         title: Text(
           'Berita',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: semibold,
           ),

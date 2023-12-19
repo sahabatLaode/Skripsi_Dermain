@@ -54,14 +54,14 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         centerTitle: true,
         title: Text(
           'Permintaan Ambulans',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: semibold,
           ),
@@ -103,7 +103,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Text(
           'Nama Pemesan',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -112,14 +112,14 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.user,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -127,7 +127,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                   decoration: InputDecoration.collapsed(
                     hintText: 'Nama',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -160,7 +160,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Text(
           'Nama Pasien',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -169,14 +169,14 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.user,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -184,7 +184,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                   decoration: InputDecoration.collapsed(
                     hintText: 'Nama Lengkap',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -217,7 +217,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Text(
           'Berat Badan',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -226,26 +226,26 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.weight,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 14),
               Expanded(
                 child: DropdownButton<String>(
-                  dropdownColor: c5,
+                  dropdownColor: c6,
                   value: dropdownBerat,
                   isExpanded: true,
                   isDense: true,
-                  icon: Icon(Iconsax.arrow_down_1, color: c1),
+                  icon: Icon(Iconsax.arrow_down_1, color: cBlack),
                   elevation: 16,
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                   ),
                   onChanged: (String? value) {
@@ -276,7 +276,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Text(
           'Level Darurat',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -285,26 +285,26 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.level,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 14),
               Expanded(
                 child: DropdownButton<String>(
-                  dropdownColor: c5,
+                  dropdownColor: c6,
                   value: dropdownValue,
                   isExpanded: true,
                   isDense: true,
-                  icon: Icon(Iconsax.arrow_down_1, color: c1),
+                  icon: Icon(Iconsax.arrow_down_1, color: cBlack),
                   elevation: 16,
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                   ),
                   onChanged: (String? value) {
@@ -335,7 +335,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Text(
           'Tanggal',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -347,7 +347,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           ),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -357,13 +357,13 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                 children: [
                   Icon(
                     Iconsax.calendar_1,
-                    color: c1,
+                    color: cBlack,
                   ),
                   const SizedBox(width: 12),
                   Text(
                     DateFormat.yMMMMEEEEd().format(selectDate),
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 16,
                     ),
                   ),
@@ -412,7 +412,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Text(
           'Pukul',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -421,26 +421,26 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.clock,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 14),
               Expanded(
                 child: DropdownButton<String>(
-                  dropdownColor: c5,
+                  dropdownColor: c6,
                   value: dropdownPukul,
                   isExpanded: true,
                   isDense: true,
-                  icon: Icon(Iconsax.arrow_down_1, color: c1),
+                  icon: Icon(Iconsax.arrow_down_1, color: cBlack),
                   elevation: 16,
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                   ),
                   onChanged: (String? value) {
@@ -471,7 +471,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Text(
           'Lokasi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -485,7 +485,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               Navigator.pushNamed(context, '/lokasi2');
             },
             style: TextButton.styleFrom(
-              backgroundColor: c5,
+              backgroundColor: c6,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               // side: BorderSide(color: c2),
               shape: RoundedRectangleBorder(
@@ -498,14 +498,14 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                 Text(
                   'Tentukan Lokasi Antar Jemput',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontWeight: regular,
                     fontSize: 16,
                   ),
                 ),
                 Icon(
                   Iconsax.arrow_right_3,
-                  color: c1,
+                  color: cBlack,
                 ),
               ],
             ),
@@ -540,7 +540,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               child: Text(
                 'Batalkan',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -582,12 +582,12 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               child: isLoading
                   ? CircularProgressIndicator(
                       color: cWhite,
-                      backgroundColor: c5,
+                      backgroundColor: c6,
                     )
                   : Text(
                       'Pesan',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 16,
                         fontWeight: semibold,
                       ),

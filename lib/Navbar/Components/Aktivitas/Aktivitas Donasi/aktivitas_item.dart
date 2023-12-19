@@ -38,7 +38,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
             height: 101,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: c5,
+              color: c6,
               borderRadius: BorderRadius.circular(16),
               boxShadow: const [
                 BoxShadow(
@@ -57,7 +57,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
                     Text(
                       zakat.jenis_donasi,
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 18,
                         fontWeight: bold,
                       ),
@@ -65,7 +65,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
                     Text(
                       zakat.nominal,
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 18,
                         fontWeight: bold,
                       ),
@@ -79,13 +79,13 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
                     Text(
                       zakat.nama,
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                       ),
                     ),
                     Text(
                       zakat.email,
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                       ),
                     ),
                   ],
@@ -97,13 +97,13 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
                     Text(
                       zakat.phone,
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                       ),
                     ),
                     Text(
                       zakatFormattedDate,
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                       ),
                     ),
                   ],
@@ -130,7 +130,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //           height: 101,
   //           width: double.infinity,
   //           decoration: BoxDecoration(
-  //             color: c5,
+  //             color: c6,
   //             borderRadius: BorderRadius.circular(16),
   //             boxShadow: const [
   //               BoxShadow(
@@ -149,7 +149,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     infaq.jenis_donasi,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                       fontSize: 18,
   //                       fontWeight: bold,
   //                     ),
@@ -157,7 +157,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     infaq.nominal,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                       fontSize: 18,
   //                       fontWeight: bold,
   //                     ),
@@ -171,13 +171,13 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     infaq.nama,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                   Text(
   //                     infaq.email,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                 ],
@@ -189,13 +189,13 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     infaq.phone,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                   Text(
   //                     infaqFormattedDate,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                 ],
@@ -223,7 +223,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //           height: 101,
   //           width: double.infinity,
   //           decoration: BoxDecoration(
-  //             color: c5,
+  //             color: c6,
   //             borderRadius: BorderRadius.circular(16),
   //             boxShadow: const [
   //               BoxShadow(
@@ -242,7 +242,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     sedekah.jenis_donasi,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                       fontSize: 18,
   //                       fontWeight: bold,
   //                     ),
@@ -250,7 +250,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     sedekah.nominal,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                       fontSize: 18,
   //                       fontWeight: bold,
   //                     ),
@@ -264,13 +264,13 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     sedekah.nama,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                   Text(
   //                     sedekah.email,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                 ],
@@ -282,13 +282,13 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
   //                   Text(
   //                     sedekah.phone,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                   Text(
   //                     sedekahFormattedDate,
   //                     style: GoogleFonts.poppins(
-  //                       color: c1,
+  //                       color: cBlack,
   //                     ),
   //                   ),
   //                 ],

@@ -49,13 +49,13 @@ class _ResetPasswordPageState extends State<KodeOtp> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         title: Text(
           'Kembali',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 16,
           ),
         ),
@@ -84,7 +84,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
         Text(
           'Kami sudah mengirimkan kode OTP ke email',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
           ),
         ),
         const SizedBox(
@@ -96,7 +96,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
             Text(
               'lazism****@mail.com',
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontWeight: semibold,
               ),
             ),
@@ -107,7 +107,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
               child: Text(
                 'Ganti email?',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontWeight: semibold,
                   decoration: TextDecoration.underline,
                 ),
@@ -132,7 +132,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
         Text(
           'Kode OTP',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 28,
             fontWeight: bold,
           ),
@@ -154,7 +154,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
             width: 70,
             height: 70,
             decoration: BoxDecoration(
-              color: c5,
+              color: c6,
               borderRadius: BorderRadius.circular(16),
             ),
             child: TextFormField(
@@ -168,12 +168,12 @@ class _ResetPasswordPageState extends State<KodeOtp> {
                 border: InputBorder.none,
                 hintText: '0',
                 hintStyle: GoogleFonts.poppins(
-                  color: c3,
+                  color: c5,
                   fontWeight: regular,
                 ),
               ),
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 32,
                 fontWeight: semibold,
               ),
@@ -191,7 +191,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
             width: 70,
             height: 70,
             decoration: BoxDecoration(
-              color: c5,
+              color: c6,
               borderRadius: BorderRadius.circular(16),
             ),
             child: TextFormField(
@@ -205,12 +205,12 @@ class _ResetPasswordPageState extends State<KodeOtp> {
                 border: InputBorder.none,
                 hintText: '0',
                 hintStyle: GoogleFonts.poppins(
-                  color: c3,
+                  color: c5,
                   fontWeight: regular,
                 ),
               ),
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 32,
                 fontWeight: semibold,
               ),
@@ -228,7 +228,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
             width: 70,
             height: 70,
             decoration: BoxDecoration(
-              color: c5,
+              color: c6,
               borderRadius: BorderRadius.circular(16),
             ),
             child: TextFormField(
@@ -242,12 +242,12 @@ class _ResetPasswordPageState extends State<KodeOtp> {
                 border: InputBorder.none,
                 hintText: '0',
                 hintStyle: GoogleFonts.poppins(
-                  color: c3,
+                  color: c5,
                   fontWeight: regular,
                 ),
               ),
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 32,
                 fontWeight: semibold,
               ),
@@ -265,7 +265,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
             width: 70,
             height: 70,
             decoration: BoxDecoration(
-              color: c5,
+              color: c6,
               borderRadius: BorderRadius.circular(16),
             ),
             child: TextFormField(
@@ -274,12 +274,12 @@ class _ResetPasswordPageState extends State<KodeOtp> {
                 border: InputBorder.none,
                 hintText: '0',
                 hintStyle: GoogleFonts.poppins(
-                  color: c3,
+                  color: c5,
                   fontWeight: regular,
                 ),
               ),
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 32,
                 fontWeight: semibold,
               ),
@@ -308,13 +308,13 @@ class _ResetPasswordPageState extends State<KodeOtp> {
             TextSpan(
               text: 'Kirim ulang dalam ',
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
               ),
             ),
             TextSpan(
               text: '00:$start',
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 16,
                 fontWeight: semibold,
               ),
@@ -322,7 +322,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
             TextSpan(
               text: ' detik',
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 16,
               ),
             ),
@@ -362,7 +362,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
               child: Text(
                 'Kirim ulang',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 18,
                   fontWeight: semibold,
                 ),
@@ -394,7 +394,7 @@ class _ResetPasswordPageState extends State<KodeOtp> {
               child: Text(
                 'Konfirmasi',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 18,
                   fontWeight: semibold,
                 ),

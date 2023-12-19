@@ -47,7 +47,7 @@ class BeritaItems extends StatelessWidget {
               Text(
                 tipeberita,
                 style: GoogleFonts.poppins(
-                  color: c3,
+                  color: c5,
                   fontSize: 12,
                   fontWeight: bold,
                 ),
@@ -57,7 +57,7 @@ class BeritaItems extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -68,14 +68,14 @@ class BeritaItems extends StatelessWidget {
                   Text(
                     subtitle,
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 12,
                     ),
                   ),
                   Text(
                     DateFormat('d MMMM y').format(date),
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 12,
                     ),
                   ),

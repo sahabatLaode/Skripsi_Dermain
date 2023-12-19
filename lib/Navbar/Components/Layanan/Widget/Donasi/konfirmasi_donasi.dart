@@ -47,7 +47,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
           'Donasi ditambahkan!',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontWeight: bold,
             fontSize: 18,
           ),
@@ -57,7 +57,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
           'Donasi sedang di proses, mohon konfirmasi transfer pada halaman aktivitas',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
           ),
         ),
       ],
@@ -86,7 +86,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
               child: Text(
                 'Beranda',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),

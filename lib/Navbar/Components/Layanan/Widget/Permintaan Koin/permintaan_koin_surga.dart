@@ -93,7 +93,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                 child: Text(
                   'Batalkan',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                     fontWeight: semibold,
                   ),
@@ -120,7 +120,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                 child: Text(
                   'Ya',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                     fontWeight: semibold,
                   ),
@@ -149,7 +149,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         centerTitle: true,
@@ -159,7 +159,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
             Text(
               'Permintaan Koin Surga',
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 18,
                 fontWeight: semibold,
               ),
@@ -196,7 +196,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
         Text(
           'Catatan',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -205,7 +205,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           padding: const EdgeInsets.all(16),
           height: 180,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: TextField(
@@ -214,7 +214,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
             decoration: InputDecoration.collapsed(
               hintText: '',
               hintStyle: GoogleFonts.poppins(
-                color: c3,
+                color: c5,
                 fontSize: 16,
               ),
             ),
@@ -231,7 +231,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
         Text(
           'Tanggal',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -243,7 +243,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           ),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -253,14 +253,14 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                 children: [
                   Icon(
                     Iconsax.calendar_1,
-                    color: c1,
+                    color: cBlack,
                   ),
                   const SizedBox(width: 12),
                   Text(
                     // 'Pilih tanggal',
                     DateFormat('dd MMMM yyyy').format(selectDate),
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 16,
                     ),
                   ),
@@ -321,7 +321,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
         Text(
           'Jenis Permintaan',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -330,26 +330,26 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.more_circle,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 14),
               Expanded(
                 child: DropdownButton<String>(
-                  dropdownColor: c5,
+                  dropdownColor: c6,
                   value: dropdownJenis,
                   isExpanded: true,
                   isDense: true,
-                  icon: Icon(Iconsax.arrow_down_1, color: c1),
+                  icon: Icon(Iconsax.arrow_down_1, color: cBlack),
                   elevation: 16,
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                   ),
                   onChanged: (String? value) {
@@ -409,7 +409,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
               child: Text(
                 'Batalkan',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -450,12 +450,12 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
               child: isLoading
                   ? CircularProgressIndicator(
                       color: cWhite,
-                      backgroundColor: c5,
+                      backgroundColor: c6,
                     )
                   : Text(
                       'Pesan',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 16,
                         fontWeight: semibold,
                       ),

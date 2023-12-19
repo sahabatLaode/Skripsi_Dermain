@@ -91,7 +91,7 @@ class _SignInState extends State<SignIn> {
         Text(
           'Selamat Datang',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 28,
             fontWeight: semibold,
           ),
@@ -103,7 +103,7 @@ class _SignInState extends State<SignIn> {
           textAlign: TextAlign.center,
           'Silahkan masuk dengan menggunakan alamat email dan kata sandi anda.',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
           ),
         ),
       ],
@@ -117,7 +117,7 @@ class _SignInState extends State<SignIn> {
         Text(
           'Email',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -126,27 +126,27 @@ class _SignInState extends State<SignIn> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.sms,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'lazismu@mail.com',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -193,7 +193,7 @@ class _SignInState extends State<SignIn> {
         Text(
           'Kata sandi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -202,28 +202,28 @@ class _SignInState extends State<SignIn> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.key,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
               ),
               Expanded(
                 child: TextFormField(
-                  style: GoogleFonts.poppins(color: c1),
+                  style: GoogleFonts.poppins(color: cBlack),
                   controller: _passwordController,
                   obscureText: _isVisiblePassword,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration.collapsed(
                     hintText: '********',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -237,7 +237,7 @@ class _SignInState extends State<SignIn> {
                 },
                 icon: Icon(
                   _isVisiblePassword ? Iconsax.eye_slash : Iconsax.eye,
-                  color: c1,
+                  color: cBlack,
                 ),
               ),
             ],
@@ -272,7 +272,7 @@ class _SignInState extends State<SignIn> {
   //         child: Text(
   //           'Lupa kata sandi?',
   //           style: GoogleFonts.poppins(
-  //             color: c1,
+  //             color: cBlack,
   //           ),
   //           textAlign: TextAlign.center,
   //         ),
@@ -302,7 +302,7 @@ class _SignInState extends State<SignIn> {
         child: Text(
           'Masuk',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cWhite,
             fontSize: 16,
             fontWeight: semibold,
           ),
@@ -320,7 +320,7 @@ class _SignInState extends State<SignIn> {
             Text(
               'Belum punya akun?',
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
               ),
             ),
             TextButton(
@@ -330,7 +330,7 @@ class _SignInState extends State<SignIn> {
               child: Text(
                 'Daftar',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontWeight: semibold,
                   decoration: TextDecoration.underline,
                 ),

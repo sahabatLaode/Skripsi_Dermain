@@ -1,5 +1,5 @@
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
-import 'package:dermain/Navbar/Components/Layanan/layanan.dart';
+// import 'package:dermain/Navbar/Components/Layanan/layanan.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/aktivitas.dart';
 import 'package:dermain/Navbar/Components/Beranda/beranda.dart';
@@ -20,14 +20,14 @@ class _NavbarState extends State<Navbar> {
   final screens = [
     const Aktivitas(),
     const Beranda(),
-    const Layanan(),
+    // const Layanan(),
     const Profil(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: c1,
+      // backgroundColor: cBlack,
       body: screens[index],
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
@@ -54,55 +54,45 @@ class _NavbarState extends State<Navbar> {
             NavigationDestination(
               icon: Icon(
                 Iconsax.task_square,
-                color: c1,
+                color: cBlack,
               ),
               selectedIcon: Icon(
                 Iconsax.task_square5,
-                color: c1,
+                color: cWhite,
               ),
               label: 'Aktivitas',
             ),
             NavigationDestination(
               icon: Icon(
-                Iconsax.home,
-                color: c1,
+                Iconsax.element_4,
+                color: cBlack,
               ),
               selectedIcon: Icon(
-                Iconsax.home_15,
-                color: c1,
+                Iconsax.element_45,
+                color: cWhite,
               ),
               label: 'Beranda',
             ),
+            // NavigationDestination(
+            //   icon: Icon(
+            //     Iconsax.element_4,
+            //     color: cBlack,
+            //   ),
+            //   selectedIcon: Icon(
+            //     Iconsax.element_45,
+            //     color: cWhite,
+            //   ),
+            //   label: 'Layanan',
+            // ),
             NavigationDestination(
-              icon: SvgPicture.asset(
-                'assets/icons/layanan_outline.svg',
-                colorFilter: ColorFilter.mode(
-                  c1,
-                  BlendMode.srcIn,
-                ),
-              ),
-              selectedIcon: SvgPicture.asset(
-                'assets/icons/layanan_bold.svg',
-                colorFilter: ColorFilter.mode(
-                  c1,
-                  BlendMode.srcIn,
-                ),
-              ),
-              label: 'Layanan',
-            ),
-
-            NavigationDestination(
-              icon: SvgPicture.asset(
-                'assets/icons/profil_outline.svg',
-                colorFilter: ColorFilter.mode(
-                  c1,
-                  BlendMode.srcIn,
-                ),
+              icon: Icon(
+                Iconsax.user,
+                color: cBlack,
               ),
               selectedIcon: SvgPicture.asset(
                 'assets/icons/profil_bold.svg',
                 colorFilter: ColorFilter.mode(
-                  c1,
+                  cWhite,
                   BlendMode.srcIn,
                 ),
               ),

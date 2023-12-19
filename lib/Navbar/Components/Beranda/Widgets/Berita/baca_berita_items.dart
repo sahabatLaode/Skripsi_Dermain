@@ -40,7 +40,7 @@ class BacaBeritaItems extends StatelessWidget {
                 Text(
                   admin,
                   style: GoogleFonts.poppins(
-                    color: c3,
+                    color: c5,
                     fontSize: 12,
                   ),
                 )
@@ -49,7 +49,7 @@ class BacaBeritaItems extends StatelessWidget {
             Text(
               DateFormat('d MMMM y').format(date),
               style: GoogleFonts.poppins(
-                color: c3,
+                color: c5,
                 fontSize: 12,
               ),
             ),
@@ -59,7 +59,7 @@ class BacaBeritaItems extends StatelessWidget {
         Text(
           title,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 20,
             fontWeight: semibold,
           ),
@@ -82,7 +82,7 @@ class BacaBeritaItems extends StatelessWidget {
         Text(
           sumber,
           style: GoogleFonts.poppins(
-            color: c3,
+            color: c5,
             fontSize: 12,
           ),
           textAlign: TextAlign.center,
@@ -91,7 +91,7 @@ class BacaBeritaItems extends StatelessWidget {
         Text(
           isi,
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
           ),
         ),
       ],

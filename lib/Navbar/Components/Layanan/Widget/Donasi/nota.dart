@@ -28,14 +28,14 @@ class _NotaState extends State<Nota> {
           },
           icon: Icon(
             Icons.close,
-            color: c1,
+            color: cBlack,
           ),
         ),
         centerTitle: true,
         title: Text(
           'Konfirmasi Zakat',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: semibold,
           ),
@@ -69,7 +69,7 @@ class _NotaState extends State<Nota> {
         Text(
           'Rp1.000.000',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 32,
             fontWeight: bold,
           ),
@@ -108,7 +108,7 @@ class _NotaState extends State<Nota> {
                   Text(
                     'User Name',
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 18,
                       fontWeight: semibold,
                     ),
@@ -120,20 +120,20 @@ class _NotaState extends State<Nota> {
                       Text(
                         'Nominal Transfer:',
                         style: GoogleFonts.poppins(
-                          color: c3,
+                          color: c5,
                         ),
                       ),
                       Text(
                         'Rp1000.000',
                         style: GoogleFonts.poppins(
-                          color: c1,
+                          color: cBlack,
                           fontWeight: semibold,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 12),
-                  MySeparator(color: c3),
+                  MySeparator(color: c5),
                   const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,13 +141,13 @@ class _NotaState extends State<Nota> {
                       Text(
                         'Email:',
                         style: GoogleFonts.poppins(
-                          color: c3,
+                          color: c5,
                         ),
                       ),
                       Text(
                         'lazismu@gmail.com',
                         style: GoogleFonts.poppins(
-                          color: c1,
+                          color: cBlack,
                           fontWeight: semibold,
                         ),
                       ),
@@ -187,17 +187,17 @@ class _NotaState extends State<Nota> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: ExpansionTile(
-        backgroundColor: c5,
-        collapsedBackgroundColor: c5,
+        backgroundColor: c6,
+        collapsedBackgroundColor: c6,
         childrenPadding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
         trailing: Icon(
           Iconsax.arrow_down_1,
-          color: c1,
+          color: cBlack,
         ),
         title: Text(
           'Detail transaksi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
           ),
         ),
         children: [
@@ -209,13 +209,13 @@ class _NotaState extends State<Nota> {
                   Text(
                     'Nominal:',
                     style: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                     ),
                   ),
                   Text(
                     'Rp1.000.000',
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontWeight: semibold,
                     ),
                   ),
@@ -228,13 +228,13 @@ class _NotaState extends State<Nota> {
                   Text(
                     'Nama:',
                     style: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                     ),
                   ),
                   Text(
                     'User Name',
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontWeight: semibold,
                     ),
                   ),
@@ -247,13 +247,13 @@ class _NotaState extends State<Nota> {
                   Text(
                     'Email:',
                     style: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                     ),
                   ),
                   Text(
                     'lazismu@gmail.com',
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontWeight: semibold,
                     ),
                   ),
@@ -266,13 +266,13 @@ class _NotaState extends State<Nota> {
                   Text(
                     'Telepon:',
                     style: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                     ),
                   ),
                   Text(
                     '12212112221',
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontWeight: semibold,
                     ),
                   ),
@@ -290,7 +290,7 @@ class _NotaState extends State<Nota> {
       padding: const EdgeInsets.all(16),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: c5,
+        color: c6,
         borderRadius: BorderRadius.circular(14),
       ),
       child: Column(
@@ -302,14 +302,14 @@ class _NotaState extends State<Nota> {
               Text(
                 rekeningNumber,
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontWeight: bold,
                 ),
               ),
               Text(
                 'Bank Bantul',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontWeight: bold,
                 ),
               ),
@@ -319,7 +319,7 @@ class _NotaState extends State<Nota> {
           Text(
             'LazisMu Banguntapan Selatan',
             style: GoogleFonts.poppins(
-              color: c3,
+              color: c5,
               fontSize: 12,
             ),
           ),
@@ -330,7 +330,7 @@ class _NotaState extends State<Nota> {
               Text(
                 '20 Desember 2022',
                 style: GoogleFonts.poppins(
-                  color: c3,
+                  color: c5,
                   fontSize: 12,
                 ),
               ),
@@ -343,7 +343,7 @@ class _NotaState extends State<Nota> {
                   ),
                   child: Icon(
                     Iconsax.copy,
-                    color: c1,
+                    color: cBlack,
                   ),
                 ),
                 onTap: () {
@@ -379,7 +379,7 @@ class _NotaState extends State<Nota> {
               child: Text(
                 'Saya sudah transfer',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),

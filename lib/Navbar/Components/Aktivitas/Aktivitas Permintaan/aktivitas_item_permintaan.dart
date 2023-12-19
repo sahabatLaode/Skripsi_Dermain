@@ -41,7 +41,7 @@ class _AktivitasItemPermintaanState
             height: 101,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: c5,
+              color: c6,
               borderRadius: BorderRadius.circular(16),
               boxShadow: const [
                 BoxShadow(
@@ -57,7 +57,7 @@ class _AktivitasItemPermintaanState
                 Text(
                   koinSurga.jenis_permintaan,
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 18,
                     fontWeight: bold,
                   ),
@@ -66,7 +66,7 @@ class _AktivitasItemPermintaanState
                 Text(
                   koinSurga.catatan,
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -76,13 +76,13 @@ class _AktivitasItemPermintaanState
                     // Text(
                     //   koinSurga.phone,
                     //   style: GoogleFonts.poppins(
-                    //     color: c1,
+                    //     color: cBlack,
                     //   ),
                     // ),
                     Text(
                       koinSurgaFormattedDate,
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                       ),
                     ),
                   ],

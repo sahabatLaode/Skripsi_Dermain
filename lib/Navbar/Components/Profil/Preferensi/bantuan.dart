@@ -13,13 +13,13 @@ class Bantuan extends StatelessWidget {
         elevation: 0.5,
         backgroundColor: cWhite,
         iconTheme: IconThemeData(
-          color: c1,
+          color: cBlack,
         ),
         centerTitle: true,
         title: Text(
           'Bantuan',
           style: TextStyle(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: medium,
           ),

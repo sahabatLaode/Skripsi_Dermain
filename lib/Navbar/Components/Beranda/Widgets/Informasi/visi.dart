@@ -26,7 +26,7 @@ class _VisiState extends State<Visi> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -54,7 +54,7 @@ class _VisiState extends State<Visi> {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(
@@ -197,7 +197,7 @@ class _VisiState extends State<Visi> {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(
@@ -221,7 +221,7 @@ class _VisiState extends State<Visi> {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(
@@ -245,7 +245,7 @@ class _VisiState extends State<Visi> {
             RichText(
               text: TextSpan(
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                 ),
                 children: [
                   TextSpan(

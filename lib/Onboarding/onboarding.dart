@@ -77,7 +77,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 0 ? c1 : c4,
+                    color: currentIndex == 0 ? cBlack : c4,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -86,7 +86,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 1 ? c1 : c4,
+                    color: currentIndex == 1 ? cBlack : c4,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -95,7 +95,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 2 ? c1 : c4,
+                    color: currentIndex == 2 ? cBlack : c4,
                   ),
                 ),
               ],
@@ -121,7 +121,7 @@ class _OnboardingState extends State<Onboarding> {
                 child: Text(
                   'Mulai Donasi',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 18,
                     fontWeight: semibold,
                   ),

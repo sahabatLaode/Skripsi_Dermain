@@ -86,7 +86,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                 child: Text(
                   'Batalkan',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                     fontWeight: semibold,
                   ),
@@ -113,7 +113,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                 child: Text(
                   'Ya',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 16,
                     fontWeight: semibold,
                   ),
@@ -140,14 +140,14 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         centerTitle: true,
         title: Text(
           jenisController.text = 'Zakat',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: semibold,
           ),
@@ -187,7 +187,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
         Text(
           'Nominal',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -196,7 +196,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -205,7 +205,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
               Text(
                 'Rp',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 24,
                   fontWeight: bold,
                 ),
@@ -225,7 +225,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                   decoration: InputDecoration.collapsed(
                     hintText: '0.000',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 24,
                     ),
                   ),
@@ -262,7 +262,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
         Text(
           'Nama Lengkap',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -271,14 +271,14 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.user,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -287,7 +287,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                   decoration: InputDecoration.collapsed(
                     hintText: 'Nama Lengkap',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -313,7 +313,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
           title: Text(
             "Sembunyikan sebagai Hamba Allah",
             style: GoogleFonts.poppins(
-              color: c1,
+              color: cBlack,
               fontSize: 12,
             ),
           ),
@@ -340,7 +340,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
         Text(
           'Email',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -349,14 +349,14 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.sms,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -366,7 +366,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                   decoration: InputDecoration.collapsed(
                     hintText: 'lazismu@gmail.com',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -401,7 +401,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
         Text(
           'Nomor Telepon Aktif',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -409,14 +409,14 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
           margin: const EdgeInsets.only(top: 6),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.call,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -426,7 +426,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                   decoration: InputDecoration.collapsed(
                     hintText: '081234567890',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -483,7 +483,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                         textAlign: TextAlign.justify,
                         overflow: TextOverflow.clip,
                         style: GoogleFonts.poppins(
-                          color: c1,
+                          color: cBlack,
                           fontSize: 12,
                         ),
                       ),
@@ -506,7 +506,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                         textAlign: TextAlign.justify,
                         overflow: TextOverflow.clip,
                         style: GoogleFonts.poppins(
-                          color: c1,
+                          color: cBlack,
                           fontSize: 12,
                         ),
                       ),
@@ -547,7 +547,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
               child: Text(
                 'Batalkan',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -590,12 +590,12 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
               child: isLoading
                   ? CircularProgressIndicator(
                       color: cWhite,
-                      backgroundColor: c5,
+                      backgroundColor: c6,
                     )
                   : Text(
                       'Konfirmasi',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 16,
                         fontWeight: semibold,
                       ),

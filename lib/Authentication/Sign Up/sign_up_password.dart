@@ -121,7 +121,7 @@
 //           textAlign: TextAlign.start,
 //           'Buat Akun Baru',
 //           style: GoogleFonts.poppins(
-//             color: c1,
+//             color: cBlack,
 //             fontSize: 28,
 //             fontWeight: semibold,
 //           ),
@@ -130,7 +130,7 @@
 //           // textAlign: TextAlign.left,
 //           'Buat kata sandi anda.',
 //           style: GoogleFonts.poppins(
-//             color: c1,
+//             color: cBlack,
 //             fontSize: 16,
 //           ),
 //         ),
@@ -145,7 +145,7 @@
 //         Text(
 //           'Kata Sandi',
 //           style: GoogleFonts.poppins(
-//             color: c1,
+//             color: cBlack,
 //             fontSize: 12,
 //           ),
 //         ),
@@ -154,28 +154,28 @@
 //           padding: const EdgeInsets.symmetric(horizontal: 16),
 //           height: 60,
 //           decoration: BoxDecoration(
-//             color: c5,
+//             color: c6,
 //             borderRadius: BorderRadius.circular(16),
 //           ),
 //           child: Row(
 //             children: [
 //               Icon(
 //                 Iconsax.key,
-//                 color: c1,
+//                 color: cBlack,
 //               ),
 //               const SizedBox(
 //                 width: 16,
 //               ),
 //               Expanded(
 //                 child: TextFormField(
-//                   style: GoogleFonts.poppins(color: c1),
+//                   style: GoogleFonts.poppins(color: cBlack),
 //                   controller: _passwordController,
 //                   obscureText: _passwordOne,
 //                   keyboardType: TextInputType.visiblePassword,
 //                   decoration: InputDecoration(
 //                     hintText: '******',
 //                     hintStyle: GoogleFonts.poppins(
-//                       color: c3,
+//                       color: c5,
 //                       fontSize: 16,
 //                     ),
 //                     enabledBorder: const UnderlineInputBorder(
@@ -201,7 +201,7 @@
 //                 },
 //                 icon: Icon(
 //                   _passwordOne ? Iconsax.eye_slash : Iconsax.eye,
-//                   color: c1,
+//                   color: cBlack,
 //                 ),
 //               ),
 //             ],
@@ -218,7 +218,7 @@
 //         Text(
 //           'Konfirmasi Kata Sandi',
 //           style: GoogleFonts.poppins(
-//             color: c1,
+//             color: cBlack,
 //             fontSize: 12,
 //           ),
 //         ),
@@ -227,28 +227,28 @@
 //           padding: const EdgeInsets.symmetric(horizontal: 16),
 //           height: 60,
 //           decoration: BoxDecoration(
-//             color: c5,
+//             color: c6,
 //             borderRadius: BorderRadius.circular(16),
 //           ),
 //           child: Row(
 //             children: [
 //               Icon(
 //                 Iconsax.key,
-//                 color: c1,
+//                 color: cBlack,
 //               ),
 //               const SizedBox(
 //                 width: 16,
 //               ),
 //               Expanded(
 //                 child: TextFormField(
-//                   style: GoogleFonts.poppins(color: c1),
+//                   style: GoogleFonts.poppins(color: cBlack),
 //                   controller: _passwordConfirmationController,
 //                   obscureText: _passwordTwo,
 //                   keyboardType: TextInputType.visiblePassword,
 //                   decoration: InputDecoration(
 //                     hintText: '******',
 //                     hintStyle: GoogleFonts.poppins(
-//                       color: c3,
+//                       color: c5,
 //                       fontSize: 16,
 //                     ),
 //                     enabledBorder: const UnderlineInputBorder(
@@ -275,7 +275,7 @@
 //                 },
 //                 icon: Icon(
 //                   _passwordTwo ? Iconsax.eye_slash : Iconsax.eye,
-//                   color: c1,
+//                   color: cBlack,
 //                 ),
 //               ),
 //             ],
@@ -306,7 +306,7 @@
 //         child: Text(
 //           'Simpan',
 //           style: GoogleFonts.poppins(
-//             color: c1,
+//             color: cBlack,
 //             fontSize: 16,
 //             fontWeight: semibold,
 //           ),

@@ -87,14 +87,14 @@ class _UbahProfilState extends State<UbahProfil> {
           },
           icon: Icon(
             Iconsax.arrow_left,
-            color: c1,
+            color: cBlack,
           ),
         ),
         centerTitle: true,
         title: Text(
           'Ubah Profil',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 18,
             fontWeight: semibold,
           ),
@@ -134,7 +134,7 @@ class _UbahProfilState extends State<UbahProfil> {
           Text(
             'Nama',
             style: GoogleFonts.poppins(
-              color: c1,
+              color: cBlack,
               fontSize: 12,
             ),
           ),
@@ -143,14 +143,14 @@ class _UbahProfilState extends State<UbahProfil> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             height: 60,
             decoration: BoxDecoration(
-              color: c5,
+              color: c6,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
               children: [
                 Icon(
                   Iconsax.user,
-                  color: c1,
+                  color: cBlack,
                 ),
                 const SizedBox(
                   width: 16,
@@ -161,7 +161,7 @@ class _UbahProfilState extends State<UbahProfil> {
                     decoration: InputDecoration(
                       hintText: 'Nama lengkap',
                       hintStyle: GoogleFonts.poppins(
-                        color: c3,
+                        color: c5,
                         fontSize: 16,
                       ),
                       enabledBorder: const UnderlineInputBorder(
@@ -213,7 +213,7 @@ class _UbahProfilState extends State<UbahProfil> {
         Text(
           'Email',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -222,14 +222,14 @@ class _UbahProfilState extends State<UbahProfil> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.sms,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
@@ -241,7 +241,7 @@ class _UbahProfilState extends State<UbahProfil> {
                   decoration: InputDecoration(
                     hintText: 'lazismu@mail.com',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -297,7 +297,7 @@ class _UbahProfilState extends State<UbahProfil> {
         Text(
           'Nomor Telepon',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -306,14 +306,14 @@ class _UbahProfilState extends State<UbahProfil> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.call,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
@@ -325,7 +325,7 @@ class _UbahProfilState extends State<UbahProfil> {
                   decoration: InputDecoration.collapsed(
                     hintText: '081234567890',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                   ),
@@ -364,7 +364,7 @@ class _UbahProfilState extends State<UbahProfil> {
         Text(
           'Kata Sandi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -373,14 +373,14 @@ class _UbahProfilState extends State<UbahProfil> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.key,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
@@ -393,7 +393,7 @@ class _UbahProfilState extends State<UbahProfil> {
                   decoration: InputDecoration(
                     hintText: '******',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -414,7 +414,7 @@ class _UbahProfilState extends State<UbahProfil> {
                 },
                 icon: Icon(
                   _passwordOne ? Iconsax.eye_slash : Iconsax.eye,
-                  color: c1,
+                  color: cBlack,
                 ),
               ),
             ],
@@ -431,7 +431,7 @@ class _UbahProfilState extends State<UbahProfil> {
         Text(
           'Konfirmasi Kata Sandi',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 12,
           ),
         ),
@@ -440,14 +440,14 @@ class _UbahProfilState extends State<UbahProfil> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
           decoration: BoxDecoration(
-            color: c5,
+            color: c6,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Iconsax.key,
-                color: c1,
+                color: cBlack,
               ),
               const SizedBox(
                 width: 16,
@@ -460,7 +460,7 @@ class _UbahProfilState extends State<UbahProfil> {
                   decoration: InputDecoration(
                     hintText: '******',
                     hintStyle: GoogleFonts.poppins(
-                      color: c3,
+                      color: c5,
                       fontSize: 16,
                     ),
                     enabledBorder: const UnderlineInputBorder(
@@ -487,7 +487,7 @@ class _UbahProfilState extends State<UbahProfil> {
                 },
                 icon: Icon(
                   _passwordOne ? Iconsax.eye : Iconsax.eye_slash,
-                  color: c1,
+                  color: cBlack,
                 ),
               ),
             ],
@@ -516,7 +516,7 @@ class _UbahProfilState extends State<UbahProfil> {
         child: Text(
           'Simpan',
           style: GoogleFonts.poppins(
-            color: c1,
+            color: cBlack,
             fontSize: 16,
             fontWeight: semibold,
           ),

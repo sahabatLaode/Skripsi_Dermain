@@ -47,21 +47,18 @@ class _BerandaState extends State<Beranda> {
         toolbarHeight: 64,
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: c2,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        backgroundColor: cWhite,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Assalamualaikum,',
-              style: GoogleFonts.poppins(
-                color: c1,
-                fontSize: 14,
-              ),
+            Image.asset(
+              'assets/logos/logo_dermain.png',
+              height: 20,
             ),
             Text(
               userName,
               style: GoogleFonts.poppins(
-                color: c1,
+                color: cBlack,
                 fontSize: 16,
                 fontWeight: bold,
               ),
@@ -77,12 +74,12 @@ class _BerandaState extends State<Beranda> {
         //         Navigator.of(context).push(notifikasi());
         //       },
         //       style: TextButton.styleFrom(
-        //         backgroundColor: c2,
+        //         backgroundColor: cWhite,
         //         shape: const CircleBorder(),
         //       ),
         //       child: Icon(
         //         Iconsax.notification_bing5,
-        //         color: c1,
+        //         color: cBlack,
         //       ),
         //     ),
         //   ),
@@ -91,7 +88,7 @@ class _BerandaState extends State<Beranda> {
         //   ),
         // ],
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: c2,
+          statusBarColor: cWhite,
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
@@ -105,7 +102,17 @@ class _BerandaState extends State<Beranda> {
                 margin: const EdgeInsets.only(top: 164),
                 decoration: BoxDecoration(
                   color: cWhite,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                    ),
+                  ],
                 ),
                 child: Column(
                   children: [
@@ -114,7 +121,7 @@ class _BerandaState extends State<Beranda> {
                       width: 60,
                       height: 6,
                       decoration: BoxDecoration(
-                        color: c4,
+                        color: Colors.black12,
                         borderRadius: BorderRadius.circular(99),
                       ),
                     ),
@@ -138,14 +145,14 @@ class _BerandaState extends State<Beranda> {
       width: double.infinity,
       height: 160,
       decoration: BoxDecoration(
-        color: c2,
+        color: cWhite,
       ),
       child: Column(
         children: [
           Text(
             'Total Donasi Terkumpul',
             style: GoogleFonts.poppins(
-              color: c1,
+              color: cBlack,
             ),
           ),
           const SizedBox(height: 2),
@@ -155,7 +162,7 @@ class _BerandaState extends State<Beranda> {
               Text(
                 'Rp',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 36,
                   fontWeight: semibold,
                 ),
@@ -163,7 +170,7 @@ class _BerandaState extends State<Beranda> {
               Text(
                 '0.00',
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 36,
                   fontWeight: semibold,
                 ),
@@ -181,14 +188,14 @@ class _BerandaState extends State<Beranda> {
                     Text(
                       'Program Donasi',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 12,
                       ),
                     ),
                     Text(
                       '3',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 22,
                         fontWeight: semibold,
                       ),
@@ -199,7 +206,7 @@ class _BerandaState extends State<Beranda> {
               Container(
                 width: 2,
                 height: 30,
-                color: c1,
+                color: cBlack,
               ),
               SizedBox(
                 width: 120,
@@ -208,14 +215,14 @@ class _BerandaState extends State<Beranda> {
                     Text(
                       'Program Layanan',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 12,
                       ),
                     ),
                     Text(
                       '2',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontSize: 22,
                         fontWeight: semibold,
                       ),
@@ -353,11 +360,11 @@ class _BerandaState extends State<Beranda> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(12),
                       height: 150,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: c2,
+                        color: c1,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Column(
@@ -370,7 +377,7 @@ class _BerandaState extends State<Beranda> {
                               Text(
                                 'ZAKAT',
                                 style: GoogleFonts.poppins(
-                                  color: c1,
+                                  color: cWhite,
                                   fontSize: 20,
                                   fontWeight: semibold,
                                 ),
@@ -378,7 +385,7 @@ class _BerandaState extends State<Beranda> {
                               Text(
                                 'Donasi Zakat',
                                 style: GoogleFonts.poppins(
-                                  color: c1,
+                                  color: cWhite,
                                 ),
                               ),
                             ],
@@ -386,7 +393,7 @@ class _BerandaState extends State<Beranda> {
                           Icon(
                             Iconsax.moneys5,
                             size: 48,
-                            color: c1,
+                            color: cWhite,
                           ),
                         ],
                       ),
@@ -409,7 +416,7 @@ class _BerandaState extends State<Beranda> {
                     Container(
                       height: 240,
                       decoration: BoxDecoration(
-                        color: c2,
+                        color: c3,
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
@@ -417,7 +424,7 @@ class _BerandaState extends State<Beranda> {
                       margin: const EdgeInsets.only(top: 16),
                       height: 150,
                       decoration: BoxDecoration(
-                        color: c2,
+                        color: c4,
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
@@ -431,7 +438,7 @@ class _BerandaState extends State<Beranda> {
             height: 120,
             // width: 170,
             decoration: BoxDecoration(
-              color: c2,
+              color: c1,
               borderRadius: BorderRadius.circular(16),
             ),
           ),
@@ -457,7 +464,7 @@ class _BerandaState extends State<Beranda> {
                 Text(
                   'Berita Lazismu',
                   style: GoogleFonts.poppins(
-                    color: c1,
+                    color: cBlack,
                     fontSize: 18,
                     fontWeight: semibold,
                   ),
@@ -474,7 +481,7 @@ class _BerandaState extends State<Beranda> {
                       child: Text(
                         'Lihat semua',
                         style: GoogleFonts.poppins(
-                          color: c1,
+                          color: cBlack,
                           fontSize: 10,
                         ),
                       ),

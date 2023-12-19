@@ -14,13 +14,13 @@ class UbahSandi extends StatelessWidget {
         elevation: 0,
         backgroundColor: cWhite,
         iconTheme: IconThemeData(
-          color: c1,
+          color: cBlack,
         ),
         // centerTitle: true,
         // title: Text(
         //   'Ubah Kata Sandi',
         //   style: TextStyle(
-        //     color: c1,
+        //     color: cBlack,
         //     fontSize: 18,
         //     fontWeight: medium,
         //   ),

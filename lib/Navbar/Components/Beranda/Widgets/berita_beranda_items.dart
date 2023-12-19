@@ -29,7 +29,7 @@ class BeritaBerandaItems extends StatelessWidget {
       width: 215,
       height: 295,
       decoration: BoxDecoration(
-        color: c5,
+        color: c6,
         borderRadius: BorderRadius.circular(14),
       ),
       child: InkWell(
@@ -62,7 +62,7 @@ class BeritaBerandaItems extends StatelessWidget {
               child: Text(
                 tipe,
                 style: GoogleFonts.poppins(
-                  color: c3,
+                  color: c5,
                   fontSize: 12,
                 ),
               ),
@@ -78,7 +78,7 @@ class BeritaBerandaItems extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.poppins(
-                  color: c1,
+                  color: cBlack,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -92,7 +92,7 @@ class BeritaBerandaItems extends StatelessWidget {
                   child: Text(
                     admin,
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 12,
                     ),
                   ),
@@ -102,7 +102,7 @@ class BeritaBerandaItems extends StatelessWidget {
                   child: Text(
                     DateFormat('d MMMM y').format(date),
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontSize: 12,
                     ),
                   ),

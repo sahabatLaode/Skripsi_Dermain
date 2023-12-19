@@ -62,7 +62,7 @@ class _AktivitasListPermintaanState
                   )
                 : Center(
                     child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: c1,
+                      color: cBlack,
                       size: 80,
                     ),
                   )
@@ -79,7 +79,7 @@ class _AktivitasListPermintaanState
                   Text(
                     'Belum ada aktivitas',
                     style: GoogleFonts.poppins(
-                      color: c1,
+                      color: cBlack,
                       fontWeight: semibold,
                     ),
                   ),
@@ -93,7 +93,7 @@ class _AktivitasListPermintaanState
                     child: Text(
                       'Mulai dengan zakat',
                       style: GoogleFonts.poppins(
-                        color: c1,
+                        color: cBlack,
                         fontWeight: semibold,
                         decoration: TextDecoration.underline,
                       ),
