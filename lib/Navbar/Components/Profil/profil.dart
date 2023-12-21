@@ -1,5 +1,4 @@
 import 'package:dermain/Methods/auth_method.dart';
-import 'package:dermain/Navbar/Components/Profil/profil_items.dart';
 import 'package:dermain/Reusable%20Components/tombol_primer.dart';
 import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,7 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   String userName = "";
   String emailUser = "";
+
   @override
   void initState() {
     loadUserData(); // Panggil fungsi untuk mengambil data pengguna yang sudah login
@@ -45,140 +45,144 @@ class _ProfilState extends State<Profil> {
     return Scaffold(
       backgroundColor: cWhite,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        toolbarHeight: 0,
         elevation: 0,
-        backgroundColor: cWhite,
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: cWhite,
-          statusBarIconBrightness: Brightness.dark,
+          statusBarColor: c2,
+          statusBarIconBrightness: Brightness.light,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            akun(),
-            const SizedBox(height: 32),
-            preferensi(),
-            const Spacer(),
-            logout(),
-          ],
-        ),
+      body: Column(
+        children: [
+          akun(),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: dataDiri(),
+          ),
+          const Spacer(),
+          logout(),
+        ],
       ),
     );
   }
 
   Widget akun() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Stack(
+      alignment: Alignment.topCenter,
       children: [
-        Text(
-          userName,
-          style: GoogleFonts.poppins(
-            color: cBlack,
-            fontSize: 32,
-            fontWeight: bold,
+        Container(
+          padding: EdgeInsets.only(bottom: 40),
+          width: double.infinity,
+          height: 150,
+          color: c2,
+          child: Image.asset(
+            'assets/logos/logo_dermain2.png',
+            scale: 18,
           ),
         ),
-        Text(
-          emailUser,
-          style: GoogleFonts.poppins(
-            color: cBlack,
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 40,
-          width: 180,
-          child: TextButton(
-            onPressed: () {
-              Navigator.of(context).push(ubahProfil());
-            },
-            style: TextButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(99),
-              ),
-              side: BorderSide(
-                color: cBlack,
-                width: 2,
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Iconsax.edit_25,
-                  color: cBlack,
-                  size: 20,
-                ),
-                Text(
-                  'Ubah profil',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontWeight: bold,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 100),
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: c2,
+                borderRadius: BorderRadius.circular(100),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 2,
+                    spreadRadius: 1,
                   ),
-                ),
-              ],
+                ],
+              ),
+              child: Icon(
+                Iconsax.user4,
+                color: cWhite,
+                size: 50,
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );
   }
 
-  Widget preferensi() {
+  Widget dataDiri() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Ganti Kata Sandi
-        ProfilItems(
-            ikon1: Iconsax.key,
-            title: 'Ganti kata sandi',
-            ikon2: Iconsax.arrow_right_3,
-            diTekan: () {}),
+        // nama
+        Text(
+          'Nama',
+          style: GoogleFonts.poppins(),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 6),
+          padding: const EdgeInsets.all(16),
+          width: double.infinity,
+          height: 60,
+          decoration: BoxDecoration(
+            color: c6,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            userName,
+            style: GoogleFonts.poppins(
+              color: cBlack,
+              fontSize: 18,
+            ),
+          ),
+        ),
 
-        // // SYARAT DAN KETENTUAN
-        // LainnyaItems(
-        //   ikon1: Iconsax.document_text,
-        //   title: 'Syarat dan Ketentuan',
-        //   ikon2: Iconsax.arrow_right_3,
-        //   diTekan: () {},
-        // ),
+        const SizedBox(height: 20),
 
-        // // BANTUAN
-        // LainnyaItems(
-        //   ikon1: Iconsax.message_question,
-        //   title: 'Bantuan',
-        //   ikon2: Iconsax.arrow_right_3,
-        //   diTekan: () {},
-        // ),
-
-        // // ULASAN
-        // LainnyaItems(
-        //   ikon1: Iconsax.ranking_14,
-        //   title: 'Ulasan',
-        //   ikon2: Iconsax.arrow_right_3,
-        //   diTekan: () {},
-        // ),
+        //   email
+        Text(
+          'Email',
+          style: GoogleFonts.poppins(),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 6),
+          padding: const EdgeInsets.all(16),
+          width: double.infinity,
+          height: 60,
+          decoration: BoxDecoration(
+            color: c6,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            emailUser,
+            style: GoogleFonts.poppins(
+              color: cBlack,
+              fontSize: 18,
+            ),
+          ),
+        ),
       ],
     );
   }
 
   Widget logout() {
-    return TombolPrimer(
-        title: 'Keluar',
-        ditekan: () async {
-          bool status = await AuthMethod.logout();
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: TombolPrimer(
+          title: 'Keluar',
+          ditekan: () async {
+            bool status = await AuthMethod.logout();
 
-          if (status) {
-            setState(() {
-              globals.isLogin = false;
-              globals.token = '';
-            });
-          }
+            if (status) {
+              setState(() {
+                globals.isLogin = false;
+                globals.token = '';
+              });
+            }
 
-          if (!mounted) return;
-          Navigator.of(context).push(signIn());
-        });
+            if (!mounted) return;
+            Navigator.of(context).push(signIn());
+          }),
+    );
   }
 }

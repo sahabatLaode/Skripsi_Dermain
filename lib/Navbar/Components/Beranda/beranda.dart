@@ -265,7 +265,7 @@ class _BerandaState extends State<Beranda> {
                           ),
                         ),
                         Text(
-                          '3',
+                          '2',
                           style: GoogleFonts.poppins(
                             color: cBlack,
                             fontSize: 22,
@@ -303,7 +303,7 @@ class _BerandaState extends State<Beranda> {
                 // Apa itu LAZISMU
                 InformasiItems(
                   imageurl: 'assets/logos/logo_lazismu.png',
-                  warna: c4,
+                  warna: c2,
                   title: 'Apa itu\nLAZISMU?',
                   diTekan: () {
                     showModalBottomSheet(
@@ -360,7 +360,7 @@ class _BerandaState extends State<Beranda> {
                 // Visi dan Misi
                 InformasiItems(
                   imageurl: 'assets/images/image_visi.png',
-                  warna: c3,
+                  warna: c4,
                   title: 'Visi\ndan Misi',
                   diTekan: () {
                     showModalBottomSheet(
@@ -412,14 +412,6 @@ class _BerandaState extends State<Beranda> {
                       },
                     );
                   },
-                ),
-
-                // Struktur dan Manajemen
-                InformasiItems(
-                  imageurl: 'assets/images/image_struktur.png',
-                  warna: c2,
-                  title: 'Struktur\ndan Manajemen',
-                  diTekan: () {},
                 ),
               ],
             ),
