@@ -447,7 +447,9 @@ class _BerandaState extends State<Beranda> {
                       title: 'Sedekah',
                       subTitle: 'Donasi Sedekah',
                       warna: c2,
-                      diTekan: () {},
+                      diTekan: () {
+                        Navigator.of(context).push(donasiSedekah());
+                      },
                     ),
                   ],
                 ),
@@ -461,14 +463,18 @@ class _BerandaState extends State<Beranda> {
                       title: 'Ambulans',
                       subTitle: 'Permintaan Ambulans',
                       warna: c3,
-                      diTekan: () {},
+                      diTekan: () {
+                        Navigator.of(context).push(permintaanAmbulan());
+                      },
                     ),
                     BerandaItems1(
                       ikon: Iconsax.coin,
                       title: 'Infaq',
                       subTitle: 'Donasi Infaq',
                       warna: c4,
-                      diTekan: () {},
+                      diTekan: () {
+                        Navigator.of(context).push(donasiInfaq());
+                      },
                     ),
                   ],
                 ),
@@ -476,7 +482,9 @@ class _BerandaState extends State<Beranda> {
             ],
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(permintaanKoin());
+            },
             child: Container(
               margin: const EdgeInsets.only(bottom: 16),
               padding: const EdgeInsets.all(12),

@@ -1,6 +1,8 @@
 // import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -30,6 +32,9 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
   final emailController = TextEditingController(text: '');
   final passwordController = TextEditingController(text: '');
 
+  final _formKey = GlobalKey<FormState>();
+  String _currentPosition='';
+
   bool isShowPasswordError = false;
   bool isLoading = false;
 
@@ -39,6 +44,28 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
 
   DateTime selectDate = DateTime.now();
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  _getCurrentLocation() async{
+    PermissionStatus permission = await Permission.location.status;
+
+    if (permission != PermissionStatus.granted) {
+      permission = await Permission.location.request();
+      if (permission != PermissionStatus.granted) {
+        // Handle permission denial
+        return;
+      }
+    }
+    final position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _currentPosition = '${position.latitude}, ${position.longitude}';
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +74,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: c2,
+        backgroundColor: cWhite,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -67,30 +94,33 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           ),
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: c2,
+          statusBarColor: cWhite,
           statusBarIconBrightness: Brightness.dark,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            pemesan(),
-            const SizedBox(height: 12),
-            pasien(),
-            const SizedBox(height: 12),
-            berat(),
-            const SizedBox(height: 12),
-            darurat(),
-            const SizedBox(height: 12),
-            tanggal(),
-            const SizedBox(height: 12),
-            pukul(),
-            const SizedBox(height: 12),
-            lokasi(),
-            const SizedBox(height: 32),
-            tombol(),
-          ],
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: [
+              pemesan(),
+              const SizedBox(height: 12),
+              pasien(),
+              const SizedBox(height: 12),
+              berat(),
+              const SizedBox(height: 12),
+              darurat(),
+              const SizedBox(height: 12),
+              tanggal(),
+              const SizedBox(height: 12),
+              pukul(),
+              const SizedBox(height: 12),
+              lokasi(),
+              const SizedBox(height: 32),
+              tombol(),
+            ],
+          ),
         ),
       ),
     );
@@ -482,7 +512,12 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           height: 60,
           child: TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/lokasi2');
+              if (_formKey.currentState!.validate()) {
+                absensi.set({
+                  'lokasi': _currentPosition
+                });
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Data absensi berhasil disimpan')));
+              }
             },
             style: TextButton.styleFrom(
               backgroundColor: c6,
