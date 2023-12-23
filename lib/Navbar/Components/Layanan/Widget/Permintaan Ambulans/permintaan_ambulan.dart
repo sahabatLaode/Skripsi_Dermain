@@ -1,4 +1,6 @@
 // import 'package:dropdown_search/dropdown_search.dart';
+import 'package:dermain/Methods/ambulan_method.dart';
+import 'package:dermain/Providers/ambulans_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -29,20 +31,55 @@ class PermintaanAmbulan extends StatefulWidget {
 
 
 class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
-  final emailController = TextEditingController(text: '');
-  final passwordController = TextEditingController(text: '');
-
+  final namaPemesan = TextEditingController();
+  final namaPasien = TextEditingController();
+  final beratBadan = TextEditingController();
+  final levelDarurat = TextEditingController();
+  final tanggal = TextEditingController();
+  final pukul = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String _currentPosition='';
-
-  bool isShowPasswordError = false;
-  bool isLoading = false;
-
+  String lokasi='';
   String dropdownBerat = kg.first;
   String dropdownValue = level.first;
   String dropdownPukul = jam.first;
 
   DateTime selectDate = DateTime.now();
+
+
+  void _addAmbulan() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    _formKey.currentState!.save();
+    bool status = await AmbulanMethod.addAmbulan(
+      namaPemesan.text,
+      namaPasien.text,
+      beratBadan.text,
+      levelDarurat.text,
+      tanggal.text,
+      pukul.text,
+      lokasi,
+
+
+    );
+
+    if (status) {
+      _formKey.currentState!.reset();
+
+      ref
+          .read(ambulansProvider.notifier)
+          .addAmbulan(await AmbulanMethod.loadAllAmbulan());
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Ambulans successfully added')));
+    }
+  }
+
+  bool isShowPasswordError = false;
+  bool isLoading = false;
+
+
 
   @override
   void dispose() {
@@ -62,7 +99,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
     }
     final position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     setState(() {
-      _currentPosition = '${position.latitude}, ${position.longitude}';
+      lokasi = '${position.latitude}, ${position.longitude}';
     });
   }
 
@@ -112,11 +149,11 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               const SizedBox(height: 12),
               darurat(),
               const SizedBox(height: 12),
-              tanggal(),
+              date(),
               const SizedBox(height: 12),
-              pukul(),
+              waktu(),
               const SizedBox(height: 12),
-              lokasi(),
+              lokasis(),
               const SizedBox(height: 32),
               tombol(),
             ],
@@ -154,6 +191,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: namaPemesan,
                   decoration: InputDecoration.collapsed(
                     hintText: 'Nama',
                     hintStyle: GoogleFonts.poppins(
@@ -211,6 +249,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  controller: namaPasien,
                   decoration: InputDecoration.collapsed(
                     hintText: 'Nama Lengkap',
                     hintStyle: GoogleFonts.poppins(
@@ -341,6 +380,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                     // This is called when the user selects an item.
                     setState(() {
                       dropdownValue = value!;
+                      beratBadan.text = value;
                     });
                   },
                   items: level.map<DropdownMenuItem<String>>((String value) {
@@ -358,7 +398,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
     );
   }
 
-  Widget tanggal() {
+  Widget date() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -418,6 +458,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                         if (value != null) {
                           setState(() {
                             selectDate = value;
+                            // date.text = value;
                           });
                         }
                       },
@@ -435,7 +476,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
     );
   }
 
-  Widget pukul() {
+  Widget waktu() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -494,12 +535,12 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
     );
   }
 
-  Widget lokasi() {
+  Widget lokasis() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Lokasi',
+          'Dapatkan Lokasi Jemput',
           style: GoogleFonts.poppins(
             color: cBlack,
             fontSize: 12,
@@ -512,12 +553,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           height: 60,
           child: TextButton(
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                absensi.set({
-                  'lokasi': _currentPosition
-                });
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Data absensi berhasil disimpan')));
-              }
+              //
             },
             style: TextButton.styleFrom(
               backgroundColor: c6,
@@ -531,21 +567,27 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Tentukan Lokasi Antar Jemput',
+                  lokasi,
                   style: GoogleFonts.poppins(
                     color: cBlack,
                     fontWeight: regular,
                     fontSize: 16,
                   ),
                 ),
-                Icon(
-                  Iconsax.arrow_right_3,
-                  color: cBlack,
-                ),
+                // Icon(
+                //   Iconsax.arrow_right_3,
+                //   color: cBlack,
+                // ),
               ],
             ),
           ),
         ),
+          ElevatedButton(
+            onPressed: () {
+              _getCurrentLocation();
+            },
+            child: const Text('Dapatkan Lokasi'),
+          ),
       ],
     );
   }
@@ -599,11 +641,20 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                   setState(() {
                     isLoading = false;
                   });
-                  if (passwordController.text != '12345') {
+                  if (
+                  namaPemesan.text.isNotEmpty ||
+                  namaPasien.text.isNotEmpty ||
+                  beratBadan.text.isNotEmpty ||
+                  levelDarurat.text.isNotEmpty ||
+                  tanggal.text.isNotEmpty ||
+                  dropdownPukul.isNotEmpty ||
+                  lokasi.isNotEmpty
+                  ) {
                     setState(() {
                       isShowPasswordError = true;
                     });
                   } else {
+                    _addAmbulan();
                     Navigator.pushNamed(context, '/homeboarding');
                   }
                 });

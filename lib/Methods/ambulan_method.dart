@@ -3,6 +3,8 @@ import 'package:dermain/globals.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class AmbulanMethod {
   static Future<List<Ambulan>> loadAllAmbulan() async {
     final url = Uri.http(addressUrl, subAmbulan);
@@ -22,8 +24,7 @@ class AmbulanMethod {
           level_darurat: ambulans['level_darurat'],
           pukul: ambulans['pukul'],
           tanggal: ambulans['tanggal'],
-          titik_antar: ambulans['titik_antar'],
-          titik_jemput: ambulans['titik_jemput'],
+          lokasi: ambulans['lokasi'],
           created_at: ambulans['created_at'],
         );
         allAmbulans.add(tempAmbulan);
@@ -33,30 +34,29 @@ class AmbulanMethod {
   }
 
   static Future<bool> addAmbulan(
-      String namaPemesan,
-      String namaPasien,
-      String beratBadan,
-      String levelDarurat,
+      String nama_pemesan,
+      String nama_pasien,
+      String berat_badan,
+      String level_darurat,
       String pukul,
       String tanggal,
-      String titikAntar,
-      String titikJemput) async {
+      String lokasi) async {
     final url = Uri.http(addressUrl, subAmbulan);
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
-        'nama_pemesan': namaPemesan,
-        'nama_pasien': namaPasien,
-        'berat_badan': beratBadan,
-        'level_darurat': levelDarurat,
+        'nama_pemesan': nama_pemesan,
+        'nama_pasien': nama_pasien,
+        'berat_badan': berat_badan,
+        'level_darurat': level_darurat,
         'pukul': pukul,
         'tanggal': tanggal,
-        'titik_antar': titikAntar,
-        'titik_jemput': titikJemput,
+        'lokasi' : lokasi,
       }),
     );
     Map<String, dynamic> body = json.decode(response.body);
+
     return body['status'];
   }
 

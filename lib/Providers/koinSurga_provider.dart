@@ -20,12 +20,6 @@ class KoinSurgasNotifier extends StateNotifier<List<KoinSurga>> {
   void addKoinSurgas(List<KoinSurga> koinSurgas) {
     state = koinSurgas;
   }
-
-  // Zakat findZakat(String id) {
-  //   Zakat tempZakat = state.firstWhere((zakat) => zakat.id == id);
-
-  //   return tempZakat;
-  // }
 }
 
 final koinSurgasProvider =

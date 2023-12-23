@@ -16,9 +16,7 @@ import 'Onboarding/onboarding.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
   runApp(const ProviderScope(child: MyApp()));
-  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 }
 
 class MyApp extends StatelessWidget {
@@ -42,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/layanan': (context) => const Layanan(),
         '/nota': (context) => const Nota(),
         '/konfirmasi': (context) => const KonfirmasiDonasi(),
-        '/lokasi2': (context) => const Maps(),
+        // '/lokasi2': (context) => const Maps(),
       },
     );
   }
