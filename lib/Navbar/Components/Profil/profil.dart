@@ -71,7 +71,7 @@ class _ProfilState extends State<Profil> {
       alignment: Alignment.topCenter,
       children: [
         Container(
-          padding: EdgeInsets.only(bottom: 40),
+          padding: const EdgeInsets.only(bottom: 40),
           width: double.infinity,
           height: 150,
           color: c2,

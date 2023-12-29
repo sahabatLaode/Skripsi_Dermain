@@ -4,9 +4,6 @@ import 'dart:convert';
 import 'package:dermain/Models/zakat_model.dart';
 
 class ZakatMethod {
-  // static const addressUrl = '10.0.2.2:8000';
-  // static const subZakat = 'api/zakat';
-
   static Future<List<Zakat>> loadAllZakat() async {
     final url = Uri.http(addressUrl, subZakat);
     List<Zakat> allZakats = [];
@@ -32,8 +29,13 @@ class ZakatMethod {
     return allZakats;
   }
 
-  static Future<bool> addZakat(String jenisDonasi, String nominal, String nama,
-      String email, String phone) async {
+  static Future<bool> addZakat(
+    String jenisDonasi,
+    String nominal,
+    String nama,
+    String email,
+    String phone,
+  ) async {
     final url = Uri.http(addressUrl, subZakat);
     final response = await http.post(
       url,

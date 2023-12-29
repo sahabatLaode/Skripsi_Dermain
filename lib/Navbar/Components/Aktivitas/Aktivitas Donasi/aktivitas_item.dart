@@ -116,188 +116,188 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
     );
   }
 
-  // Widget _buildInfaqCard() {
-  //   final Infaq? infaq = widget.infaq;
-  //   DateTime infaqDate = DateTime.parse(infaq!.created_at);
-  //   String infaqFormattedDate = DateFormat('dd MMMM yyyy').format(infaqDate);
+// Widget _buildInfaqCard() {
+//   final Infaq? infaq = widget.infaq;
+//   DateTime infaqDate = DateTime.parse(infaq!.created_at);
+//   String infaqFormattedDate = DateFormat('dd MMMM yyyy').format(infaqDate);
 
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-  //     child: Column(
-  //       children: [
-  //         Container(
-  //           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-  //           height: 101,
-  //           width: double.infinity,
-  //           decoration: BoxDecoration(
-  //             color: c6,
-  //             borderRadius: BorderRadius.circular(16),
-  //             boxShadow: const [
-  //               BoxShadow(
-  //                 color: Colors.black12,
-  //                 blurRadius: 1,
-  //                 spreadRadius: 2,
-  //               ),
-  //             ],
-  //           ),
-  //           child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Text(
-  //                     infaq.jenis_donasi,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                       fontSize: 18,
-  //                       fontWeight: bold,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     infaq.nominal,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                       fontSize: 18,
-  //                       fontWeight: bold,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               const SizedBox(height: 4),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Text(
-  //                     infaq.nama,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     infaq.email,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               const SizedBox(height: 4),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Text(
-  //                     infaq.phone,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     infaqFormattedDate,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+//   return Padding(
+//     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+//     child: Column(
+//       children: [
+//         Container(
+//           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+//           height: 101,
+//           width: double.infinity,
+//           decoration: BoxDecoration(
+//             color: c6,
+//             borderRadius: BorderRadius.circular(16),
+//             boxShadow: const [
+//               BoxShadow(
+//                 color: Colors.black12,
+//                 blurRadius: 1,
+//                 spreadRadius: 2,
+//               ),
+//             ],
+//           ),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     infaq.jenis_donasi,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                       fontSize: 18,
+//                       fontWeight: bold,
+//                     ),
+//                   ),
+//                   Text(
+//                     infaq.nominal,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                       fontSize: 18,
+//                       fontWeight: bold,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(height: 4),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     infaq.nama,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                   Text(
+//                     infaq.email,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(height: 4),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     infaq.phone,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                   Text(
+//                     infaqFormattedDate,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
 
-  // Widget _buildSedekahCard() {
-  //   final Sedekah? sedekah = widget.sedekah;
-  //   DateTime sedekahDate = DateTime.parse(sedekah!.created_at);
-  //   String sedekahFormattedDate =
-  //       DateFormat('dd MMMM yyyy').format(sedekahDate);
+// Widget _buildSedekahCard() {
+//   final Sedekah? sedekah = widget.sedekah;
+//   DateTime sedekahDate = DateTime.parse(sedekah!.created_at);
+//   String sedekahFormattedDate =
+//       DateFormat('dd MMMM yyyy').format(sedekahDate);
 
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-  //     child: Column(
-  //       children: [
-  //         Container(
-  //           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-  //           height: 101,
-  //           width: double.infinity,
-  //           decoration: BoxDecoration(
-  //             color: c6,
-  //             borderRadius: BorderRadius.circular(16),
-  //             boxShadow: const [
-  //               BoxShadow(
-  //                 color: Colors.black12,
-  //                 blurRadius: 1,
-  //                 spreadRadius: 2,
-  //               ),
-  //             ],
-  //           ),
-  //           child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Text(
-  //                     sedekah.jenis_donasi,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                       fontSize: 18,
-  //                       fontWeight: bold,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     sedekah.nominal,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                       fontSize: 18,
-  //                       fontWeight: bold,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               const SizedBox(height: 4),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Text(
-  //                     sedekah.nama,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     sedekah.email,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               const SizedBox(height: 4),
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Text(
-  //                     sedekah.phone,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     sedekahFormattedDate,
-  //                     style: GoogleFonts.poppins(
-  //                       color: cBlack,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+//   return Padding(
+//     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+//     child: Column(
+//       children: [
+//         Container(
+//           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+//           height: 101,
+//           width: double.infinity,
+//           decoration: BoxDecoration(
+//             color: c6,
+//             borderRadius: BorderRadius.circular(16),
+//             boxShadow: const [
+//               BoxShadow(
+//                 color: Colors.black12,
+//                 blurRadius: 1,
+//                 spreadRadius: 2,
+//               ),
+//             ],
+//           ),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     sedekah.jenis_donasi,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                       fontSize: 18,
+//                       fontWeight: bold,
+//                     ),
+//                   ),
+//                   Text(
+//                     sedekah.nominal,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                       fontSize: 18,
+//                       fontWeight: bold,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(height: 4),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     sedekah.nama,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                   Text(
+//                     sedekah.email,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               const SizedBox(height: 4),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     sedekah.phone,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                   Text(
+//                     sedekahFormattedDate,
+//                     style: GoogleFonts.poppins(
+//                       color: cBlack,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
 }

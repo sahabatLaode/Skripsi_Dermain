@@ -1,10 +1,9 @@
-// import 'package:dropdown_search/dropdown_search.dart';
 import 'package:dermain/Methods/ambulan_method.dart';
 import 'package:dermain/Providers/ambulans_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../../route_animation.dart';
 import '../../../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -21,30 +20,32 @@ List<String> jam = <String>[
   'Pukul 19.00-21.00 WIB'
 ];
 
-class PermintaanAmbulan extends StatefulWidget {
+class PermintaanAmbulan extends ConsumerStatefulWidget {
   const PermintaanAmbulan({super.key});
 
   @override
-  State<PermintaanAmbulan> createState() => _PermintaanAmbulanState();
+  ConsumerState<PermintaanAmbulan> createState() => _PermintaanAmbulanState();
 }
 
-
-
-class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
-  final namaPemesan = TextEditingController();
-  final namaPasien = TextEditingController();
-  final beratBadan = TextEditingController();
-  final levelDarurat = TextEditingController();
-  final tanggal = TextEditingController();
-  final pukul = TextEditingController();
+class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
+  final titleController = TextEditingController();
+  final namaPemesanController = TextEditingController();
+  final namaPasienController = TextEditingController();
+  final beratBadanController = TextEditingController();
+  final levelDaruratController = TextEditingController();
+  final tanggalController = TextEditingController();
+  final pukulController = TextEditingController();
+  final lokasiController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String lokasi='';
+
+  bool isLoading = false;
+
+  // String lokasi='';
   String dropdownBerat = kg.first;
-  String dropdownValue = level.first;
+  String dropdownLevel = level.first;
   String dropdownPukul = jam.first;
 
   DateTime selectDate = DateTime.now();
-
 
   void _addAmbulan() async {
     if (!_formKey.currentState!.validate()) {
@@ -52,15 +53,14 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
     }
     _formKey.currentState!.save();
     bool status = await AmbulanMethod.addAmbulan(
-      namaPemesan.text,
-      namaPasien.text,
-      beratBadan.text,
-      levelDarurat.text,
-      tanggal.text,
-      pukul.text,
-      lokasi,
-
-
+      titleController.text,
+      namaPemesanController.text,
+      namaPasienController.text,
+      beratBadanController.text,
+      levelDaruratController.text,
+      tanggalController.text,
+      pukulController.text,
+      lokasiController.text,
     );
 
     if (status) {
@@ -68,41 +68,104 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
 
       ref
           .read(ambulansProvider.notifier)
-          .addAmbulan(await AmbulanMethod.loadAllAmbulan());
+          .addAmbulans(await AmbulanMethod.loadAllAmbulan());
       if (!mounted) return;
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Ambulans successfully added')));
+      // ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Permintaan Ambulan successfully added')));
     }
   }
 
-  bool isShowPasswordError = false;
-  bool isLoading = false;
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  // }
 
+  // _getCurrentLocation() async{
+  //   PermissionStatus permission = await Permission.location.status;
+  //
+  //   if (permission != PermissionStatus.granted) {
+  //     permission = await Permission.location.request();
+  //     if (permission != PermissionStatus.granted) {
+  //       // Handle permission denial
+  //       return;
+  //     }
+  //   }
+  //   final position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  //   setState(() {
+  //     lokasi = '${position.latitude}, ${position.longitude}';
+  //   });
+  // }
 
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+  void myAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          title: Text(
+            'Yakin untuk membatalkan?',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(),
+          ),
+          actionsAlignment: MainAxisAlignment.center,
+          actions: <Widget>[
+            SizedBox(
+              height: 60,
+              width: 140,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: c2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: Text(
+                  'Batalkan',
+                  style: GoogleFonts.poppins(
+                    color: cBlack,
+                    fontSize: 16,
+                    fontWeight: semibold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 60,
+              width: 140,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/navbar');
+                },
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 2,
+                      style: BorderStyle.solid,
+                      color: c2,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: Text(
+                  'Ya',
+                  style: GoogleFonts.poppins(
+                    color: cBlack,
+                    fontSize: 16,
+                    fontWeight: semibold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
-
-  _getCurrentLocation() async{
-    PermissionStatus permission = await Permission.location.status;
-
-    if (permission != PermissionStatus.granted) {
-      permission = await Permission.location.request();
-      if (permission != PermissionStatus.granted) {
-        // Handle permission denial
-        return;
-      }
-    }
-    final position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      lokasi = '${position.latitude}, ${position.longitude}';
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +186,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         ),
         centerTitle: true,
         title: Text(
-          'Permintaan Ambulans',
+          titleController.text = 'Ambulans',
           style: GoogleFonts.poppins(
             color: cBlack,
             fontSize: 18,
@@ -191,7 +254,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
-                  controller: namaPemesan,
+                  controller: namaPemesanController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'Nama',
                     hintStyle: GoogleFonts.poppins(
@@ -199,21 +262,22 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                       fontSize: 16,
                     ),
                   ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
                 ),
               ),
             ],
           ),
         ),
-        if (isShowPasswordError)
-          Container(
-            margin: const EdgeInsets.only(
-              top: 6,
-            ),
+        if (namaPemesanController.text.isEmpty ||
+            namaPemesanController.text == '')
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
             child: Text(
-              'Nama pemesan tidak boleh kosong',
+              'Masukkan nama pemesan',
               style: GoogleFonts.poppins(
                 color: cRed,
-                fontSize: 12,
               ),
             ),
           ),
@@ -249,7 +313,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
-                  controller: namaPasien,
+                  controller: namaPasienController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'Nama Lengkap',
                     hintStyle: GoogleFonts.poppins(
@@ -257,21 +321,22 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                       fontSize: 16,
                     ),
                   ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
                 ),
               ),
             ],
           ),
         ),
-        if (isShowPasswordError)
-          Container(
-            margin: const EdgeInsets.only(
-              top: 6,
-            ),
+        if (namaPasienController.text.isEmpty ||
+            namaPasienController.text == '')
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
             child: Text(
-              'Nama tidak boleh kosong',
+              'Masukkan nama pemesan',
               style: GoogleFonts.poppins(
                 color: cRed,
-                fontSize: 12,
               ),
             ),
           ),
@@ -321,6 +386,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                     // This is called when the user selects an item.
                     setState(() {
                       dropdownBerat = value!;
+                      beratBadanController.text = value;
                     });
                   },
                   items: kg.map<DropdownMenuItem<String>>((String value) {
@@ -334,6 +400,16 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
             ],
           ),
         ),
+        if (beratBadanController.text.isEmpty)
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Pastikan berat badan sudah benar',
+              style: GoogleFonts.poppins(
+                color: cRed,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -367,7 +443,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
               Expanded(
                 child: DropdownButton<String>(
                   dropdownColor: c6,
-                  value: dropdownValue,
+                  value: dropdownLevel,
                   isExpanded: true,
                   isDense: true,
                   icon: Icon(Iconsax.arrow_down_1, color: cBlack),
@@ -379,8 +455,8 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                   onChanged: (String? value) {
                     // This is called when the user selects an item.
                     setState(() {
-                      dropdownValue = value!;
-                      beratBadan.text = value;
+                      dropdownLevel = value!;
+                      levelDaruratController.text = value;
                     });
                   },
                   items: level.map<DropdownMenuItem<String>>((String value) {
@@ -394,6 +470,16 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
             ],
           ),
         ),
+        if (levelDaruratController.text.isEmpty)
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Pastikan level darurat sudah benar',
+              style: GoogleFonts.poppins(
+                color: cRed,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -431,7 +517,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                   ),
                   const SizedBox(width: 12),
                   Text(
-                    DateFormat.yMMMMEEEEd().format(selectDate),
+                    DateFormat('dd MMMM yyyy').format(selectDate),
                     style: GoogleFonts.poppins(
                       color: cBlack,
                       fontSize: 16,
@@ -458,7 +544,8 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                         if (value != null) {
                           setState(() {
                             selectDate = value;
-                            // date.text = value;
+                            tanggalController.text =
+                                DateFormat('dd MMMM yyyy').format(selectDate);
                           });
                         }
                       },
@@ -472,6 +559,16 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
             ],
           ),
         ),
+        if (tanggalController.text.isEmpty)
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Pastikan tanggal yang dipilih sudah benar',
+              style: GoogleFonts.poppins(
+                color: cRed,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -518,6 +615,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                     // This is called when the user selects an item.
                     setState(() {
                       dropdownPukul = value!;
+                      pukulController.text = value;
                     });
                   },
                   items: jam.map<DropdownMenuItem<String>>((String value) {
@@ -531,6 +629,16 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
             ],
           ),
         ),
+        if (pukulController.text.isEmpty)
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Pastikan pukul sudah benar',
+              style: GoogleFonts.poppins(
+                color: cRed,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -540,53 +648,54 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Dapatkan Lokasi Jemput',
+          'Lokasi',
           style: GoogleFonts.poppins(
             color: cBlack,
             fontSize: 12,
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(
-            top: 6,
-          ),
+          margin: const EdgeInsets.only(top: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 60,
-          child: TextButton(
-            onPressed: () {
-              //
-            },
-            style: TextButton.styleFrom(
-              backgroundColor: c6,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              // side: BorderSide(color: c2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+          decoration: BoxDecoration(
+            color: c6,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Iconsax.user,
+                color: cBlack,
               ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  lokasi,
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontWeight: regular,
-                    fontSize: 16,
+              const SizedBox(width: 12),
+              Expanded(
+                child: TextFormField(
+                  controller: lokasiController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'lokasi',
+                    hintStyle: GoogleFonts.poppins(
+                      color: c5,
+                      fontSize: 16,
+                    ),
                   ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
                 ),
-                // Icon(
-                //   Iconsax.arrow_right_3,
-                //   color: cBlack,
-                // ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-          ElevatedButton(
-            onPressed: () {
-              _getCurrentLocation();
-            },
-            child: const Text('Dapatkan Lokasi'),
+        if (lokasiController.text.isEmpty || lokasiController.text == '')
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Masukkan lokasi',
+              style: GoogleFonts.poppins(
+                color: cRed,
+              ),
+            ),
           ),
       ],
     );
@@ -600,10 +709,10 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(right: 8),
-            height: 56,
+            height: 60,
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/navbar');
+                myAlert();
               },
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -626,7 +735,7 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
           ),
         ),
 
-        // TOMBOL KONFIRMASI
+        // TOMBOL PESAN
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 8),
@@ -641,21 +750,16 @@ class _PermintaanAmbulanState extends State<PermintaanAmbulan> {
                   setState(() {
                     isLoading = false;
                   });
-                  if (
-                  namaPemesan.text.isNotEmpty ||
-                  namaPasien.text.isNotEmpty ||
-                  beratBadan.text.isNotEmpty ||
-                  levelDarurat.text.isNotEmpty ||
-                  tanggal.text.isNotEmpty ||
-                  dropdownPukul.isNotEmpty ||
-                  lokasi.isNotEmpty
-                  ) {
-                    setState(() {
-                      isShowPasswordError = true;
-                    });
+                  if (namaPemesanController.text.isEmpty ||
+                      namaPasienController.text.isEmpty ||
+                      beratBadanController.text.isEmpty ||
+                      levelDaruratController.text.isEmpty ||
+                      tanggalController.text.isEmpty ||
+                      pukulController.text.isEmpty ||
+                      lokasiController.text.isEmpty) {
                   } else {
                     _addAmbulan();
-                    Navigator.pushNamed(context, '/homeboarding');
+                    Navigator.of(context).push(konfirmasiDonasi());
                   }
                 });
               },

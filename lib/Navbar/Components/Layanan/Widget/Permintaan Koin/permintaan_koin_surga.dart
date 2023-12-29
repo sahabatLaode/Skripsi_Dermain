@@ -24,6 +24,7 @@ class PermintaanKoin extends ConsumerStatefulWidget {
 class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
   final catatanController = TextEditingController(text: 'Tidak ada catatan');
   final tanggalController = TextEditingController();
+  final titleController = TextEditingController();
   final jenisController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -34,18 +35,13 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
 
   DateTime selectDate = DateTime.now();
 
-  // @override
-  // void dispose() {
-  //   catatanController.dispose();
-  //   super.dispose();
-  // }
-
   void _addKoinSurga() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
     _formKey.currentState!.save();
     bool status = await KoinSurgaMethod.addKoinSurga(
+      titleController.text,
       jenisController.text,
       catatanController.text,
       tanggalController.text,
@@ -157,7 +153,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Permintaan Koin Surga',
+              titleController.text = 'Koin Surga',
               style: GoogleFonts.poppins(
                 color: cBlack,
                 fontSize: 18,
@@ -304,7 +300,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           Container(
             margin: const EdgeInsets.only(top: 6),
             child: Text(
-              'Pastikan jenis tanggal sudah benar',
+              'Pastikan tanggal yang dipilih sudah benar',
               style: GoogleFonts.poppins(
                 color: cRed,
               ),
@@ -418,7 +414,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           ),
         ),
 
-        // TOMBOL KONFIRMASI
+        // TOMBOL PESAN
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 8),

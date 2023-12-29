@@ -16,6 +16,7 @@ class KoinSurgaMethod {
       for (final koinSurga in body['data']) {
         KoinSurga tempKoinSurga = KoinSurga(
           id: koinSurga['id'].toString(),
+          title: koinSurga['title'],
           catatan: koinSurga['catatan'],
           tanggal: koinSurga['tanggal'],
           jenis_permintaan: koinSurga['jenis_permintaan'],
@@ -28,12 +29,17 @@ class KoinSurgaMethod {
   }
 
   static Future<bool> addKoinSurga(
-      String jenisPermintaan, String catatan, String tanggal) async {
+    String title,
+    String jenisPermintaan,
+    String catatan,
+    String tanggal,
+  ) async {
     final url = Uri.http(addressUrl, subKoin);
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
+        'title': title,
         'jenis_permintaan': jenisPermintaan,
         'catatan': catatan,
         'tanggal': tanggal,

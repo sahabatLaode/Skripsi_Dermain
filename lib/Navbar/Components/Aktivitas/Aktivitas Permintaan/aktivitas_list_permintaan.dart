@@ -1,5 +1,7 @@
+import 'package:dermain/Methods/ambulan_method.dart';
 import 'package:dermain/Methods/koinSurga_method.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/Aktivitas%20Permintaan/aktivitas_item_permintaan.dart';
+import 'package:dermain/Providers/ambulans_provider.dart';
 import 'package:dermain/Providers/koinSurga_provider.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +20,18 @@ class AktivitasListPermintaan extends ConsumerStatefulWidget {
 class _AktivitasListPermintaanState
     extends ConsumerState<AktivitasListPermintaan> {
   bool status = false;
-  void _loadAllKoinSurgas() async {
+
+  void _loadAllKoinSurgasAndAmbulans() async {
     setState(() {
       status = false;
     });
-    ref
-        .read(koinSurgasProvider.notifier)
-        .addKoinSurgas(await KoinSurgaMethod.loadAllKoinSurga());
+
+    final koinSurgas = await KoinSurgaMethod.loadAllKoinSurga();
+    final ambulans = await AmbulanMethod.loadAllAmbulan();
+
+    ref.read(koinSurgasProvider.notifier).addKoinSurgas(koinSurgas);
+    ref.read(ambulansProvider.notifier).addAmbulans(ambulans);
+
     setState(() {
       status = true;
     });
@@ -32,32 +39,35 @@ class _AktivitasListPermintaanState
 
   @override
   void initState() {
-    _loadAllKoinSurgas();
-
+    _loadAllKoinSurgasAndAmbulans();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final koinSurgas = ref.watch(koinSurgasProvider);
+    final ambulans = ref.watch(ambulansProvider);
 
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (koinSurgas.isNotEmpty)
+          if (koinSurgas.isNotEmpty || ambulans.isNotEmpty)
             status
                 ? ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: koinSurgas.length,
+                    itemCount: koinSurgas.length + ambulans.length,
                     itemBuilder: (context, index) {
-                      final koinSurga =
-                          koinSurgas.length > index ? koinSurgas[index] : null;
-
-                      return AktivitasItemPermintaan(
-                        koinSurga: koinSurga,
-                      );
+                      if (index < koinSurgas.length) {
+                        final koinSurga = koinSurgas[index];
+                        return AktivitasItemPermintaan(
+                            koinSurga: koinSurga, ambulan: null);
+                      } else {
+                        final ambulan = ambulans[index - koinSurgas.length];
+                        return AktivitasItemPermintaan(
+                            ambulan: ambulan, koinSurga: null);
+                      }
                     },
                   )
                 : Center(

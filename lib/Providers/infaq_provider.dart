@@ -22,12 +22,6 @@ class InfaqsNotifier extends StateNotifier<List<Infaq>> {
   void addInfaqs(List<Infaq> infaqs) {
     state = infaqs;
   }
-
-  // Zakat findZakat(String id) {
-  //   Zakat tempZakat = state.firstWhere((zakat) => zakat.id == id);
-
-  //   return tempZakat;
-  // }
 }
 
 final infaqsProvider = StateNotifierProvider<InfaqsNotifier, List<Infaq>>(

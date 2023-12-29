@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -26,7 +25,7 @@ class BerandaItems1 extends StatelessWidget {
     return InkWell(
       onTap: diTekan,
       child: Container(
-        margin: EdgeInsets.only(bottom: 16),
+        margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(12),
         height: 180,
         width: double.infinity,

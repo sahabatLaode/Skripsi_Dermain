@@ -294,9 +294,9 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                   ),
-                  onChanged: (value) {
-                    setState(() {});
-                  },
+                  // onChanged: (value) {
+                  //   setState(() {});
+                  // },
                 ),
               ),
             ],

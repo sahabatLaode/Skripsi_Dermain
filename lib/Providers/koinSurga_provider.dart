@@ -9,6 +9,7 @@ class KoinSurgasNotifier extends StateNotifier<List<KoinSurga>> {
       ...state,
       KoinSurga(
         id: koinSurga.id,
+        title: koinSurga.title,
         catatan: koinSurga.catatan,
         tanggal: koinSurga.tanggal,
         jenis_permintaan: koinSurga.jenis_permintaan,
@@ -23,5 +24,5 @@ class KoinSurgasNotifier extends StateNotifier<List<KoinSurga>> {
 }
 
 final koinSurgasProvider =
-    StateNotifierProvider<KoinSurgasNotifier, List<KoinSurga>>(
+StateNotifierProvider<KoinSurgasNotifier, List<KoinSurga>>(
         (ref) => KoinSurgasNotifier());

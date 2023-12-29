@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../Models/ambulan_model.dart';
 
 class AmbulansNotifier extends StateNotifier<List<Ambulan>> {
@@ -10,12 +9,13 @@ class AmbulansNotifier extends StateNotifier<List<Ambulan>> {
       ...state,
       Ambulan(
         id: ambulan.id,
-        nama_pemesan: ambulan.nama_pemesan,
-        nama_pasien: ambulan.nama_pasien,
-        berat_badan: ambulan.berat_badan,
-        level_darurat: ambulan.level_darurat,
-        pukul: ambulan.pukul,
+        title: ambulan.title,
+        pemesan: ambulan.pemesan,
+        pasien: ambulan.pasien,
+        berat: ambulan.berat,
+        darurat: ambulan.darurat,
         tanggal: ambulan.tanggal,
+        pukul: ambulan.pukul,
         lokasi: ambulan.lokasi,
         created_at: ambulan.created_at,
       ),
