@@ -49,13 +49,13 @@ class KoinSurgaMethod {
     return body['status'];
   }
 
-  static Future<bool> removeKoinSurga(String id) async {
-    final url = Uri.http(addressUrl, '$subKoin/$id');
+  // static Future<bool> removeKoinSurga(String id) async {
+  //   final url = Uri.http(addressUrl, '$subKoin/$id');
 
-    final response = await http.delete(url);
+  //   final response = await http.delete(url);
 
-    Map<String, dynamic> body = json.decode(response.body);
+  //   Map<String, dynamic> body = json.decode(response.body);
 
-    return body['status'];
-  }
+  //   return body['status'];
+  // }
 }

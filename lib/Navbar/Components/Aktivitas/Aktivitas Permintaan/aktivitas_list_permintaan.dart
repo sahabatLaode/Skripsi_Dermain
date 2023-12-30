@@ -52,7 +52,7 @@ class _AktivitasListPermintaanState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (koinSurgas.isNotEmpty || ambulans.isNotEmpty)
+          if (koinSurgas.isNotEmpty && ambulans.isNotEmpty)
             status
                 ? ListView.builder(
                     shrinkWrap: true,

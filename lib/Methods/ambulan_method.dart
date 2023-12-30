@@ -9,24 +9,26 @@ class AmbulanMethod {
     List<Ambulan> allAmbulans = [];
 
     final response = await http.get(url);
-    Map<String, dynamic> body = json.decode(response.body);
-    bool status = body['status'];
+    if (response.body.isNotEmpty) {
+      Map<String, dynamic> body = json.decode(response.body);
+      bool status = body['status'];
 
-    if (status) {
-      for (final ambulan in body['data']) {
-        Ambulan tempAmbulan = Ambulan(
-          id: ambulan['id'].toString(),
-          title: ambulan['title'],
-          pemesan: ambulan['pemesan'],
-          pasien: ambulan['pasien'],
-          berat: ambulan['berat'],
-          darurat: ambulan['darurat'],
-          tanggal: ambulan['tanggal'],
-          pukul: ambulan['pukul'],
-          lokasi: ambulan['lokasi'],
-          created_at: ambulan['created_at'],
-        );
-        allAmbulans.add(tempAmbulan);
+      if (status) {
+        for (final ambulan in body['data']) {
+          Ambulan tempAmbulan = Ambulan(
+            id: ambulan['id'].toString(),
+            title: ambulan['title'],
+            pemesan: ambulan['pemesan'],
+            pasien: ambulan['pasien'],
+            berat: ambulan['berat'],
+            darurat: ambulan['darurat'],
+            tanggal: ambulan['tanggal'],
+            pukul: ambulan['pukul'],
+            lokasi: ambulan['lokasi'],
+            created_at: ambulan['created_at'],
+          );
+          allAmbulans.add(tempAmbulan);
+        }
       }
     }
     return allAmbulans;
@@ -57,8 +59,11 @@ class AmbulanMethod {
         'lokasi': lokasi,
       }),
     );
-    Map<String, dynamic> body = json.decode(response.body);
-    return body['status'];
+    if (response.body.isNotEmpty) {
+      Map<String, dynamic> body = json.decode(response.body);
+      return body['status'];
+    }
+    return false;
   }
 
   static Future<bool> removeAmbulan(String id) async {
@@ -66,8 +71,11 @@ class AmbulanMethod {
 
     final response = await http.delete(url);
 
-    Map<String, dynamic> body = json.decode(response.body);
+    if (response.body.isNotEmpty) {
+      Map<String, dynamic> body = json.decode(response.body);
 
-    return body['status'];
+      return body['status'];
+    }
+    return false;
   }
 }

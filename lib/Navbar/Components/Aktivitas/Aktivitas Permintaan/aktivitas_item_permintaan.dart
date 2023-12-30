@@ -26,16 +26,16 @@ class _AktivitasItemPermintaanState
   @override
   Widget build(BuildContext context) {
     if (widget.koinSurga != null) {
-      return _buildKoinSurgaCard();
+      return _buildKoinSurgaCard(widget.koinSurga!);
     } else if (widget.ambulan != null) {
-      return _buildAmbulanCard();
+      return _buildAmbulanCard(widget.ambulan!);
     }
     return Container();
   }
 
-  Widget _buildKoinSurgaCard() {
-    final KoinSurga? koinSurga = widget.koinSurga;
-    DateTime koinSurgaDate = DateTime.parse(koinSurga!.created_at);
+  Widget _buildKoinSurgaCard(KoinSurga koinSurga) {
+    // final KoinSurga? koinSurga = widget.koinSurga;
+    DateTime koinSurgaDate = DateTime.parse(koinSurga.created_at);
     String koinSurgaFormattedDate =
         DateFormat('dd MMMM yyyy').format(koinSurgaDate);
 
@@ -102,9 +102,9 @@ class _AktivitasItemPermintaanState
     );
   }
 
-  Widget _buildAmbulanCard() {
-    final Ambulan? ambulan = widget.ambulan;
-    DateTime ambulanDate = DateTime.parse(ambulan!.created_at);
+  Widget _buildAmbulanCard(Ambulan ambulan) {
+    // final Ambulan? ambulan = widget.ambulan;
+    DateTime ambulanDate = DateTime.parse(ambulan.created_at);
     String ambulanFormattedDate =
         DateFormat('dd MMMM yyyy').format(ambulanDate);
 
