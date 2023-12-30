@@ -20,7 +20,6 @@ class _NavbarState extends State<Navbar> {
   final screens = [
     const Aktivitas(),
     const Beranda(),
-    // const Layanan(),
     const Profil(),
   ];
 
@@ -73,17 +72,6 @@ class _NavbarState extends State<Navbar> {
               ),
               label: 'Beranda',
             ),
-            // NavigationDestination(
-            //   icon: Icon(
-            //     Iconsax.element_4,
-            //     color: cBlack,
-            //   ),
-            //   selectedIcon: Icon(
-            //     Iconsax.element_45,
-            //     color: cWhite,
-            //   ),
-            //   label: 'Layanan',
-            // ),
             NavigationDestination(
               icon: Icon(
                 Iconsax.user,

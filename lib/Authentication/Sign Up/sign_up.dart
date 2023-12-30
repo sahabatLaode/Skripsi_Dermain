@@ -681,7 +681,7 @@ class _SignUpState extends State<SignUp> {
           'Daftar',
           style: GoogleFonts.poppins(
             color: cWhite,
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: semibold,
           ),
         ),

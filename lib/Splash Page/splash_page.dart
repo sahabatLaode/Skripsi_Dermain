@@ -28,20 +28,18 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: cBlack,
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: cBlack,
+          statusBarColor: cWhite,
           statusBarIconBrightness: Brightness.light,
         ),
         toolbarHeight: 0,
       ),
-      backgroundColor: cBlack,
+      backgroundColor: cWhite,
       body: Center(
         child: Image.asset(
-          'assets/logos/logo_dermain3.png',
-          height: 100,
+          'assets/logos/logo_dermain5.png',
+          height: 140,
         ),
       ),
     );

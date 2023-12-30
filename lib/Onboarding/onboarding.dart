@@ -121,7 +121,7 @@ class _OnboardingState extends State<Onboarding> {
                 child: Text(
                   'Mulai Donasi',
                   style: GoogleFonts.poppins(
-                    color: cBlack,
+                    color: cWhite,
                     fontSize: 18,
                     fontWeight: semibold,
                   ),
