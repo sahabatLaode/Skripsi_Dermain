@@ -303,7 +303,7 @@ class _SignInState extends State<SignIn> {
           'Masuk',
           style: GoogleFonts.poppins(
             color: cWhite,
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: semibold,
           ),
         ),

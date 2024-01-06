@@ -219,6 +219,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
               lokasis(),
               const SizedBox(height: 32),
               tombol(),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -665,15 +666,16 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
           child: Row(
             children: [
               Icon(
-                Iconsax.user,
+                Iconsax.map_14,
                 color: cBlack,
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: TextFormField(
+                  enabled: false,
                   controller: lokasiController,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'lokasi',
+                    hintText: 'Lokasi',
                     hintStyle: GoogleFonts.poppins(
                       color: c5,
                       fontSize: 16,
@@ -697,6 +699,35 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
               ),
             ),
           ),
+        Container(
+          margin: const EdgeInsets.only(top: 6),
+          height: 60,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              backgroundColor: c2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Tentukan Lokasi',
+                  style: GoogleFonts.poppins(
+                    color: cWhite,
+                    fontWeight: semibold,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -777,7 +808,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
                   : Text(
                       'Pesan',
                       style: GoogleFonts.poppins(
-                        color: cBlack,
+                        color: cWhite,
                         fontSize: 16,
                         fontWeight: semibold,
                       ),
