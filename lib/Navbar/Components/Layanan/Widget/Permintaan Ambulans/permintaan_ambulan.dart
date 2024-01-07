@@ -3,6 +3,7 @@ import 'package:dermain/Providers/ambulans_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import '../../../../../route_animation.dart';
 import '../../../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +41,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
 
   bool isLoading = false;
 
-  // String lokasi='';
+  String address = '';
   String dropdownBerat = kg.first;
   String dropdownLevel = level.first;
   String dropdownPukul = jam.first;
@@ -107,59 +108,66 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
           title: Text(
             'Yakin untuk membatalkan?',
             textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(),
-          ),
-          actionsAlignment: MainAxisAlignment.center,
-          actions: <Widget>[
-            SizedBox(
-              height: 60,
-              width: 140,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: c2,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: Text(
-                  'Batalkan',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontSize: 16,
-                    fontWeight: semibold,
-                  ),
-                ),
-              ),
+            style: GoogleFonts.poppins(
+              fontSize: 18,
             ),
-            SizedBox(
-              height: 60,
-              width: 140,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/navbar');
-                },
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 2,
-                      style: BorderStyle.solid,
-                      color: c2,
+          ),
+          actionsAlignment: MainAxisAlignment.spaceBetween,
+          actions: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 48,
+                  width: 120,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: c2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    child: Text(
+                      'Tidak',
+                      style: GoogleFonts.poppins(
+                        color: cWhite,
+                        fontSize: 16,
+                        fontWeight: semibold,
+                      ),
+                    ),
                   ),
                 ),
-                child: Text(
-                  'Ya',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontSize: 16,
-                    fontWeight: semibold,
+                const SizedBox(width: 12),
+                SizedBox(
+                  height: 48,
+                  width: 120,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/navbar');
+                    },
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          style: BorderStyle.solid,
+                          color: cRed,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      'Ya',
+                      style: GoogleFonts.poppins(
+                        color: cRed,
+                        fontSize: 16,
+                        fontWeight: semibold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
           ],
         );
@@ -175,15 +183,6 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: cWhite,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(
-            Iconsax.arrow_left,
-            color: cBlack,
-          ),
-        ),
         centerTitle: true,
         title: Text(
           titleController.text = 'Ambulans',
@@ -658,7 +657,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
         Container(
           margin: const EdgeInsets.only(top: 6),
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          height: 60,
+          height: 100,
           decoration: BoxDecoration(
             color: c6,
             borderRadius: BorderRadius.circular(16),
@@ -674,16 +673,19 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
                 child: TextFormField(
                   enabled: false,
                   controller: lokasiController,
+                  maxLines: 3,
+                  textAlign: TextAlign.left,
+                  style: GoogleFonts.poppins(
+                    color: cBlack,
+                    fontSize: 16,
+                  ),
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Lokasi',
+                    hintText: 'Pilih lokasi di peta',
                     hintStyle: GoogleFonts.poppins(
                       color: c5,
                       fontSize: 16,
                     ),
                   ),
-                  onChanged: (value) {
-                    setState(() {});
-                  },
                 ),
               ),
             ],
@@ -699,33 +701,35 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
               ),
             ),
           ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
-          height: 60,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              backgroundColor: c2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 680,
+          child: OpenStreetMapSearchAndPick(
+            buttonColor: c4,
+            buttonText: 'Tetapkan lokasi',
+            buttonTextStyle: GoogleFonts.poppins(
+              color: cWhite,
+              fontSize: 16,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Tentukan Lokasi',
-                  style: GoogleFonts.poppins(
-                    color: cWhite,
-                    fontWeight: semibold,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+            zoomInIcon: Iconsax.search_zoom_in,
+            zoomOutIcon: Iconsax.search_zoom_out_1,
+            currentLocationIcon: Iconsax.gps,
+            locationPinIcon: Iconsax.location5,
+            locationPinIconColor: c4,
+            locationPinText: 'Pilih lokasi',
+            locationPinTextStyle: GoogleFonts.poppins(
+              color: c4,
+              fontWeight: semibold,
             ),
+            onPicked: (pickedData) {
+              setState(() {
+                address = pickedData.addressName;
+                lokasiController.text = address;
+              });
+              print(pickedData.latLong.latitude);
+              print(pickedData.latLong.longitude);
+              print(pickedData.address);
+            },
           ),
         ),
       ],
@@ -749,7 +753,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     style: BorderStyle.solid,
-                    color: c2,
+                    color: cRed,
                   ),
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -757,7 +761,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
               child: Text(
                 'Batalkan',
                 style: GoogleFonts.poppins(
-                  color: cBlack,
+                  color: cRed,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),

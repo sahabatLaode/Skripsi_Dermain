@@ -43,7 +43,7 @@ class _NavbarState extends State<Navbar> {
         ),
         child: NavigationBar(
           labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-          elevation: 20.0,
+          elevation: 0,
           height: 80,
           backgroundColor: cWhite,
           selectedIndex: index,

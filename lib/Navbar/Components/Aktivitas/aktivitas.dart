@@ -32,14 +32,14 @@ class Aktivitas extends StatelessWidget {
             statusBarIconBrightness: Brightness.dark,
           ),
           bottom: TabBar(
-            // isScrollable: true,
-            // overlayColor: const MaterialStatePropertyAll(Colors.transparent),
             unselectedLabelColor: cBlack,
             unselectedLabelStyle: GoogleFonts.poppins(),
             labelStyle: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: semibold,
+              color: cWhite,
             ),
+            indicatorSize: TabBarIndicatorSize.tab,
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: c2,
