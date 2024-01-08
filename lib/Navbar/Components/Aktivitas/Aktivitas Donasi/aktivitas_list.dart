@@ -16,13 +16,19 @@ class AktivitasList extends ConsumerStatefulWidget {
 
 class _AktivitasListState extends ConsumerState<AktivitasList> {
   bool status = false;
+
   void _loadAllZakats() async {
     setState(() {
       status = false;
     });
-    ref
-        .read(zakatsProvider.notifier)
-        .addZakats(await ZakatMethod.loadAllZakat());
+
+    final zakats = await ZakatMethod.loadAllZakat();
+
+    // Mengurutkan list zakats berdasarkan tanggal dibuat
+    zakats.sort((a, b) => b.created_at.compareTo(a.created_at));
+
+    ref.read(zakatsProvider.notifier).addZakats(zakats);
+
     setState(() {
       status = true;
     });
@@ -31,7 +37,6 @@ class _AktivitasListState extends ConsumerState<AktivitasList> {
   @override
   void initState() {
     _loadAllZakats();
-
     super.initState();
   }
 
@@ -50,12 +55,8 @@ class _AktivitasListState extends ConsumerState<AktivitasList> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: zakats.length,
                     itemBuilder: (context, index) {
-                      final zakat =
-                          zakats.length > index ? zakats[index] : null;
-
-                      return AktivitasItem(
-                        zakat: zakat,
-                      );
+                      final zakat = zakats[index];
+                      return AktivitasItem(zakat: zakat);
                     },
                   )
                 : Center(

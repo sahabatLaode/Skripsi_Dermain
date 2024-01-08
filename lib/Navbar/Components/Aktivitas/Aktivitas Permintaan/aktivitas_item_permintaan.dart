@@ -4,7 +4,6 @@ import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
 class AktivitasItemPermintaan extends ConsumerStatefulWidget {
   final KoinSurga? koinSurga;
@@ -35,9 +34,9 @@ class _AktivitasItemPermintaanState
 
   Widget _buildKoinSurgaCard(KoinSurga koinSurga) {
     // final KoinSurga? koinSurga = widget.koinSurga;
-    DateTime koinSurgaDate = DateTime.parse(koinSurga.created_at);
-    String koinSurgaFormattedDate =
-        DateFormat('dd MMMM yyyy').format(koinSurgaDate);
+    // DateTime koinSurgaDate = DateTime.parse(koinSurga.created_at);
+    // String koinSurgaFormattedDate =
+    //     DateFormat('dd MMMM yyyy').format(koinSurgaDate);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -87,7 +86,7 @@ class _AktivitasItemPermintaanState
                       ),
                     ),
                     Text(
-                      koinSurgaFormattedDate,
+                      koinSurga.tanggal,
                       style: GoogleFonts.poppins(
                         color: cBlack,
                       ),
@@ -104,9 +103,9 @@ class _AktivitasItemPermintaanState
 
   Widget _buildAmbulanCard(Ambulan ambulan) {
     // final Ambulan? ambulan = widget.ambulan;
-    DateTime ambulanDate = DateTime.parse(ambulan.created_at);
-    String ambulanFormattedDate =
-        DateFormat('dd MMMM yyyy').format(ambulanDate);
+    // DateTime ambulanDate = DateTime.parse(ambulan.created_at);
+    // String ambulanFormattedDate =
+    //     DateFormat('dd MMMM yyyy').format(ambulanDate);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -142,7 +141,7 @@ class _AktivitasItemPermintaanState
                       ),
                     ),
                     Text(
-                      ambulan.pasien,
+                      ambulan.pemesan,
                       style: GoogleFonts.poppins(
                         color: cBlack,
                         fontSize: 18,
@@ -162,7 +161,7 @@ class _AktivitasItemPermintaanState
                       ),
                     ),
                     Text(
-                      ambulan.pemesan,
+                      ambulan.pasien,
                       style: GoogleFonts.poppins(
                         color: cBlack,
                       ),
@@ -180,7 +179,7 @@ class _AktivitasItemPermintaanState
                       ),
                     ),
                     Text(
-                      ambulanFormattedDate,
+                      ambulan.tanggal,
                       style: GoogleFonts.poppins(
                         color: cBlack,
                       ),

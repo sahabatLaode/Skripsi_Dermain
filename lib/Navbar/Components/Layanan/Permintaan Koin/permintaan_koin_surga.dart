@@ -22,7 +22,7 @@ class PermintaanKoin extends ConsumerStatefulWidget {
 }
 
 class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
-  final catatanController = TextEditingController(text: 'Tidak ada catatan');
+  final catatanController = TextEditingController();
   final tanggalController = TextEditingController();
   final titleController = TextEditingController();
   final jenisController = TextEditingController();
@@ -134,19 +134,11 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
     return Scaffold(
       backgroundColor: cWhite,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: c2,
+        backgroundColor: c1,
         iconTheme: IconThemeData(
           color: c2,
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(
-            Iconsax.arrow_left,
-            color: cBlack,
-          ),
         ),
         centerTitle: true,
         title: Column(
@@ -155,7 +147,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
             Text(
               titleController.text = 'Koin Surga',
               style: GoogleFonts.poppins(
-                color: cBlack,
+                color: cWhite,
                 fontSize: 18,
                 fontWeight: semibold,
               ),
@@ -163,15 +155,16 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           ],
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: c2,
-          statusBarIconBrightness: Brightness.dark,
+          statusBarColor: c1,
+          statusBarIconBrightness: Brightness.light,
         ),
       ),
       body: Form(
         key: _formKey,
         child: ListView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           children: [
+            const SizedBox(height: 12),
             catatan(),
             const SizedBox(height: 12),
             tanggal(),
@@ -207,13 +200,20 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           child: TextField(
             controller: catatanController,
             maxLines: null,
+            style: GoogleFonts.poppins(
+              color: cBlack,
+              fontSize: 16,
+            ),
             decoration: InputDecoration.collapsed(
-              hintText: '',
+              hintText: 'Boleh dikosongi',
               hintStyle: GoogleFonts.poppins(
                 color: c5,
                 fontSize: 16,
               ),
             ),
+            onChanged: (value) {
+              setState(() {});
+            },
           ),
         ),
       ],
@@ -274,7 +274,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                     showDatePicker(
                       context: context,
                       initialDate: selectDate,
-                      firstDate: DateTime(2023),
+                      firstDate: DateTime(2024),
                       lastDate: DateTime(2050),
                     ).then(
                       (value) {
@@ -424,14 +424,17 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                 setState(() {
                   isLoading = true;
                 });
-
                 Future.delayed(const Duration(seconds: 2), () {
                   setState(() {
                     isLoading = false;
                   });
-                  if (tanggalController.text.isEmpty ||
+                  if (catatanController.text.isEmpty &&
+                      tanggalController.text.isEmpty &&
                       jenisController.text.isEmpty) {
                   } else {
+                    if (catatanController.text.isEmpty) {
+                      catatanController.text = 'Tidak ada catatan';
+                    }
                     _addKoinSurga();
                     Navigator.of(context).push(konfirmasiDonasi());
                   }

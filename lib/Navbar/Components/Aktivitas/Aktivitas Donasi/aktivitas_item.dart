@@ -1,4 +1,5 @@
 import 'package:dermain/Models/zakat_model.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Detail%20Aktivitas/detail_aktivitas.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,12 @@ class AktivitasItem extends ConsumerStatefulWidget {
 }
 
 class _AktivitasItemState extends ConsumerState<AktivitasItem> {
+  final Map<String, Color> donationColors = {
+    'Zakat': c1,
+    'Infaq': c4,
+    'Sedekah': c2,
+  };
+
   @override
   Widget build(BuildContext context) {
     if (widget.zakat != null) {}
@@ -33,271 +40,98 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            height: 101,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: c6,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 1,
-                  spreadRadius: 2,
+          GestureDetector(
+            onTap: () {
+              // Navigasi ke halaman Detail dan mengirimkan data zakat sebagai argumen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailPage(zakat: zakat),
                 ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      zakat.jenis_donasi,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 18,
-                        fontWeight: bold,
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              height: 101,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: c6,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 1,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        zakat.jenis_donasi,
+                        style: GoogleFonts.poppins(
+                          color: donationColors[zakat.jenis_donasi] ??
+                              Colors.white,
+                          fontSize: 18,
+                          fontWeight: bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      zakat.nominal,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 18,
-                        fontWeight: bold,
+                      Text(
+                        zakat.nominal,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                          fontSize: 18,
+                          fontWeight: bold,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      zakat.nama,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        zakat.nama,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                    Text(
-                      zakat.email,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                      Text(
+                        zakat.email,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      zakat.phone,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        zakat.phone,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                    Text(
-                      zakatFormattedDate,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                      Text(
+                        zakatFormattedDate,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
   }
-
-// Widget _buildInfaqCard() {
-//   final Infaq? infaq = widget.infaq;
-//   DateTime infaqDate = DateTime.parse(infaq!.created_at);
-//   String infaqFormattedDate = DateFormat('dd MMMM yyyy').format(infaqDate);
-
-//   return Padding(
-//     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-//     child: Column(
-//       children: [
-//         Container(
-//           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-//           height: 101,
-//           width: double.infinity,
-//           decoration: BoxDecoration(
-//             color: c6,
-//             borderRadius: BorderRadius.circular(16),
-//             boxShadow: const [
-//               BoxShadow(
-//                 color: Colors.black12,
-//                 blurRadius: 1,
-//                 spreadRadius: 2,
-//               ),
-//             ],
-//           ),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     infaq.jenis_donasi,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                       fontSize: 18,
-//                       fontWeight: bold,
-//                     ),
-//                   ),
-//                   Text(
-//                     infaq.nominal,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                       fontSize: 18,
-//                       fontWeight: bold,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               const SizedBox(height: 4),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     infaq.nama,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                   Text(
-//                     infaq.email,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               const SizedBox(height: 4),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     infaq.phone,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                   Text(
-//                     infaqFormattedDate,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
-
-// Widget _buildSedekahCard() {
-//   final Sedekah? sedekah = widget.sedekah;
-//   DateTime sedekahDate = DateTime.parse(sedekah!.created_at);
-//   String sedekahFormattedDate =
-//       DateFormat('dd MMMM yyyy').format(sedekahDate);
-
-//   return Padding(
-//     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-//     child: Column(
-//       children: [
-//         Container(
-//           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-//           height: 101,
-//           width: double.infinity,
-//           decoration: BoxDecoration(
-//             color: c6,
-//             borderRadius: BorderRadius.circular(16),
-//             boxShadow: const [
-//               BoxShadow(
-//                 color: Colors.black12,
-//                 blurRadius: 1,
-//                 spreadRadius: 2,
-//               ),
-//             ],
-//           ),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     sedekah.jenis_donasi,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                       fontSize: 18,
-//                       fontWeight: bold,
-//                     ),
-//                   ),
-//                   Text(
-//                     sedekah.nominal,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                       fontSize: 18,
-//                       fontWeight: bold,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               const SizedBox(height: 4),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     sedekah.nama,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                   Text(
-//                     sedekah.email,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               const SizedBox(height: 4),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     sedekah.phone,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                   Text(
-//                     sedekahFormattedDate,
-//                     style: GoogleFonts.poppins(
-//                       color: cBlack,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
 }

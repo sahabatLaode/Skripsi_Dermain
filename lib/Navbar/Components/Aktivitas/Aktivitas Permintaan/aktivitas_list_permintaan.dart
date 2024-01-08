@@ -1,5 +1,7 @@
 import 'package:dermain/Methods/ambulan_method.dart';
 import 'package:dermain/Methods/koinSurga_method.dart';
+import 'package:dermain/Models/ambulan_model.dart';
+import 'package:dermain/Models/koinSurga_model.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/Aktivitas%20Permintaan/aktivitas_item_permintaan.dart';
 import 'package:dermain/Providers/ambulans_provider.dart';
 import 'package:dermain/Providers/koinSurga_provider.dart';
@@ -48,26 +50,33 @@ class _AktivitasListPermintaanState
     final koinSurgas = ref.watch(koinSurgasProvider);
     final ambulans = ref.watch(ambulansProvider);
 
+    List<dynamic> combinedList = [];
+    combinedList.addAll(koinSurgas);
+    combinedList.addAll(ambulans);
+
+    // Mengurutkan list berdasarkan tanggal penambahan
+    combinedList.sort((a, b) => b.created_at.compareTo(a.created_at));
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (koinSurgas.isNotEmpty && ambulans.isNotEmpty)
+          if (combinedList.isNotEmpty)
             status
                 ? ListView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: koinSurgas.length + ambulans.length,
+                    // physics: const NeverScrollableScrollPhysics(),
+                    itemCount: combinedList.length,
                     itemBuilder: (context, index) {
-                      if (index < koinSurgas.length) {
-                        final koinSurga = koinSurgas[index];
+                      final item = combinedList[index];
+                      if (item is KoinSurga) {
                         return AktivitasItemPermintaan(
-                            koinSurga: koinSurga, ambulan: null);
-                      } else {
-                        final ambulan = ambulans[index - koinSurgas.length];
+                            koinSurga: item, ambulan: null);
+                      } else if (item is Ambulan) {
                         return AktivitasItemPermintaan(
-                            ambulan: ambulan, koinSurga: null);
+                            ambulan: item, koinSurga: null);
                       }
+                      return null;
                     },
                   )
                 : Center(

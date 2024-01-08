@@ -1,9 +1,9 @@
 import 'package:dermain/Authentication/Sign%20Up/sign_up.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
-import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/konfirmasi_donasi.dart';
-import 'package:dermain/Navbar/Components/Layanan/Widget/Donasi/nota.dart';
-import 'package:dermain/Navbar/Components/Layanan/Widget/Permintaan%20Ambulans/show.dart';
+import 'package:dermain/Navbar/Components/Layanan/Donasi/konfirmasi_donasi.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Detail%20Aktivitas/nota.dart';
+import 'package:dermain/Navbar/Components/Layanan/Permintaan%20Ambulans/show.dart';
 import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/ubah_profil.dart';
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
 import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
@@ -16,11 +16,11 @@ import 'Navbar/Components/Beranda/Widgets/Berita/berita.dart';
 import 'Navbar/Components/Beranda/Widgets/Notifikasi/notifikasi.dart';
 import 'Navbar/Components/Profil/Preferensi/bantuan.dart';
 import 'Navbar/Components/Profil/Preferensi/syarat_ketentuan.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/donasi_infaq.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/donasi_sedekah.dart';
-import 'Navbar/Components/Layanan/Widget/Donasi/donasi_zakat.dart';
-import 'Navbar/Components/Layanan/Widget/Permintaan Ambulans/permintaan_ambulan.dart';
-import 'Navbar/Components/Layanan/Widget/Permintaan Koin/permintaan_koin_surga.dart';
+import 'Navbar/Components/Layanan/Donasi/donasi_infaq.dart';
+import 'Navbar/Components/Layanan/Donasi/donasi_sedekah.dart';
+import 'Navbar/Components/Layanan/Donasi/donasi_zakat.dart';
+import 'Navbar/Components/Layanan/Permintaan Ambulans/permintaan_ambulan.dart';
+import 'Navbar/Components/Layanan/Permintaan Koin/permintaan_koin_surga.dart';
 import 'Onboarding/onboarding.dart';
 
 Route onboarding() {
