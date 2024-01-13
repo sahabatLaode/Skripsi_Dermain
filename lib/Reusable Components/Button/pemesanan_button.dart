@@ -3,21 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../theme.dart';
 
 class PemesananButton extends StatefulWidget {
-  final String title;
+  final String titleAlert;
   final VoidCallback trueButton;
-  final Color warnaTrueButton;
-  final Color warnaFalseButton;
-  final Color warnaAlertTrueButton;
-  final Color warnaAlertFalseButton;
+  final Color warnaButton;
 
   const PemesananButton({
     super.key,
-    required this.title,
+    required this.titleAlert,
     required this.trueButton,
-    required this.warnaTrueButton,
-    required this.warnaFalseButton,
-    required this.warnaAlertTrueButton,
-    required this.warnaAlertFalseButton,
+    required this.warnaButton,
   });
 
   @override
@@ -34,7 +28,7 @@ class _PemesananButtonState extends State<PemesananButton> {
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           title: Text(
-            widget.title,
+            widget.titleAlert,
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
               fontSize: 18,
@@ -53,7 +47,7 @@ class _PemesananButtonState extends State<PemesananButton> {
                       Navigator.of(context).pop();
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: widget.warnaAlertFalseButton,
+                      backgroundColor: widget.warnaButton,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -80,7 +74,7 @@ class _PemesananButtonState extends State<PemesananButton> {
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
                           style: BorderStyle.solid,
-                          color: widget.warnaAlertTrueButton,
+                          color: widget.warnaButton,
                         ),
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -88,7 +82,7 @@ class _PemesananButtonState extends State<PemesananButton> {
                     child: Text(
                       'Ya',
                       style: GoogleFonts.poppins(
-                        color: widget.warnaAlertTrueButton,
+                        color: widget.warnaButton,
                         fontSize: 16,
                         fontWeight: semibold,
                       ),
@@ -121,7 +115,7 @@ class _PemesananButtonState extends State<PemesananButton> {
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     style: BorderStyle.solid,
-                    color: widget.warnaFalseButton,
+                    color: widget.warnaButton,
                   ),
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -129,7 +123,7 @@ class _PemesananButtonState extends State<PemesananButton> {
               child: Text(
                 'Batalkan',
                 style: GoogleFonts.poppins(
-                  color: widget.warnaFalseButton,
+                  color: widget.warnaButton,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -146,7 +140,7 @@ class _PemesananButtonState extends State<PemesananButton> {
             child: TextButton(
               onPressed: widget.trueButton,
               style: TextButton.styleFrom(
-                backgroundColor: widget.warnaTrueButton,
+                backgroundColor: widget.warnaButton,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),

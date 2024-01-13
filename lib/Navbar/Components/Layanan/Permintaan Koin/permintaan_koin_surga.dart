@@ -1,5 +1,9 @@
 import 'package:dermain/Methods/koinSurga_method.dart';
 import 'package:dermain/Providers/koinSurga_provider.dart';
+import 'package:dermain/Reusable%20Components/Widget/catatan_form.dart';
+import 'package:dermain/Reusable%20Components/Widget/dropdowm_form.dart';
+import 'package:dermain/Reusable%20Components/Widget/tanggal_form.dart';
+import 'package:dermain/Reusable%20Components/Widget/waktu_form.dart';
 import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,12 +11,6 @@ import 'package:dermain/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:intl/intl.dart';
-
-List<String> jenis = [
-  'Antar Kencleng Koin Surga',
-  'Jemput Kencleng Koin Surga'
-];
 
 class PermintaanKoin extends ConsumerStatefulWidget {
   const PermintaanKoin({super.key});
@@ -25,15 +23,11 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
   final catatanController = TextEditingController();
   final tanggalController = TextEditingController();
   final titleController = TextEditingController();
+  final pukulController = TextEditingController();
   final jenisController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  String dropdownJenis = jenis.first;
-
-  bool isShowPasswordError = false;
   bool isLoading = false;
-
-  DateTime selectDate = DateTime.now();
 
   void _addKoinSurga() async {
     if (!_formKey.currentState!.validate()) {
@@ -44,6 +38,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
       titleController.text,
       jenisController.text,
       catatanController.text,
+      pukulController.text,
       tanggalController.text,
     );
 
@@ -58,75 +53,6 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Koin surga successfully added')));
     }
-  }
-
-  void myAlert() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          title: Text(
-            'Yakin untuk membatalkan?',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(),
-          ),
-          actionsAlignment: MainAxisAlignment.center,
-          actions: <Widget>[
-            SizedBox(
-              height: 60,
-              width: 140,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: c2,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: Text(
-                  'Batalkan',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontSize: 16,
-                    fontWeight: semibold,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 60,
-              width: 140,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/navbar');
-                },
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 2,
-                      style: BorderStyle.solid,
-                      color: c2,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: Text(
-                  'Ya',
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontSize: 16,
-                    fontWeight: semibold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -164,219 +90,50 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
         child: ListView(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           children: [
+            // catatan
             const SizedBox(height: 12),
-            catatan(),
+            CatatanForm(
+              controller: catatanController,
+              title: 'Catatan',
+              subtitle: 'Boleh dikosongi',
+            ),
+
+            // tanggal
             const SizedBox(height: 12),
-            tanggal(),
+            TanggalForm(
+              controller: tanggalController,
+              title: 'Tanggal',
+              warna: c1,
+            ),
+
+            // pukul
             const SizedBox(height: 12),
-            jenisPermintaan(),
-            const SizedBox(height: 32),
+            WaktuForm(
+              title: 'Pukul',
+              warna: c1,
+              controller: pukulController,
+            ),
+
+            // jenis permintaan
+            const SizedBox(height: 12),
+            DropdownForm(
+              list: const [
+                'Antar Kencleng Koin Surga',
+                'Jemput Kencleng Koin Surga'
+              ],
+              controller: jenisController,
+              warnaIcon: c1,
+              title: 'Jenis Permintaan',
+              warning: 'Pastikan jenis permintaan sudah benar',
+              icon: Iconsax.more_circle,
+            ),
+
+            // tombol
+            const SizedBox(height: 120),
             tombol(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget catatan() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Catatan',
-          style: GoogleFonts.poppins(
-            color: cBlack,
-            fontSize: 12,
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
-          padding: const EdgeInsets.all(16),
-          height: 180,
-          decoration: BoxDecoration(
-            color: c6,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: TextField(
-            controller: catatanController,
-            maxLines: null,
-            style: GoogleFonts.poppins(
-              color: cBlack,
-              fontSize: 16,
-            ),
-            decoration: InputDecoration.collapsed(
-              hintText: 'Boleh dikosongi',
-              hintStyle: GoogleFonts.poppins(
-                color: c5,
-                fontSize: 16,
-              ),
-            ),
-            onChanged: (value) {
-              setState(() {});
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget tanggal() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Tanggal',
-          style: GoogleFonts.poppins(
-            color: cBlack,
-            fontSize: 12,
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 4,
-          ),
-          height: 60,
-          decoration: BoxDecoration(
-            color: c6,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Iconsax.calendar_1,
-                    color: cBlack,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    // 'Pilih tanggal',
-                    DateFormat('dd MMMM yyyy').format(selectDate),
-                    style: GoogleFonts.poppins(
-                      color: cBlack,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                height: 52,
-                width: 52,
-                decoration: BoxDecoration(
-                  color: c2,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    showDatePicker(
-                      context: context,
-                      initialDate: selectDate,
-                      firstDate: DateTime(2024),
-                      lastDate: DateTime(2050),
-                    ).then(
-                      (value) {
-                        if (value != null) {
-                          setState(() {
-                            selectDate = value;
-                            tanggalController.text =
-                                DateFormat('dd MMMM yyyy').format(selectDate);
-                          });
-                        }
-                      },
-                    );
-                  },
-                  icon: const Icon(
-                    Iconsax.calendar_add5,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        if (tanggalController.text.isEmpty)
-          Container(
-            margin: const EdgeInsets.only(top: 6),
-            child: Text(
-              'Pastikan tanggal yang dipilih sudah benar',
-              style: GoogleFonts.poppins(
-                color: cRed,
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-
-  Widget jenisPermintaan() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Jenis Permintaan',
-          style: GoogleFonts.poppins(
-            color: cBlack,
-            fontSize: 12,
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          height: 60,
-          decoration: BoxDecoration(
-            color: c6,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Iconsax.more_circle,
-                color: cBlack,
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: DropdownButton<String>(
-                  dropdownColor: c6,
-                  value: dropdownJenis,
-                  isExpanded: true,
-                  isDense: true,
-                  icon: Icon(Iconsax.arrow_down_1, color: cBlack),
-                  elevation: 16,
-                  style: GoogleFonts.poppins(
-                    color: cBlack,
-                    fontSize: 16,
-                  ),
-                  onChanged: (String? value) {
-                    // This is called when the user selects an item.
-                    setState(() {
-                      dropdownJenis = value!;
-                      jenisController.text = value;
-                    });
-                  },
-                  items: jenis.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ],
-          ),
-        ),
-        if (jenisController.text.isEmpty)
-          Container(
-            margin: const EdgeInsets.only(top: 6),
-            child: Text(
-              'Pastikan jenis permintaan sudah benar',
-              style: GoogleFonts.poppins(
-                color: cRed,
-              ),
-            ),
-          ),
-      ],
     );
   }
 
@@ -388,16 +145,90 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(right: 8),
-            height: 56,
+            height: 60,
             child: TextButton(
               onPressed: () {
-                myAlert();
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    // pop up
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      title: Text(
+                        'Yakin untuk membatalkan?',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                        ),
+                      ),
+                      actionsAlignment: MainAxisAlignment.spaceBetween,
+                      actions: <Widget>[
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 48,
+                              width: 120,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                style: TextButton.styleFrom(
+                                  backgroundColor: c1,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Tidak',
+                                  style: GoogleFonts.poppins(
+                                    color: cWhite,
+                                    fontSize: 16,
+                                    fontWeight: semibold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            SizedBox(
+                              height: 48,
+                              width: 120,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/navbar');
+                                },
+                                style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      style: BorderStyle.solid,
+                                      color: c1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Ya',
+                                  style: GoogleFonts.poppins(
+                                    color: c1,
+                                    fontSize: 16,
+                                    fontWeight: semibold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     style: BorderStyle.solid,
-                    color: c2,
+                    color: c1,
                   ),
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -405,7 +236,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
               child: Text(
                 'Batalkan',
                 style: GoogleFonts.poppins(
-                  color: cBlack,
+                  color: c1,
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
@@ -429,7 +260,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                     isLoading = false;
                   });
                   if (catatanController.text.isEmpty &&
-                      tanggalController.text.isEmpty &&
+                          tanggalController.text.isEmpty ||
                       jenisController.text.isEmpty) {
                   } else {
                     if (catatanController.text.isEmpty) {
@@ -441,7 +272,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                 });
               },
               style: TextButton.styleFrom(
-                backgroundColor: c2,
+                backgroundColor: c1,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -454,7 +285,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                   : Text(
                       'Pesan',
                       style: GoogleFonts.poppins(
-                        color: cBlack,
+                        color: cWhite,
                         fontSize: 16,
                         fontWeight: semibold,
                       ),

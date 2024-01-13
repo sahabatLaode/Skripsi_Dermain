@@ -1,5 +1,5 @@
 import 'package:dermain/Navbar/Components/Layanan/Donasi/konfirmasi_donasi.dart';
-import 'package:dermain/Navbar/Components/Aktivitas/Detail%20Aktivitas/nota.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/nota.dart';
 import 'package:dermain/Splash%20Page/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

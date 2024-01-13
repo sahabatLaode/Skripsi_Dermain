@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../theme.dart';
 
-class TombolPrimer extends StatelessWidget {
+class TombolPrimer extends StatefulWidget {
   final String title;
-  final VoidCallback ditekan;
-  const TombolPrimer({super.key, required this.title, required this.ditekan});
+  // final VoidCallback ditekan;
+  const TombolPrimer(
+      {super.key,
+      required this.title,
+      // required this.ditekan,
+      required TextButton child});
+
+  @override
+  State<TombolPrimer> createState() => _TombolPrimerState();
+}
+
+class _TombolPrimerState extends State<TombolPrimer> {
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 32),
-      height: 56,
+      height: 60,
       width: double.infinity,
-      child: TextButton(
-        onPressed: ditekan,
-        style: TextButton.styleFrom(
-          backgroundColor: c2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: Text(
-          title,
-          style: GoogleFonts.poppins(
-            color: cWhite,
-            fontSize: 18,
-            fontWeight: semibold,
-          ),
-        ),
-      ),
     );
   }
 }

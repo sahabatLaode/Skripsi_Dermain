@@ -1,5 +1,4 @@
 import 'package:dermain/Methods/auth_method.dart';
-import 'package:dermain/Reusable%20Components/Button/tombol_primer.dart';
 import 'package:dermain/route_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,6 +17,7 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   String userName = "";
   String emailUser = "";
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -168,21 +168,45 @@ class _ProfilState extends State<Profil> {
   Widget logout() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: TombolPrimer(
-          title: 'Keluar',
-          ditekan: () async {
-            bool status = await AuthMethod.logout();
-
-            if (status) {
-              setState(() {
-                globals.isLogin = false;
-                globals.token = '';
-              });
-            }
-
+      child: TextButton(
+        onPressed: () async {
+          bool status = await AuthMethod.logout();
+          if (status) {
+            setState(() {
+              globals.isLogin = false;
+              globals.token = '';
+              isLoading = true;
+            });
+          }
+          Future.delayed(const Duration(seconds: 2), () {
+            setState(() {
+              isLoading = false;
+            });
             if (!mounted) return;
             Navigator.of(context).push(signIn());
-          }),
+          });
+        },
+        style: TextButton.styleFrom(
+          backgroundColor: c2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          fixedSize: const Size(double.maxFinite, 60),
+        ),
+        child: isLoading
+            ? CircularProgressIndicator(
+                color: cWhite,
+                backgroundColor: c6,
+              )
+            : Text(
+                'Keluar',
+                style: GoogleFonts.poppins(
+                  color: cWhite,
+                  fontSize: 16,
+                  fontWeight: semibold,
+                ),
+              ),
+      ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:dermain/Models/zakat_model.dart';
-import 'package:dermain/Navbar/Components/Aktivitas/Detail%20Aktivitas/detail_aktivitas.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/konfirmasi.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +19,7 @@ class AktivitasItem extends ConsumerStatefulWidget {
 }
 
 class _AktivitasItemState extends ConsumerState<AktivitasItem> {
-  final Map<String, Color> donationColors = {
+  final Map<String, Color> titleColors = {
     'Zakat': c1,
     'Infaq': c4,
     'Sedekah': c2,
@@ -46,7 +46,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailPage(zakat: zakat),
+                  builder: (context) => Konfirmasi(zakat: zakat),
                 ),
               );
             },
@@ -74,8 +74,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
                       Text(
                         zakat.jenis_donasi,
                         style: GoogleFonts.poppins(
-                          color: donationColors[zakat.jenis_donasi] ??
-                              Colors.white,
+                          color: titleColors[zakat.jenis_donasi] ?? cWhite,
                           fontSize: 18,
                           fontWeight: bold,
                         ),

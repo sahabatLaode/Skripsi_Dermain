@@ -77,7 +77,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 0 ? cBlack : c4,
+                    color: currentIndex == 0 ? cBlack : c5,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -86,7 +86,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 1 ? cBlack : c4,
+                    color: currentIndex == 1 ? cBlack : c5,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -95,7 +95,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 2 ? cBlack : c4,
+                    color: currentIndex == 2 ? cBlack : c5,
                   ),
                 ),
               ],

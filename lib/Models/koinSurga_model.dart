@@ -3,6 +3,7 @@ class KoinSurga {
   final String title;
   final String catatan;
   final String tanggal;
+  final String pukul;
   final String jenis_permintaan;
   final String created_at;
 
@@ -11,6 +12,7 @@ class KoinSurga {
     required this.title,
     required this.catatan,
     required this.tanggal,
+    required this.pukul,
     required this.jenis_permintaan,
     required this.created_at,
   });

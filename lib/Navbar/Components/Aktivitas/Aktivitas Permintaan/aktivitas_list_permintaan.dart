@@ -65,7 +65,7 @@ class _AktivitasListPermintaanState
             status
                 ? ListView.builder(
                     shrinkWrap: true,
-                    // physics: const NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: combinedList.length,
                     itemBuilder: (context, index) {
                       final item = combinedList[index];

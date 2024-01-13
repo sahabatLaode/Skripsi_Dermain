@@ -19,6 +19,7 @@ class KoinSurgaMethod {
           title: koinSurga['title'],
           catatan: koinSurga['catatan'],
           tanggal: koinSurga['tanggal'],
+          pukul: koinSurga['pukul'],
           jenis_permintaan: koinSurga['jenis_permintaan'],
           created_at: koinSurga['created_at'],
         );
@@ -33,6 +34,7 @@ class KoinSurgaMethod {
     String jenisPermintaan,
     String catatan,
     String tanggal,
+    String pukul,
   ) async {
     final url = Uri.http(addressUrl, subKoin);
     final response = await http.post(
@@ -43,6 +45,7 @@ class KoinSurgaMethod {
         'jenis_permintaan': jenisPermintaan,
         'catatan': catatan,
         'tanggal': tanggal,
+        'pukul': pukul,
       }),
     );
     Map<String, dynamic> body = json.decode(response.body);

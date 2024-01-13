@@ -16,7 +16,8 @@ class AmbulansNotifier extends StateNotifier<List<Ambulan>> {
         darurat: ambulan.darurat,
         tanggal: ambulan.tanggal,
         pukul: ambulan.pukul,
-        lokasi: ambulan.lokasi,
+        lokasiJemput: ambulan.lokasiJemput,
+        lokasiAntar: ambulan.lokasiAntar,
         created_at: ambulan.created_at,
       ),
     ];

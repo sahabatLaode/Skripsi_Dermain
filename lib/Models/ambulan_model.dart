@@ -7,7 +7,8 @@ class Ambulan {
   final String darurat;
   final String tanggal;
   final String pukul;
-  final String lokasi;
+  final String lokasiJemput;
+  final String lokasiAntar;
   final String created_at;
 
   Ambulan({
@@ -19,7 +20,8 @@ class Ambulan {
     required this.darurat,
     required this.tanggal,
     required this.pukul,
-    required this.lokasi,
+    required this.lokasiJemput,
+    required this.lokasiAntar,
     required this.created_at,
   });
 }

@@ -24,7 +24,8 @@ class AmbulanMethod {
             darurat: ambulan['darurat'],
             tanggal: ambulan['tanggal'],
             pukul: ambulan['pukul'],
-            lokasi: ambulan['lokasi'],
+            lokasiJemput: ambulan['lokasiJemput'],
+            lokasiAntar: ambulan['lokasiAntar'],
             created_at: ambulan['created_at'],
           );
           allAmbulans.add(tempAmbulan);
@@ -42,7 +43,8 @@ class AmbulanMethod {
     String darurat,
     String tanggal,
     String pukul,
-    String lokasi,
+    String lokasiJemput,
+    String lokasiAntar,
   ) async {
     final url = Uri.http(addressUrl, subAmbulan);
     final response = await http.post(
@@ -56,7 +58,8 @@ class AmbulanMethod {
         'darurat': darurat,
         'tanggal': tanggal,
         'pukul': pukul,
-        'lokasi': lokasi,
+        'lokasiJemput': lokasiJemput,
+        'lokasiAntar': lokasiAntar,
       }),
     );
     if (response.body.isNotEmpty) {

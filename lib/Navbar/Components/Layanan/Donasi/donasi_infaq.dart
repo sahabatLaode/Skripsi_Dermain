@@ -1,6 +1,5 @@
 import 'package:dermain/Methods/infaq_method.dart';
 import 'package:dermain/Providers/infaq_provider.dart';
-import 'package:dermain/Reusable%20Components/Button/pemesanan_button.dart';
 import 'package:dermain/Reusable%20Components/Widget/email_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/hp_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/nama_otomatis_form.dart';
@@ -132,13 +131,131 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
 
             // tombol
             const SizedBox(height: 32),
-            PemesananButton(
-              title: 'Yakin untuk membatalkan?',
-              trueButton: () {
+            tombol(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget tombol() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // TOMBOL BATALKAN
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.only(right: 8),
+            height: 60,
+            child: TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    // pop up
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      title: Text(
+                        'Yakin untuk membatalkan?',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                        ),
+                      ),
+                      actionsAlignment: MainAxisAlignment.spaceBetween,
+                      actions: <Widget>[
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 48,
+                              width: 120,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                style: TextButton.styleFrom(
+                                  backgroundColor: c4,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Tidak',
+                                  style: GoogleFonts.poppins(
+                                    color: cWhite,
+                                    fontSize: 16,
+                                    fontWeight: semibold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            SizedBox(
+                              height: 48,
+                              width: 120,
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/navbar');
+                                },
+                                style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      style: BorderStyle.solid,
+                                      color: c4,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Ya',
+                                  style: GoogleFonts.poppins(
+                                    color: c4,
+                                    fontSize: 16,
+                                    fontWeight: semibold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    style: BorderStyle.solid,
+                    color: c4,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: Text(
+                'Batalkan',
+                style: GoogleFonts.poppins(
+                  color: c4,
+                  fontSize: 16,
+                  fontWeight: semibold,
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        // TOMBOL PESAN
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.only(left: 8),
+            height: 56,
+            child: TextButton(
+              onPressed: () {
                 setState(() {
                   isLoading = true;
                 });
-
                 Future.delayed(const Duration(seconds: 2), () {
                   setState(() {
                     isLoading = false;
@@ -153,14 +270,29 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
                   }
                 });
               },
-              warnaTrueButton: c4,
-              warnaFalseButton: c4,
-              warnaAlertTrueButton: c4,
-              warnaAlertFalseButton: c4,
+              style: TextButton.styleFrom(
+                backgroundColor: c4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: isLoading
+                  ? CircularProgressIndicator(
+                      color: cWhite,
+                      backgroundColor: c6,
+                    )
+                  : Text(
+                      'Pesan',
+                      style: GoogleFonts.poppins(
+                        color: cWhite,
+                        fontSize: 16,
+                        fontWeight: semibold,
+                      ),
+                    ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
