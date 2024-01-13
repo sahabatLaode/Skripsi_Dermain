@@ -7,16 +7,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
-class Konfirmasi extends StatefulWidget {
+class KonfirmasiDonasi extends StatefulWidget {
   final Zakat zakat;
 
-  const Konfirmasi({super.key, required this.zakat});
+  const KonfirmasiDonasi({super.key, required this.zakat});
 
   @override
-  State<Konfirmasi> createState() => _KonfirmasiState();
+  State<KonfirmasiDonasi> createState() => _KonfirmasiDonasiState();
 }
 
-class _KonfirmasiState extends State<Konfirmasi> {
+class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
   bool isLoading = false;
   String peringatanTransfer =
       '*Segera lakukan transfer ke rekening Lazismu Banguntapan Selatan';
@@ -48,7 +48,7 @@ class _KonfirmasiState extends State<Konfirmasi> {
         ),
         centerTitle: true,
         title: Text(
-          'Konfirmasi ${widget.zakat.jenis_donasi}',
+          'KonfirmasiDonasi ${widget.zakat.jenis_donasi}',
           style: GoogleFonts.poppins(
             color: cBlack,
             fontSize: 18,

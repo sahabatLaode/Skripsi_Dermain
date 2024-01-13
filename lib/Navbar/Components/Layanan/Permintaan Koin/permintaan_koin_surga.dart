@@ -38,8 +38,8 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
       titleController.text,
       jenisController.text,
       catatanController.text,
-      pukulController.text,
       tanggalController.text,
+      pukulController.text,
     );
 
     if (status) {
@@ -261,6 +261,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                   });
                   if (catatanController.text.isEmpty &&
                           tanggalController.text.isEmpty ||
+                      pukulController.text.isEmpty ||
                       jenisController.text.isEmpty) {
                   } else {
                     if (catatanController.text.isEmpty) {

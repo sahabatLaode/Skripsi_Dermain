@@ -1,5 +1,7 @@
 import 'package:dermain/Models/ambulan_model.dart';
 import 'package:dermain/Models/koinSurga_model.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/konfirmasi_ambulan.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/konfirmasi_koinSurga.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,6 +51,15 @@ class _AktivitasItemPermintaanState
       child: Column(
         children: [
           GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      KonfirmasiKoinSurga(koinSurga: koinSurga),
+                ),
+              );
+            },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               height: 101,
@@ -73,7 +84,7 @@ class _AktivitasItemPermintaanState
                       Text(
                         koinSurga.title,
                         style: GoogleFonts.poppins(
-                          color: cBlack,
+                          color: titleColors[koinSurga.title] ?? cWhite,
                           fontSize: 18,
                           fontWeight: bold,
                         ),
@@ -97,7 +108,7 @@ class _AktivitasItemPermintaanState
                         ),
                       ),
                       Text(
-                        koinSurga.catatan,
+                        koinSurga.tanggal,
                         style: GoogleFonts.poppins(
                           color: cBlack,
                         ),
@@ -109,7 +120,7 @@ class _AktivitasItemPermintaanState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        koinSurga.tanggal,
+                        koinSurga.catatan,
                         style: GoogleFonts.poppins(
                           color: cBlack,
                         ),
@@ -141,82 +152,92 @@ class _AktivitasItemPermintaanState
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            height: 101,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: c6,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 1,
-                  spreadRadius: 2,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => KonfirmasiAmbulan(ambulan: ambulan),
                 ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      ambulan!.title,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 18,
-                        fontWeight: bold,
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              height: 101,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: c6,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 1,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        ambulan!.title,
+                        style: GoogleFonts.poppins(
+                          color: titleColors[ambulan.title] ?? cWhite,
+                          fontSize: 18,
+                          fontWeight: bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      ambulan.pemesan,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
-                        fontSize: 18,
-                        fontWeight: bold,
+                      Text(
+                        ambulan.pemesan,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                          fontSize: 18,
+                          fontWeight: bold,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      ambulan.berat,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        ambulan.berat,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                    Text(
-                      ambulan.pasien,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                      Text(
+                        ambulan.pasien,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      ambulan.pukul,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        ambulan.pukul,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                    Text(
-                      ambulan.tanggal,
-                      style: GoogleFonts.poppins(
-                        color: cBlack,
+                      Text(
+                        ambulan.tanggal,
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

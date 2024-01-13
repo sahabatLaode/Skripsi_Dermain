@@ -1,5 +1,5 @@
 import 'package:dermain/Models/zakat_model.dart';
-import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/konfirmasi.dart';
+import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/konfirmasi_donasi.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,7 +46,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Konfirmasi(zakat: zakat),
+                  builder: (context) => KonfirmasiDonasi(zakat: zakat),
                 ),
               );
             },
