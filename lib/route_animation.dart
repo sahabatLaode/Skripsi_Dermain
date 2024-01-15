@@ -2,7 +2,6 @@ import 'package:dermain/Authentication/Sign%20Up/sign_up.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
 import 'package:dermain/Navbar/Components/Layanan/Donasi/konfirmasi_donasi.dart';
-import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/nota.dart';
 import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/ubah_profil.dart';
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
 import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
@@ -373,24 +372,6 @@ Route lazismu() {
 Route visi() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const Visi(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
-      const curve = Curves.easeInOut;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
-}
-
-Route nota() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const Nota(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;

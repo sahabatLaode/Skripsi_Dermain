@@ -35,6 +35,8 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
     final Zakat? zakat = widget.zakat;
     DateTime zakatDate = DateTime.parse(zakat!.created_at);
     String zakatFormattedDate = DateFormat('dd MMMM yyyy').format(zakatDate);
+    final formatter =
+        NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -80,7 +82,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
                         ),
                       ),
                       Text(
-                        zakat.nominal,
+                        formatter.format(zakat.nominal),
                         style: GoogleFonts.poppins(
                           color: cBlack,
                           fontSize: 18,

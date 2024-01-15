@@ -1,7 +1,7 @@
 class Zakat {
   final String id;
   final String jenis_donasi;
-  final String nominal;
+  final int nominal;
   final String nama;
   final String email;
   final String phone;

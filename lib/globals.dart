@@ -10,5 +10,7 @@ const subUser = 'api/user';
 const subRegister = 'api/registrasi';
 const sublogin = 'api/login';
 const sublogout = 'api/logout';
+const subTotal = 'api/total-zakat';
+
 bool isLogin = false;
 String token = '';

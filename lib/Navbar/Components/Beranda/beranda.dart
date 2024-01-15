@@ -1,4 +1,5 @@
 import 'package:dermain/Methods/auth_method.dart';
+import 'package:dermain/Methods/zakat_method.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/informasi_items.dart';
@@ -10,6 +11,7 @@ import 'package:dermain/route_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:dermain/theme.dart';
+import 'package:intl/intl.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({super.key});
@@ -20,11 +22,13 @@ class Beranda extends StatefulWidget {
 
 class _BerandaState extends State<Beranda> {
   String userName = "";
+  late Future<int> totalZakat;
 
   @override
   void initState() {
-    loadUserData(); // Panggil fungsi untuk mengambil data pengguna yang sudah login
     super.initState();
+    loadUserData();
+    totalZakat = ZakatMethod.getTotalZakat();
   }
 
   void loadUserData() async {
@@ -74,7 +78,173 @@ class _BerandaState extends State<Beranda> {
       ),
       body: Stack(
         children: <Widget>[
-          totalDonasi(),
+          // totalDonasi(),
+          Column(
+            children: [
+              Text(
+                'Total Donasi Tersalurkan',
+                style: GoogleFonts.poppins(
+                  color: cBlack,
+                ),
+              ),
+              const SizedBox(height: 2),
+              FutureBuilder<int>(
+                future: totalZakat,
+                builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator(
+                      color: c2,
+                    );
+                  } else {
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      final formatter = NumberFormat.currency(
+                          locale: 'id_ID', symbol: 'Rp', decimalDigits: 0);
+                      return Text(
+                        formatter.format(snapshot.data),
+                        style: GoogleFonts.poppins(
+                          color: cBlack,
+                          fontSize: 24,
+                          fontWeight: semibold,
+                        ),
+                      );
+                    }
+                  }
+                },
+              ),
+              const SizedBox(height: 20),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                height: 80,
+                decoration: BoxDecoration(
+                    color: cWhite,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 1,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(20)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Iconsax.gift5,
+                            color: c1,
+                            size: 36,
+                          ),
+                          const SizedBox(width: 8),
+                          Column(
+                            children: [
+                              Text(
+                                'Donasi',
+                                style: GoogleFonts.poppins(
+                                  color: c5,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              Text(
+                                '3',
+                                style: GoogleFonts.poppins(
+                                  color: cBlack,
+                                  fontSize: 22,
+                                  fontWeight: semibold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 2,
+                      height: 30,
+                      color: c5,
+                    ),
+                    SizedBox(
+                      width: 120,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Iconsax.map_15,
+                            color: c2,
+                            size: 36,
+                          ),
+                          const SizedBox(width: 8),
+                          Column(
+                            children: [
+                              Text(
+                                'Layanan',
+                                style: GoogleFonts.poppins(
+                                  color: c5,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              Text(
+                                '2',
+                                style: GoogleFonts.poppins(
+                                  color: cBlack,
+                                  fontSize: 22,
+                                  fontWeight: semibold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 2,
+                      height: 30,
+                      color: c5,
+                    ),
+                    SizedBox(
+                      width: 120,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Iconsax.information5,
+                            color: c3,
+                            size: 36,
+                          ),
+                          const SizedBox(width: 8),
+                          Column(
+                            children: [
+                              Text(
+                                'Informasi',
+                                style: GoogleFonts.poppins(
+                                  color: c5,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              Text(
+                                '2',
+                                style: GoogleFonts.poppins(
+                                  color: cBlack,
+                                  fontSize: 22,
+                                  fontWeight: semibold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           // const SizedBox(height: 300),
           ListView(
             children: [
@@ -123,7 +293,7 @@ class _BerandaState extends State<Beranda> {
     return Column(
       children: [
         Text(
-          'Total Donasi Terkumpul',
+          'Total Donasi Tersalurkan',
           style: GoogleFonts.poppins(
             color: cBlack,
           ),
@@ -136,15 +306,15 @@ class _BerandaState extends State<Beranda> {
               'Rp',
               style: GoogleFonts.poppins(
                 color: cBlack,
-                fontSize: 36,
+                fontSize: 20,
                 fontWeight: semibold,
               ),
             ),
             Text(
-              '0.00',
+              'getFormattedTotalZakat()',
               style: GoogleFonts.poppins(
                 color: cBlack,
-                fontSize: 36,
+                fontSize: 20,
                 fontWeight: semibold,
               ),
             ),

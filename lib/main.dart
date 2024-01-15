@@ -1,5 +1,3 @@
-import 'package:dermain/Navbar/Components/Layanan/Donasi/konfirmasi_donasi.dart';
-import 'package:dermain/Navbar/Components/Aktivitas/Konfirmasi/nota.dart';
 import 'package:dermain/Splash%20Page/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,9 +33,6 @@ class MyApp extends StatelessWidget {
         '/donasiSedekah': (context) => const DonasiSedekah(),
         '/permintaanAmbulans': (context) => const PermintaanAmbulan(),
         '/permintaanKoin': (context) => const PermintaanKoin(),
-        '/nota': (context) => const Nota(),
-        '/konfirmasi': (context) => const KonfirmasiDonasi(),
-        // '/lokasi2': (context) => const Maps(),
       },
     );
   }

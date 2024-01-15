@@ -11,6 +11,7 @@ import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class DonasiZakat extends ConsumerStatefulWidget {
   const DonasiZakat({super.key});
@@ -26,6 +27,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
   final phoneController = TextEditingController();
   final jenisController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final formatter = NumberFormat.simpleCurrency(locale: 'id_ID');
 
   bool isShowNominalError = false;
   bool isShowNamaError = false;
@@ -38,9 +40,22 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
       return;
     }
     _formKey.currentState!.save();
+
+    // Menghapus semua karakter non-numerik dan mengubahnya menjadi int
+    String nominalText =
+        nominalController.text.replaceAll(RegExp(r'[^0-9]'), '');
+    int nominalValue = int.parse(nominalText);
+
+    // Tambahkan pengecekan nilai di sini
+    if (nominalValue < 10000) {
+      // Tampilkan pesan error atau lakukan tindakan lain
+      print('Nilai harus lebih besar atau sama dengan Rp10.000');
+      return; // Hentikan eksekusi fungsi
+    }
+
     bool status = await ZakatMethod.addZakat(
       jenisController.text,
-      nominalController.text,
+      nominalValue,
       namaController.text,
       emailController.text,
       phoneController.text,

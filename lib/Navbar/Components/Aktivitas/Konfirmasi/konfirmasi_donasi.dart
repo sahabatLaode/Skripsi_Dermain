@@ -48,7 +48,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
         ),
         centerTitle: true,
         title: Text(
-          'KonfirmasiDonasi ${widget.zakat.jenis_donasi}',
+          'Konfirmasi ${widget.zakat.jenis_donasi}',
           style: GoogleFonts.poppins(
             color: cBlack,
             fontSize: 18,
@@ -80,7 +80,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
     return Column(
       children: [
         Text(
-          widget.zakat.nominal,
+          widget.zakat.nominal.toString(),
           style: GoogleFonts.poppins(
             color: cBlack,
             fontSize: 32,
@@ -138,7 +138,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
                         ),
                       ),
                       Text(
-                        widget.zakat.nominal,
+                        widget.zakat.nominal.toString(),
                         style: GoogleFonts.poppins(
                           color: cBlack,
                           fontWeight: semibold,
@@ -247,7 +247,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
                                             ),
                                           ),
                                           Text(
-                                            zakat.nominal,
+                                            zakat.nominal.toString(),
                                             style: GoogleFonts.poppins(
                                               color: cBlack,
                                               fontSize: 16,
@@ -441,108 +441,6 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
           ],
         ),
       ],
-    );
-  }
-
-  Widget detailTransaksi() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: ExpansionTile(
-        backgroundColor: c6,
-        collapsedBackgroundColor: c6,
-        childrenPadding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-        trailing: Icon(
-          Iconsax.arrow_down_1,
-          color: cBlack,
-        ),
-        title: Text(
-          'Detail transaksi',
-          style: GoogleFonts.poppins(
-            color: cBlack,
-          ),
-        ),
-        children: [
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Nominal:',
-                    style: GoogleFonts.poppins(
-                      color: c5,
-                    ),
-                  ),
-                  Text(
-                    'Rp1.000.000',
-                    style: GoogleFonts.poppins(
-                      color: cBlack,
-                      fontWeight: semibold,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Nama:',
-                    style: GoogleFonts.poppins(
-                      color: c5,
-                    ),
-                  ),
-                  Text(
-                    'User Name',
-                    style: GoogleFonts.poppins(
-                      color: cBlack,
-                      fontWeight: semibold,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Email:',
-                    style: GoogleFonts.poppins(
-                      color: c5,
-                    ),
-                  ),
-                  Text(
-                    'lazismu@gmail.com',
-                    style: GoogleFonts.poppins(
-                      color: cBlack,
-                      fontWeight: semibold,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Telepon:',
-                    style: GoogleFonts.poppins(
-                      color: c5,
-                    ),
-                  ),
-                  Text(
-                    '12212112221',
-                    style: GoogleFonts.poppins(
-                      color: cBlack,
-                      fontWeight: semibold,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          )
-        ],
-      ),
     );
   }
 

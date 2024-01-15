@@ -1,7 +1,7 @@
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/formatters/currency_input_formatter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class NominalForm extends StatefulWidget {
   final String judul;
@@ -9,17 +9,45 @@ class NominalForm extends StatefulWidget {
   final TextEditingController controller;
 
   const NominalForm({
-    super.key,
+    Key? key,
     required this.judul,
     required this.controller,
     required this.warnaIcon,
-  });
+  }) : super(key: key);
 
   @override
-  State<NominalForm> createState() => _NominalFormState();
+  _NominalFormState createState() => _NominalFormState();
 }
 
 class _NominalFormState extends State<NominalForm> {
+  final FocusNode _focusNode = FocusNode();
+  final NumberFormat numberFormat =
+      NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0);
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  void _onFocusChange() {
+    if (!_focusNode.hasFocus) {
+      String newText =
+          widget.controller.text.replaceAll(',', '').replaceAll('Rp', '');
+      int value = double.parse(newText).toInt();
+      widget.controller.text = numberFormat.format(value);
+    }
+  }
+
+  void _onTextChanged() {
+    if (_focusNode.hasFocus) {
+      String newText =
+          widget.controller.text.replaceAll(',', '').replaceAll('Rp', '');
+      int value = double.parse(newText).toInt();
+      widget.controller.text = numberFormat.format(value);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,26 +71,13 @@ class _NominalFormState extends State<NominalForm> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                'Rp',
-                style: GoogleFonts.poppins(
-                  color: widget.warnaIcon,
-                  fontSize: 24,
-                  fontWeight: bold,
-                ),
-              ),
               Expanded(
                 child: TextFormField(
                   controller: widget.controller,
-                  keyboardType: TextInputType.number,
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
                   autocorrect: false,
-                  inputFormatters: [
-                    CurrencyInputFormatter(
-                      // trailingSymbol: CurrencySymbols.,
-                      useSymbolPadding: true,
-                      mantissaLength: 3,
-                    ),
-                  ],
+                  focusNode: _focusNode,
                   decoration: InputDecoration.collapsed(
                     hintText: '0.000',
                     hintStyle: GoogleFonts.poppins(
@@ -78,7 +93,7 @@ class _NominalFormState extends State<NominalForm> {
                     setState(() {});
                   },
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -94,5 +109,12 @@ class _NominalFormState extends State<NominalForm> {
           ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
+    super.dispose();
   }
 }
