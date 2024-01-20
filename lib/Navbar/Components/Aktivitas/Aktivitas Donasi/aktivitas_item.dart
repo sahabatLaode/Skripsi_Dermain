@@ -39,7 +39,7 @@ class _AktivitasItemState extends ConsumerState<AktivitasItem> {
         NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       child: Column(
         children: [
           GestureDetector(

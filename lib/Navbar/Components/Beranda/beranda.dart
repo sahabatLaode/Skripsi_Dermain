@@ -97,7 +97,11 @@ class _BerandaState extends State<Beranda> {
                     );
                   } else {
                     if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
+                      return Text(
+                        'Rp0.00',
+                        style: GoogleFonts.poppins(
+                            fontSize: 24, fontWeight: semibold),
+                      );
                     } else {
                       final formatter = NumberFormat.currency(
                           locale: 'id_ID', symbol: 'Rp', decimalDigits: 0);

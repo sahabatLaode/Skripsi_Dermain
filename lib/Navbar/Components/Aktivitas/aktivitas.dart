@@ -44,7 +44,7 @@ class Aktivitas extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
               color: c2,
             ),
-            padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14),
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 14),
             tabs: const [
               Tab(
                 child: Text('Donasi'),
