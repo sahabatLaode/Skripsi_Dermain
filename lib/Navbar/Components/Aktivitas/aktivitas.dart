@@ -14,63 +14,84 @@ class Aktivitas extends StatelessWidget {
       length: 2,
       child: Scaffold(
         backgroundColor: cWhite,
-        appBar: AppBar(
-          toolbarHeight: 80,
-          automaticallyImplyLeading: false,
-          elevation: 0.0,
-          backgroundColor: cWhite,
-          title: Text(
-            'Aktivitas',
-            style: GoogleFonts.poppins(
-              color: cBlack,
-              fontSize: 28,
-              fontWeight: semibold,
-            ),
-          ),
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: cWhite,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          bottom: TabBar(
-            unselectedLabelColor: cBlack,
-            unselectedLabelStyle: GoogleFonts.poppins(),
-            labelStyle: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: semibold,
-              color: cWhite,
-            ),
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicator: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: c2,
-            ),
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 14),
-            tabs: const [
-              Tab(
-                child: Text('Donasi'),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: AppBar(
+            automaticallyImplyLeading: false,
+            elevation: 0.0,
+            backgroundColor: cWhite,
+            title: Text(
+              'Aktivitas',
+              style: GoogleFonts.poppins(
+                color: cBlack,
+                fontSize: 28,
+                fontWeight: semibold,
               ),
-              Tab(
-                child: Text('Permintaan'),
-              ),
-            ],
+            ),
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: cWhite,
+              statusBarIconBrightness: Brightness.dark,
+            ),
           ),
         ),
-        body: const TabBarView(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  AktivitasList(
-                    Center(),
+            Container(
+              margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              padding: const EdgeInsets.symmetric(vertical: 3),
+              decoration: BoxDecoration(
+                color: cB2,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TabBar(
+                dividerColor: Colors.transparent,
+                splashBorderRadius: BorderRadius.circular(100),
+                indicatorPadding: const EdgeInsets.all(6),
+                unselectedLabelColor: cBlack,
+                unselectedLabelStyle: GoogleFonts.poppins(),
+                labelStyle: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: semibold,
+                  color: cWhite,
+                ),
+                indicatorColor: cBlack,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: c2,
+                ),
+                // padding: const EdgeInsets.only(left: 20, right: 20, bottom: 14),
+                tabs: const [
+                  Tab(
+                    child: Text('Donasi'),
+                  ),
+                  Tab(
+                    child: Text('Permintaan'),
                   ),
                 ],
               ),
             ),
-            SingleChildScrollView(
-              child: Column(
+            Expanded(
+              child: TabBarView(
                 children: [
-                  AktivitasListPermintaan(
-                    Center(),
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        AktivitasList(
+                          Center(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        AktivitasListPermintaan(
+                          Center(),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
