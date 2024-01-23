@@ -1,5 +1,6 @@
 import 'package:dermain/Methods/zakat_method.dart';
 import 'package:dermain/Providers/zakat_provider.dart';
+import 'package:dermain/Reusable%20Components/Widget/custom_snackbar.dart';
 import 'package:dermain/Reusable%20Components/Widget/email_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/hp_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/nama_otomatis_form.dart';
@@ -11,6 +12,7 @@ import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
 class DonasiZakat extends ConsumerStatefulWidget {
@@ -70,7 +72,12 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Zakat successfully added')));
+        CustomSnackBar(
+          message: 'Zakat anda sudah ditambahkan',
+          icon: Iconsax.moneys,
+          background: c1,
+        ),
+      );
     }
   }
 

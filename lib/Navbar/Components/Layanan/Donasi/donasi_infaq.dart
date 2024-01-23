@@ -1,5 +1,6 @@
 import 'package:dermain/Methods/infaq_method.dart';
 import 'package:dermain/Providers/infaq_provider.dart';
+import 'package:dermain/Reusable%20Components/Widget/custom_snackbar.dart';
 import 'package:dermain/Reusable%20Components/Widget/email_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/hp_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/nama_otomatis_form.dart';
@@ -11,6 +12,7 @@ import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 
 class DonasiInfaq extends ConsumerStatefulWidget {
   const DonasiInfaq({super.key});
@@ -39,9 +41,22 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
       return;
     }
     _formKey.currentState!.save();
+
+    // Menghapus semua karakter non-numerik dan mengubahnya menjadi int
+    String nominalText =
+        nominalController.text.replaceAll(RegExp(r'[^0-9]'), '');
+    int nominalValue = int.parse(nominalText);
+
+    // Tambahkan pengecekan nilai di sini
+    if (nominalValue < 10000) {
+      // Tampilkan pesan error atau lakukan tindakan lain
+      print('Nilai harus lebih besar atau sama dengan Rp10.000');
+      return; // Hentikan eksekusi fungsi
+    }
+
     bool status = await InfaqMethod.addInfaq(
       jenisController.text,
-      nominalController.text,
+      nominalValue,
       namaController.text,
       emailController.text,
       phoneController.text,
@@ -56,7 +71,12 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Infaq successfully added')));
+        CustomSnackBar(
+          message: 'Infaq anda sudah ditambahkan',
+          icon: Iconsax.coin,
+          background: c4,
+        ),
+      );
     }
   }
 

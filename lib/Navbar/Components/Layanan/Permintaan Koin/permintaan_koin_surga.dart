@@ -1,6 +1,7 @@
 import 'package:dermain/Methods/koinSurga_method.dart';
 import 'package:dermain/Providers/koinSurga_provider.dart';
 import 'package:dermain/Reusable%20Components/Widget/catatan_form.dart';
+import 'package:dermain/Reusable%20Components/Widget/custom_snackbar.dart';
 import 'package:dermain/Reusable%20Components/Widget/dropdowm_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/tanggal_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/waktu_form.dart';
@@ -51,7 +52,12 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Koin surga successfully added')));
+        CustomSnackBar(
+          message: 'Permintaan koin surga anda sudah ditambahkan',
+          icon: Iconsax.coin,
+          background: c1,
+        ),
+      );
     }
   }
 

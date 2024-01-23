@@ -1,5 +1,6 @@
 import 'package:dermain/Methods/ambulan_method.dart';
 import 'package:dermain/Providers/ambulans_provider.dart';
+import 'package:dermain/Reusable%20Components/Widget/custom_snackbar.dart';
 import 'package:dermain/Reusable%20Components/Widget/dropdowm_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/lokasi_form.dart';
 import 'package:dermain/Reusable%20Components/Widget/nama_form.dart';
@@ -59,8 +60,13 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
           .addAmbulans(await AmbulanMethod.loadAllAmbulan());
       if (!mounted) return;
       // ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Permintaan Ambulan successfully added')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        CustomSnackBar(
+          message: 'Permintaan ambulans anda sudah ditambahkan',
+          icon: Iconsax.truck,
+          background: c3,
+        ),
+      );
     }
   }
 

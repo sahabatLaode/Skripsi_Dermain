@@ -18,7 +18,7 @@ class ZakatMethod {
         for (final zakat in body['data']) {
           Zakat tempZakat = Zakat(
             id: zakat['id'].toString(),
-            nominal: zakat['nominal'], // Sudah bertipe int
+            nominal: zakat['nominal'],
             nama: zakat['nama'],
             email: zakat['email'],
             phone: zakat['phone'],

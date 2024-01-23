@@ -11,6 +11,9 @@ import 'package:dermain/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
+
+import '../../../../Reusable Components/Widget/custom_snackbar.dart';
 
 class DonasiSedekah extends ConsumerStatefulWidget {
   const DonasiSedekah({super.key});
@@ -39,9 +42,22 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
       return;
     }
     _formKey.currentState!.save();
+
+    // Menghapus semua karakter non-numerik dan mengubahnya menjadi int
+    String nominalText =
+        nominalController.text.replaceAll(RegExp(r'[^0-9]'), '');
+    int nominalValue = int.parse(nominalText);
+
+    // Tambahkan pengecekan nilai di sini
+    if (nominalValue < 10000) {
+      // Tampilkan pesan error atau lakukan tindakan lain
+      print('Nilai harus lebih besar atau sama dengan Rp10.000');
+      return; // Hentikan eksekusi fungsi
+    }
+
     bool status = await SedekahMethod.addSedekah(
       jenisController.text,
-      nominalController.text,
+      nominalValue,
       namaController.text,
       emailController.text,
       phoneController.text,
@@ -56,7 +72,12 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Sedekah successfully added')));
+        CustomSnackBar(
+          message: 'Sedekah anda sudah ditambahkan',
+          icon: Iconsax.gift,
+          background: c2,
+        ),
+      );
     }
   }
 

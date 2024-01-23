@@ -5,32 +5,43 @@ import 'dart:convert';
 
 class SedekahMethod {
   static Future<List<Sedekah>> loadAllSedekah() async {
-    final url = Uri.http(addressUrl, subZakat);
+    final url = Uri.http(addressUrl, subSedekah);
     List<Sedekah> allSedekahs = [];
 
     final response = await http.get(url);
-    Map<String, dynamic> body = json.decode(response.body);
-    bool status = body['status'];
 
-    if (status) {
-      for (final sedekah in body['data']) {
-        Sedekah tempSedekah = Sedekah(
-          id: sedekah['id'].toString(),
-          nominal: sedekah['nominal'],
-          nama: sedekah['nama'],
-          email: sedekah['email'],
-          phone: sedekah['phone'],
-          jenis_donasi: sedekah['jenis_donasi'],
-          created_at: sedekah['created_at'],
-        );
-        allSedekahs.add(tempSedekah);
+    if (response.headers['content-type'] == 'application/json') {
+      Map<String, dynamic> body = json.decode(response.body);
+      bool status = body['status'];
+
+      if (status) {
+        for (final sedekah in body['data']) {
+          Sedekah tempSedekah = Sedekah(
+            id: sedekah['id'].toString(),
+            nominal: sedekah['nominal'],
+            nama: sedekah['nama'],
+            email: sedekah['email'],
+            phone: sedekah['phone'],
+            jenis_donasi: sedekah['jenis_donasi'],
+            created_at: sedekah['created_at'],
+          );
+          allSedekahs.add(tempSedekah);
+        }
       }
+    } else {
+      print('Unexpected response: ${response.body}');
     }
+
     return allSedekahs;
   }
 
-  static Future<bool> addSedekah(String jenisDonasi, String nominal,
-      String nama, String email, String phone) async {
+  static Future<bool> addSedekah(
+    String jenisDonasi,
+    int nominal,
+    String nama,
+    String email,
+    String phone,
+  ) async {
     final url = Uri.http(addressUrl, subZakat);
     final response = await http.post(
       url,
