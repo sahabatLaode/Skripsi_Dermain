@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-class KonfirmasiDonasi extends StatefulWidget {
-  const KonfirmasiDonasi({super.key});
+class Konfirmasi extends StatefulWidget {
+  const Konfirmasi({super.key});
 
   @override
-  State<KonfirmasiDonasi> createState() => _KonfirmasiDonasiState();
+  State<Konfirmasi> createState() => _KonfirmasiState();
 }
 
-class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
+class _KonfirmasiState extends State<Konfirmasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

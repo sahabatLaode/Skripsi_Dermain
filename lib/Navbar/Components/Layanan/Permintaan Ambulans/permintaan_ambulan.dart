@@ -318,7 +318,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
                           lokasiAntarController.text.isEmpty) {
                   } else {
                     _addAmbulan();
-                    Navigator.of(context).push(konfirmasiDonasi());
+                    Navigator.of(context).push(konfirmasi());
                   }
                 });
               },

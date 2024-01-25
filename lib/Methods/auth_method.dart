@@ -73,70 +73,6 @@ class AuthMethod {
     }
   }
 
-  // ==== Dari Bing
-  // Future<bool> updateUserData(String id, String name, String email) async {
-  //   final url = Uri.http(addressUrl, '/api/users/$id');
-  //   final response = await http.put(
-  //     url,
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: json.encode({
-  //       'name': name,
-  //       'email': email,
-  //     }),
-  //   );
-  //
-  //   if (response.statusCode == 200) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-  //
-  // ====== Dari Bing
-  // Future<bool> updateUserPassword(
-  //     String id, String password, String passwordConfirmation) async {
-  //   final url = Uri.http(addressUrl, '/api/user/$id');
-  //   final response = await http.put(
-  //     url,
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: json.encode({
-  //       'password': password,
-  //       'password_confirmation': passwordConfirmation,
-  //     }),
-  //   );
-  //
-  //   if (response.statusCode == 200) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  // ====== Nullable ======
-  // static Future<bool> updatePassword(UserModel user) async {
-  //   final url = Uri.http(addressUrl, '$subUser/${user.id}');
-  //   final response = await http.put(
-  //     url,
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: json.encode({
-  //       'id': user.id,
-  //       'name': user.name,
-  //       'email': user.email,
-  //       // 'phone': user.phone,
-  //       // 'birth': user.birth,
-  //       // 'nik': user.nik,
-  //       // 'address': user.address,
-  //       // 'ranting': user.ranting,
-  //       'password': user.password,
-  //       'password_confirmation': user.passwordConfirmation,
-  //     }),
-  //   );
-  //
-  //   Map<String, dynamic> body = json.decode(response.body);
-  //
-  //   return body['status'];
-  // }
-
   static Future<UserModel?> getUserData() async {
     String? token = await AuthMethod.getToken();
     print('Token: $token');
@@ -150,7 +86,7 @@ class AuthMethod {
         Map<String, dynamic> body = json.decode(response.body);
         final status = body['status'];
         if (status) {
-          final user = body['data'][0];
+          var user = body['data'][0];
           return UserModel(
             id: user['id'].toString(),
             name: user['name'],
@@ -175,27 +111,7 @@ class AuthMethod {
     return prefs.setString('token', value);
   }
 
-  // static Future<bool> login(String? email, String? password) async {
-  //   final url = Uri.http(globals.addressUrl, sublogin);
-  //   final response = await http.post(
-  //     url,
-  //     body: {
-  //       'email': email,
-  //       'password': password,
-  //     },
-  //   );
-  //
-  //   Map<String, dynamic> body = json.decode(response.body);
-  //   await setToken(body['token']);
-  //   return body['status'];
-  // }
-
-  // Nullable
   static Future<bool> login(String? email, String? password) async {
-    if (email == null || password == null) {
-      throw ArgumentError('Email and password must not be null');
-    }
-
     final url = Uri.http(globals.addressUrl, sublogin);
     final response = await http.post(
       url,
@@ -206,13 +122,7 @@ class AuthMethod {
     );
 
     Map<String, dynamic> body = json.decode(response.body);
-
-    if (body['token'] != null) {
-      await setToken(body['token']);
-    } else {
-      throw Exception('Token not found in response');
-    }
-
+    await setToken(body['token']);
     return body['status'];
   }
 

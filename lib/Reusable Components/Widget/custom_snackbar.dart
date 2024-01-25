@@ -16,12 +16,14 @@ class CustomSnackBar extends SnackBar {
                 color: cWhite,
               ),
               const SizedBox(width: 6),
-              Text(
-                message,
-                style: GoogleFonts.poppins(
-                  color: cWhite,
+              Flexible(
+                child: Text(
+                  message,
+                  style: GoogleFonts.poppins(
+                    color: cWhite,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.center,
               ),
             ],
           ),

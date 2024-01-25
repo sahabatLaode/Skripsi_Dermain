@@ -1,5 +1,6 @@
 import 'package:dermain/Methods/auth_method.dart';
-import 'package:email_validator/email_validator.dart';
+import 'package:dermain/Reusable%20Components/Widget/custom_snackbar.dart';
+import 'package:dermain/Reusable%20Components/Widget/email_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,34 +21,52 @@ class _SignInState extends State<SignIn> {
   final _emailController = TextEditingController(text: 'tes@gmail.com');
   final _passwordController = TextEditingController(text: 'qqqqqq');
   final _formKey = GlobalKey<FormState>();
+
   bool _isVisiblePassword = true;
+  bool isLoading = false;
 
   void _login() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
     _formKey.currentState!.save();
-    bool status =
-        await AuthMethod.login(_emailController.text, _passwordController.text);
+    try {
+      bool status = await AuthMethod.login(
+          _emailController.text, _passwordController.text);
 
-    if (!status) {
+      if (!status) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).clearSnackBars();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Email or password invalid!')),
+        );
+        return;
+      }
+      globals.isLogin = true;
+      String? token = await AuthMethod.getToken();
+
+      if (token != null) {
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
+        localStorage.setString('token', token);
+        ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
+          message: 'Token: $token',
+          icon: Iconsax.barcode,
+          background: c4,
+        ));
+      }
+      if (!mounted) return;
+      Navigator.of(context).push(navbar());
+    } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Email or password invalid!')),
+        CustomSnackBar(
+          message: 'Email atau kata sandi tidak terdaftar',
+          icon: Iconsax.warning_2,
+          background: cRed,
+        ),
       );
-      return;
     }
-    globals.isLogin = true;
-    String? token = await AuthMethod.getToken();
-
-    if (token != null) {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      localStorage.setString('token', token);
-      // localStorage.setString('user', json.encode(body['user'])); // Kode ini tidak diperlukan jika Anda tidak mengembalikan objek 'user' dalam respons token.
-    }
-    if (!mounted) return;
-    Navigator.of(context).push(navbar());
   }
 
   @override
@@ -73,7 +92,11 @@ class _SignInState extends State<SignIn> {
           children: [
             keterangan(),
             const SizedBox(height: 24),
-            email(),
+            EmailForm(
+              title: 'Email',
+              controller: _emailController,
+              warnaIcon: cBlack,
+            ),
             const SizedBox(height: 12),
             sandi(),
             // lupaSandi(),
@@ -106,82 +129,6 @@ class _SignInState extends State<SignIn> {
             color: cBlack,
           ),
         ),
-      ],
-    );
-  }
-
-  Widget email() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Email',
-          style: GoogleFonts.poppins(
-            color: cBlack,
-            fontSize: 12,
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          height: 60,
-          decoration: BoxDecoration(
-            color: c6,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Iconsax.sms,
-                color: cBlack,
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: TextFormField(
-                  style: GoogleFonts.poppins(color: cBlack),
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: 'lazismu@mail.com',
-                    hintStyle: GoogleFonts.poppins(
-                      color: c5,
-                      fontSize: 16,
-                    ),
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please enter email.';
-                    }
-                    bool isEmailvalid =
-                        EmailValidator.validate(value.toString());
-                    if (!isEmailvalid) {
-                      return 'Please enter a valid email (ex: jhon@gmail.com)';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-        // const SizedBox(height: 6),
-        // if (emailTextEditingController.text.isNotEmpty &&
-        //     !_isEmailValid(emailTextEditingController.text))
-        //   Text(
-        //     'Format email tidak valid',
-        //     style: GoogleFonts.poppins(
-        //       color: cRed,
-        //       fontSize: 12,
-        //     ),
-        //   ),
       ],
     );
   }
@@ -236,50 +183,29 @@ class _SignInState extends State<SignIn> {
                   });
                 },
                 icon: Icon(
-                  _isVisiblePassword ? Iconsax.eye_slash : Iconsax.eye,
+                  _isVisiblePassword ? Iconsax.eye : Iconsax.eye_slash,
                   color: cBlack,
                 ),
               ),
             ],
           ),
         ),
-        // if (isShowPasswordError)
-        //   Container(
-        //     margin: const EdgeInsets.only(
-        //       top: 6,
-        //     ),
-        //     child: Text(
-        //       'Kata sandi salah',
-        //       style: GoogleFonts.poppins(
-        //         color: cRed,
-        //         fontSize: 12,
-        //       ),
-        //     ),
-        //   ),
+        if (_passwordController.text.isEmpty || _passwordController.text == '')
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Masukkan kata sandi',
+              style: GoogleFonts.poppins(
+                color: cRed,
+              ),
+            ),
+          ),
         const SizedBox(
           height: 12,
         ),
       ],
     );
   }
-
-  // Widget lupaSandi() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.end,
-  //     children: [
-  //       InkWell(
-  //         onTap: () {},
-  //         child: Text(
-  //           'Lupa kata sandi?',
-  //           style: GoogleFonts.poppins(
-  //             color: cBlack,
-  //           ),
-  //           textAlign: TextAlign.center,
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
 
   Widget tombolMasuk() {
     return Container(
@@ -291,7 +217,26 @@ class _SignInState extends State<SignIn> {
       width: double.infinity,
       child: TextButton(
         onPressed: () {
-          _login();
+          setState(() {
+            isLoading = true;
+          });
+          Future.delayed(const Duration(seconds: 2), () {
+            setState(() {
+              isLoading = false;
+            });
+            if (_emailController.text.isEmpty &&
+                _passwordController.text.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                CustomSnackBar(
+                  message: 'Semua field harus diisi',
+                  icon: Iconsax.warning_2,
+                  background: cRed,
+                ),
+              );
+            } else {
+              _login();
+            }
+          });
         },
         style: TextButton.styleFrom(
           backgroundColor: c2,

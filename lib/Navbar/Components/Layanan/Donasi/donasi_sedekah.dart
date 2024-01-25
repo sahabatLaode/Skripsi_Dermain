@@ -287,7 +287,7 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
                       phoneController.text.isEmpty) {
                   } else {
                     _addSedekah();
-                    Navigator.of(context).push(konfirmasiDonasi());
+                    Navigator.of(context).push(konfirmasi());
                   }
                 });
               },

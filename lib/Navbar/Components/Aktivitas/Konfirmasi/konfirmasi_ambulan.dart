@@ -72,7 +72,7 @@ class _KonfirmasiAmbulanState extends State<KonfirmasiAmbulan> {
               padding: const EdgeInsets.only(
                   top: 40, left: 12, right: 12, bottom: 12),
               margin: const EdgeInsets.only(top: 32),
-              height: 568,
+              height: 550,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14),
@@ -86,110 +86,115 @@ class _KonfirmasiAmbulanState extends State<KonfirmasiAmbulan> {
                 ],
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.ambulan.pasien,
-                    style: GoogleFonts.poppins(
-                      color: cBlack,
-                      fontSize: 18,
-                      fontWeight: semibold,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Nama Pemesan:',
-                        style: GoogleFonts.poppins(
-                          color: c5,
-                        ),
-                      ),
-                      Text(
-                        widget.ambulan.pemesan,
-                        style: GoogleFonts.poppins(
-                          color: cBlack,
-                          fontWeight: semibold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  MySeparator(color: c5),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Pukul Jemput:',
-                        style: GoogleFonts.poppins(
-                          color: c5,
-                        ),
-                      ),
-                      Text(
-                        widget.ambulan.pukul,
-                        style: GoogleFonts.poppins(
-                          color: cBlack,
-                          fontWeight: semibold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Tanggal Jemput:',
-                        style: GoogleFonts.poppins(
-                          color: c5,
-                        ),
-                      ),
-                      Text(
-                        widget.ambulan.tanggal,
-                        style: GoogleFonts.poppins(
-                          color: cBlack,
-                          fontWeight: semibold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 14),
-
-                  // lokasi jemput
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Lokasi Jemput:',
-                        style: GoogleFonts.poppins(
-                          color: c5,
-                        ),
-                      ),
-                      Text(
-                        widget.ambulan.lokasiJemput,
+                        widget.ambulan.pasien,
                         style: GoogleFonts.poppins(
                           color: cBlack,
-                          fontSize: 16,
-                          fontWeight: bold,
+                          fontSize: 18,
+                          fontWeight: semibold,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Nama Pemesan:',
+                            style: GoogleFonts.poppins(
+                              color: c5,
+                            ),
+                          ),
+                          Text(
+                            widget.ambulan.pemesan,
+                            style: GoogleFonts.poppins(
+                              color: cBlack,
+                              fontWeight: semibold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      MySeparator(color: c5),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Pukul Jemput:',
+                            style: GoogleFonts.poppins(
+                              color: c5,
+                            ),
+                          ),
+                          Text(
+                            widget.ambulan.pukul,
+                            style: GoogleFonts.poppins(
+                              color: cBlack,
+                              fontWeight: semibold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Tanggal Jemput:',
+                            style: GoogleFonts.poppins(
+                              color: c5,
+                            ),
+                          ),
+                          Text(
+                            widget.ambulan.tanggal,
+                            style: GoogleFonts.poppins(
+                              color: cBlack,
+                              fontWeight: semibold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
 
-                      // lokasi antar
-                      Text(
-                        'Lokasi Antar:',
-                        style: GoogleFonts.poppins(
-                          color: c5,
-                        ),
-                      ),
-                      Text(
-                        widget.ambulan.lokasiAntar,
-                        style: GoogleFonts.poppins(
-                          color: cBlack,
-                          fontSize: 16,
-                          fontWeight: bold,
-                        ),
+                      // lokasi jemput
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Lokasi Jemput:',
+                            style: GoogleFonts.poppins(
+                              color: c5,
+                            ),
+                          ),
+                          Text(
+                            widget.ambulan.lokasiJemput,
+                            style: GoogleFonts.poppins(
+                              color: cBlack,
+                              fontSize: 16,
+                              fontWeight: bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+
+                          // lokasi antar
+                          Text(
+                            'Lokasi Antar:',
+                            style: GoogleFonts.poppins(
+                              color: c5,
+                            ),
+                          ),
+                          Text(
+                            widget.ambulan.lokasiAntar,
+                            style: GoogleFonts.poppins(
+                              color: cBlack,
+                              fontSize: 16,
+                              fontWeight: bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

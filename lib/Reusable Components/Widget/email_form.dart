@@ -50,7 +50,7 @@ class _EmailFormState extends State<EmailForm> {
               Expanded(
                 child: TextFormField(
                   controller: widget.controller,
-                  keyboardType: TextInputType.streetAddress,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration.collapsed(
                     hintText: 'lazismu@gmail.com',
                     hintStyle: GoogleFonts.poppins(

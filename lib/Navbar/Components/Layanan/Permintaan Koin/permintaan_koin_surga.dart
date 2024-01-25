@@ -274,7 +274,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                       catatanController.text = 'Tidak ada catatan';
                     }
                     _addKoinSurga();
-                    Navigator.of(context).push(konfirmasiDonasi());
+                    Navigator.of(context).push(konfirmasi());
                   }
                 });
               },

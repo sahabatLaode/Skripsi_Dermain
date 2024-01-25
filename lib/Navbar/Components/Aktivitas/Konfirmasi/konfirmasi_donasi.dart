@@ -1,4 +1,5 @@
 import 'package:dermain/Models/zakat_model.dart';
+import 'package:dermain/Reusable%20Components/Widget/custom_snackbar.dart';
 import 'package:dermain/separator.dart';
 import 'package:dermain/theme.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,8 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
     'Sedekah': c2,
   };
   final rekeningNumber = '00011122233344';
+  final formatter =
+      NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +83,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
     return Column(
       children: [
         Text(
-          widget.zakat.nominal.toString(),
+          formatter.format(widget.zakat.nominal),
           style: GoogleFonts.poppins(
             color: cBlack,
             fontSize: 32,
@@ -247,7 +250,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
                                             ),
                                           ),
                                           Text(
-                                            zakat.nominal.toString(),
+                                            formatter.format(zakat.nominal),
                                             style: GoogleFonts.poppins(
                                               color: cBlack,
                                               fontSize: 16,
@@ -483,20 +486,13 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
                 'LazisMu Banguntapan Selatan',
                 style: GoogleFonts.poppins(
                   color: c5,
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ),
               const SizedBox(height: 4),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    '20 Desember 2022',
-                    style: GoogleFonts.poppins(
-                      color: c5,
-                      fontSize: 12,
-                    ),
-                  ),
                   InkWell(
                     child: Container(
                       padding: const EdgeInsets.all(10),
@@ -512,6 +508,14 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
                     onTap: () {
                       Clipboard.setData(
                         ClipboardData(text: rekeningNumber),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        CustomSnackBar(
+                          message: 'Nomor rekening disalin ke clipboard',
+                          icon: Iconsax.copy,
+                          background:
+                              donationColors[zakat.jenis_donasi] ?? cWhite,
+                        ),
                       );
                     },
                   ),

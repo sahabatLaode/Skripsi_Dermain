@@ -1,7 +1,7 @@
 import 'package:dermain/Authentication/Sign%20Up/sign_up.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/lazismu.dart';
 import 'package:dermain/Navbar/Components/Beranda/Widgets/Informasi/visi.dart';
-import 'package:dermain/Navbar/Components/Layanan/Donasi/konfirmasi_donasi.dart';
+import 'package:dermain/Navbar/Components/Layanan/konfirmasi.dart';
 import 'package:dermain/Navbar/Components/Profil/Ubah%20Profil/ubah_profil.dart';
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
 import 'package:dermain/Navbar/Components/Profil/ubah_sandi.dart';
@@ -387,10 +387,9 @@ Route visi() {
   );
 }
 
-Route konfirmasiDonasi() {
+Route konfirmasi() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>
-        const KonfirmasiDonasi(),
+    pageBuilder: (context, animation, secondaryAnimation) => const Konfirmasi(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;
