@@ -86,18 +86,20 @@ class _LokasiFormState extends State<LokasiForm> {
             ),
           ),
 
+        const SizedBox(height: 6),
+
         // map
         ClipRRect(
-          borderRadius:
-              BorderRadius.circular(12), // Atur radius sesuai kebutuhan Anda
+          borderRadius: BorderRadius.circular(12),
           child: ExpansionTile(
-            collapsedBackgroundColor: c6,
+            collapsedBackgroundColor: c3,
             title: Text(
               'Buka peta',
-              style: GoogleFonts.poppins(
-                color: cBlack,
-              ),
+              style: GoogleFonts.poppins(),
             ),
+            iconColor: cBlack,
+            collapsedIconColor: cWhite,
+            collapsedTextColor: cWhite,
             children: [
               SizedBox(
                 height: 350,

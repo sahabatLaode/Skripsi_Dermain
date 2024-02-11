@@ -43,16 +43,16 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
     }
     _formKey.currentState!.save();
 
-    // Menghapus semua karakter non-numerik dan mengubahnya menjadi int
     String nominalText =
         nominalController.text.replaceAll(RegExp(r'[^0-9]'), '');
     int nominalValue = int.parse(nominalText);
 
-    // Tambahkan pengecekan nilai di sini
     if (nominalValue < 10000) {
-      // Tampilkan pesan error atau lakukan tindakan lain
-      print('Nilai harus lebih besar atau sama dengan Rp10.000');
-      return; // Hentikan eksekusi fungsi
+      ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
+          message: 'Nominal tidak boleh kurang dari Rp10.000',
+          icon: Iconsax.warning_2,
+          background: cRed));
+      return;
     }
 
     bool status = await ZakatMethod.addZakat(
@@ -78,6 +78,7 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
           background: c1,
         ),
       );
+      Navigator.of(context).push(keteranganDonasi());
     }
   }
 
@@ -286,7 +287,6 @@ class _DonasiZakatState extends ConsumerState<DonasiZakat> {
                       phoneController.text.isEmpty) {
                   } else {
                     _addZakat();
-                    Navigator.of(context).push(konfirmasi());
                   }
                 });
               },

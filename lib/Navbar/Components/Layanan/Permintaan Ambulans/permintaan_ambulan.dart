@@ -67,6 +67,7 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
           background: c3,
         ),
       );
+      Navigator.of(context).push(keteranganAmbulans());
     }
   }
 
@@ -318,7 +319,6 @@ class _PermintaanAmbulanState extends ConsumerState<PermintaanAmbulan> {
                           lokasiAntarController.text.isEmpty) {
                   } else {
                     _addAmbulan();
-                    Navigator.of(context).push(konfirmasi());
                   }
                 });
               },

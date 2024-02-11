@@ -58,6 +58,7 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
           background: c1,
         ),
       );
+      Navigator.of(context).push(keteranganKoin());
     }
   }
 
@@ -274,7 +275,6 @@ class _PermintaanKoinState extends ConsumerState<PermintaanKoin> {
                       catatanController.text = 'Tidak ada catatan';
                     }
                     _addKoinSurga();
-                    Navigator.of(context).push(konfirmasi());
                   }
                 });
               },

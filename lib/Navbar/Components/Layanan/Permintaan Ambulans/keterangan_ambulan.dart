@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-class Konfirmasi extends StatefulWidget {
-  const Konfirmasi({super.key});
+class KeteranganAmbulans extends StatefulWidget {
+  const KeteranganAmbulans({super.key});
 
   @override
-  State<Konfirmasi> createState() => _KonfirmasiState();
+  State<KeteranganAmbulans> createState() => _KeteranganAmbulansState();
 }
 
-class _KonfirmasiState extends State<Konfirmasi> {
+class _KeteranganAmbulansState extends State<KeteranganAmbulans> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class _KonfirmasiState extends State<Konfirmasi> {
       children: [
         Lottie.asset('assets/lottie/check.json'),
         Text(
-          'Donasi ditambahkan!',
+          'Permintaan Ambulans ditambahkan!',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             color: cBlack,
@@ -54,7 +54,7 @@ class _KonfirmasiState extends State<Konfirmasi> {
         ),
         const SizedBox(height: 32),
         Text(
-          'Donasi sedang di proses, mohon konfirmasi transfer pada halaman aktivitas',
+          'Ambulans sedang di proses, mohon menunggu driver ambulans untuk menerima permintaan',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             color: cBlack,

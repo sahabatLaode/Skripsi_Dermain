@@ -31,7 +31,6 @@ class ZakatMethod {
     } else {
       print('Unexpected response: ${response.body}');
     }
-
     return allZakats;
   }
 
@@ -70,11 +69,11 @@ class ZakatMethod {
 
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
-      int totalZakat = int.parse(jsonResponse); // Ubah String menjadi int
+      int totalZakat = int.parse(jsonResponse);
       return totalZakat;
     } else {
       print('Request failed with status: ${response.statusCode}.');
-      return 0; // Mengembalikan 0 jika permintaan gagal
+      return 0;
     }
   }
 
