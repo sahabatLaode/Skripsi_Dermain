@@ -74,7 +74,7 @@ class _DonasiInfaqState extends ConsumerState<DonasiInfaq> {
         CustomSnackBar(
           message: 'Infaq anda sudah ditambahkan',
           icon: Iconsax.moneys,
-          background: c1,
+          background: c4,
         ),
       );
       Navigator.of(context).push(keteranganDonasi());

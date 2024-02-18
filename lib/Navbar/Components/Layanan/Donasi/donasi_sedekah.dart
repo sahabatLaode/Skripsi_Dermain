@@ -75,7 +75,7 @@ class _DonasiSedekahState extends ConsumerState<DonasiSedekah> {
         CustomSnackBar(
           message: 'Sedekah anda sudah ditambahkan',
           icon: Iconsax.moneys,
-          background: c1,
+          background: c2,
         ),
       );
       Navigator.of(context).push(keteranganDonasi());

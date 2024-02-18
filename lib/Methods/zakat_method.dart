@@ -23,6 +23,7 @@ class ZakatMethod {
             email: zakat['email'],
             phone: zakat['phone'],
             jenis_donasi: zakat['jenis_donasi'],
+            status: zakat['status'],
             created_at: zakat['created_at'],
           );
           allZakats.add(tempZakat);
@@ -74,6 +75,32 @@ class ZakatMethod {
     } else {
       print('Request failed with status: ${response.statusCode}.');
       return 0;
+    }
+  }
+
+  static Future<bool> changeStatus(String requestId, String newStatus) async {
+    final url = Uri.http(addressUrl, subStatus);
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'request_id': requestId,
+        'new_status': newStatus,
+      }),
+    );
+
+    print('Request: ${json.encode({
+          'request_id': requestId,
+          'new_status': newStatus
+        })}');
+    print('Response: ${response.body}');
+
+    if (response.headers['content-type'] == 'application/json') {
+      Map<String, dynamic> body = json.decode(response.body);
+      return body['status'] == 'success';
+    } else {
+      print('Unexpected response: ${response.body}');
+      return false;
     }
   }
 

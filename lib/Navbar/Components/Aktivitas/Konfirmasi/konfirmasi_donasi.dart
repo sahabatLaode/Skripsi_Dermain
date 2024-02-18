@@ -1,3 +1,4 @@
+import 'package:dermain/Methods/zakat_method.dart';
 import 'package:dermain/Models/zakat_model.dart';
 import 'package:dermain/Reusable%20Components/Widget/custom_snackbar.dart';
 import 'package:dermain/separator.dart';
@@ -21,8 +22,6 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
   bool isLoading = false;
   String peringatanTransfer =
       '*Segera lakukan transfer ke rekening Lazismu Banguntapan Selatan';
-  String keteranganTransaksi = 'Belum Transfer';
-  Color warnaKeterangan = cRed;
 
   final Map<String, Color> donationColors = {
     'Zakat': c1,
@@ -91,9 +90,11 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
           ),
         ),
         Text(
-          keteranganTransaksi,
+          widget.zakat.status,
           style: GoogleFonts.poppins(
-            color: warnaKeterangan,
+            color: widget.zakat.status == 'Berhasil'
+                ? donationColors[widget.zakat.jenis_donasi] ?? cWhite
+                : Colors.red,
             fontSize: 16,
             fontWeight: semibold,
           ),
@@ -527,7 +528,7 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
         Text(
           peringatanTransfer,
           style: GoogleFonts.poppins(
-            color: cRed,
+            color: widget.zakat.status == 'Berhasil' ? cWhite : Colors.red,
           ),
         ),
       ],
@@ -541,18 +542,21 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
       height: 60,
       width: double.infinity,
       child: TextButton(
-        onPressed: () {
+        onPressed: () async {
           setState(() {
             isLoading = true;
           });
-          Future.delayed(const Duration(seconds: 2), () {
+          // Panggil metode changeStatus
+          bool success = await ZakatMethod.changeStatus(zakat.id, 'Berhasil');
+          if (success) {
             setState(() {
               isLoading = false;
+              widget.zakat.status = 'Berhasil';
             });
-            keteranganTransaksi = 'Transaksi Diperiksa';
-            warnaKeterangan = donationColors[zakat.jenis_donasi] ?? cWhite;
-            peringatanTransfer = '';
-          });
+          } else {
+            // Tampilkan pesan kesalahan jika permintaan gagal
+            print('Failed to change status.');
+          }
         },
         style: TextButton.styleFrom(
           backgroundColor: donationColors[zakat.jenis_donasi] ?? cWhite,
