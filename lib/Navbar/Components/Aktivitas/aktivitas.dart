@@ -15,7 +15,7 @@ class Aktivitas extends StatelessWidget {
       child: Scaffold(
         backgroundColor: cWhite,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
+          preferredSize: const Size.fromHeight(60),
           child: AppBar(
             automaticallyImplyLeading: false,
             elevation: 0.0,
@@ -72,7 +72,7 @@ class Aktivitas extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(
                 children: [
                   SingleChildScrollView(
