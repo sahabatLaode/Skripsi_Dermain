@@ -47,8 +47,7 @@ class _OnboardingState extends State<Onboarding> {
                   OnboardingItems(
                     imageUrl: 'assets/images/image_splash2.png',
                     title: 'Pesan Ambulan LazisMu Dengan Cepat',
-                    subtitle:
-                        'Layanan ambulan yang siap melayani masyarakat banguntapan selatan',
+                    subtitle: 'Layanan ambulan yang siap melayani masyarakat banguntapan selatan',
                   ),
                   OnboardingItems(
                     imageUrl: 'assets/images/image_splash3.png',
@@ -77,7 +76,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 0 ? cBlack : c5,
+                    color: currentIndex == 0 ? c1 : c2,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -86,7 +85,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 1 ? cBlack : c5,
+                    color: currentIndex == 1 ? c1 : c2,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -95,7 +94,7 @@ class _OnboardingState extends State<Onboarding> {
                   height: 10,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: currentIndex == 2 ? cBlack : c5,
+                    color: currentIndex == 2 ? c1 : c2,
                   ),
                 ),
               ],
@@ -113,7 +112,7 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.of(context).push(signIn());
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: c2,
+                  backgroundColor: c1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

@@ -58,7 +58,7 @@ class _NotifikasiState extends State<Notifikasi> {
   Widget berita1() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {},
       child: SizedBox(
         width: 350,
@@ -75,7 +75,7 @@ class _NotifikasiState extends State<Notifikasi> {
   Widget berita2() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {},
       child: SizedBox(
         width: 350,
@@ -92,7 +92,7 @@ class _NotifikasiState extends State<Notifikasi> {
   Widget berita3() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {},
       child: SizedBox(
         width: 350,

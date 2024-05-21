@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-Color c1 = const Color(0xff01B3CD);
-Color c2 = const Color(0xffF6BA70);
-Color c3 = const Color(0xff9122A8);
-Color c4 = const Color(0xff6F4B40);
+Color c1 = const Color(0xfff68f28);
+Color c2 = const Color(0xffFCE6C4);
+Color c3 = const Color(0xff9D836A);
+Color c4 = const Color(0xfffef1e4);
 Color c5 = const Color(0xff808080);
 Color c6 = const Color(0xffF4F5F5);
+Color cWhite = const Color(0xffF5F5FA);
+Color cBlack = const Color(0xff1F1F29);
 
-Color cB1 = const Color(0xff9991C1);
-Color cB2 = const Color(0xffF2EFFF);
-
-Color cWhite = Colors.white;
-Color cBlack = Colors.black;
 Color cGrey = Colors.grey.shade100;
 Color cRed = Colors.red;
 

@@ -31,8 +31,7 @@ class _SignInState extends State<SignIn> {
     }
     _formKey.currentState!.save();
     try {
-      bool status = await AuthMethod.login(
-          _emailController.text, _passwordController.text);
+      bool status = await AuthMethod.login(_emailController.text, _passwordController.text);
 
       if (!status) {
         if (!mounted) return;
@@ -224,8 +223,7 @@ class _SignInState extends State<SignIn> {
             setState(() {
               isLoading = false;
             });
-            if (_emailController.text.isEmpty &&
-                _passwordController.text.isEmpty) {
+            if (_emailController.text.isEmpty && _passwordController.text.isEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
                 CustomSnackBar(
                   message: 'Semua field harus diisi',
@@ -239,7 +237,7 @@ class _SignInState extends State<SignIn> {
           });
         },
         style: TextButton.styleFrom(
-          backgroundColor: c2,
+          backgroundColor: c1,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

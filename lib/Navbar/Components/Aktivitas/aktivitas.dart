@@ -41,7 +41,7 @@ class Aktivitas extends StatelessWidget {
               margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
               padding: const EdgeInsets.symmetric(vertical: 3),
               decoration: BoxDecoration(
-                color: cB2,
+                color: cWhite,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TabBar(

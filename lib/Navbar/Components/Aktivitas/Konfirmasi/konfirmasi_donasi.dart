@@ -396,8 +396,8 @@ class _KonfirmasiDonasiState extends State<KonfirmasiDonasi> {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(c6),
-                      fixedSize: const MaterialStatePropertyAll(
+                      backgroundColor: WidgetStatePropertyAll(c6),
+                      fixedSize: const WidgetStatePropertyAll(
                         Size.fromHeight(50),
                       ),
                     ),

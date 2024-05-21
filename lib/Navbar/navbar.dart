@@ -1,5 +1,5 @@
+import 'package:dermain/Navbar/Components/Layanan/layanan.dart';
 import 'package:dermain/Navbar/Components/Profil/profil.dart';
-// import 'package:dermain/Navbar/Components/Layanan/layanan.dart';
 import 'package:flutter/material.dart';
 import 'package:dermain/Navbar/Components/Aktivitas/aktivitas.dart';
 import 'package:dermain/Navbar/Components/Beranda/beranda.dart';
@@ -16,10 +16,11 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  int index = 1;
+  int index = 0;
   final screens = [
-    const Aktivitas(),
     const Beranda(),
+    const Layanan(),
+    const Aktivitas(),
     const Profil(),
   ];
 
@@ -31,9 +32,9 @@ class _NavbarState extends State<Navbar> {
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
           indicatorColor: c2,
-          labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
+          labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
             (states) {
-              final isSelected = states.contains(MaterialState.selected);
+              final isSelected = states.contains(WidgetState.selected);
               return GoogleFonts.poppins(
                 fontSize: 14,
                 fontWeight: isSelected ? bold : regular,
@@ -48,18 +49,18 @@ class _NavbarState extends State<Navbar> {
           backgroundColor: cWhite,
           selectedIndex: index,
           onDestinationSelected: (index) => setState(() => this.index = index),
-          animationDuration: const Duration(seconds: 1),
+          animationDuration: const Duration(milliseconds: 1300),
           destinations: [
             NavigationDestination(
               icon: Icon(
-                Iconsax.task_square,
+                Iconsax.home,
                 color: cBlack,
               ),
               selectedIcon: Icon(
-                Iconsax.task_square5,
-                color: cWhite,
+                Iconsax.home_15,
+                color: c1,
               ),
-              label: 'Aktivitas',
+              label: 'Beranda',
             ),
             NavigationDestination(
               icon: Icon(
@@ -68,9 +69,20 @@ class _NavbarState extends State<Navbar> {
               ),
               selectedIcon: Icon(
                 Iconsax.element_45,
-                color: cWhite,
+                color: c1,
               ),
-              label: 'Beranda',
+              label: 'Layanan',
+            ),
+            NavigationDestination(
+              icon: Icon(
+                Iconsax.task_square,
+                color: cBlack,
+              ),
+              selectedIcon: Icon(
+                Iconsax.task_square5,
+                color: c1,
+              ),
+              label: 'Aktivitas',
             ),
             NavigationDestination(
               icon: Icon(
@@ -80,7 +92,7 @@ class _NavbarState extends State<Navbar> {
               selectedIcon: SvgPicture.asset(
                 'assets/icons/profil_bold.svg',
                 colorFilter: ColorFilter.mode(
-                  cWhite,
+                  c1,
                   BlendMode.srcIn,
                 ),
               ),

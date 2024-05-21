@@ -1,7 +1,7 @@
 library globals;
 
-// const addressUrl = '10.0.2.2:8000';
-const addressUrl = '192.168.137.1:8000';
+const addressUrl = '10.0.2.2:8000';
+// const addressUrl = '192.168.110.105:8000';
 const subZakat = 'api/zakat';
 const subKoin = 'api/koin';
 const subAmbulan = 'api/ambulan';

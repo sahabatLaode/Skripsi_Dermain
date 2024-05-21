@@ -66,7 +66,7 @@ class _BeritaState extends State<Berita> {
   Widget berita1() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -87,7 +87,7 @@ class _BeritaState extends State<Berita> {
   Widget berita2() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -108,7 +108,7 @@ class _BeritaState extends State<Berita> {
   Widget berita3() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -129,7 +129,7 @@ class _BeritaState extends State<Berita> {
   Widget berita4() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -150,7 +150,7 @@ class _BeritaState extends State<Berita> {
   Widget berita5() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -171,7 +171,7 @@ class _BeritaState extends State<Berita> {
   Widget berita6() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -192,7 +192,7 @@ class _BeritaState extends State<Berita> {
   Widget berita7() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -213,7 +213,7 @@ class _BeritaState extends State<Berita> {
   Widget berita8() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
@@ -234,7 +234,7 @@ class _BeritaState extends State<Berita> {
   Widget berita9() {
     return TextButton(
       style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
+          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 8))),
       onPressed: () {
         Navigator.of(context).push(bacaBerita());
       },
